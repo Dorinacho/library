@@ -1,41 +1,46 @@
 package com.library.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "loans")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "loan_id")
     private long id;
-    @Column
-    private String isbn;
-    @Column (name = "user_id")
-    private long userID;
+
     @Column
     private Date loanDate;
     @Column
     private Date returnDate;
 
-    public Loan(String isbn, long userID, Date loanDate, Date returnDate) {
-        this.isbn = isbn;
+    @ManyToOne(targetEntity = Book.class)
+    @JoinColumn(name = "isbn")
+    private Book bookISBN;
+
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "user_id")
+    private User userID;
+
+    public Loan(Book bookISBN, User userID, Date loanDate, Date returnDate) {
+        this.bookISBN = bookISBN;
         this.userID = userID;
         this.loanDate = loanDate;
         this.returnDate = returnDate;
     }
 
-    public Loan() {
-
+    public Book getIsbn() {
+        return bookISBN;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public long getUserID() {
+    public User getUserID() {
         return userID;
     }
 

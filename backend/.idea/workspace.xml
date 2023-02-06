@@ -5,15 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Created repositories">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/LoanRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/Loan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repository/LoanRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/LoanRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/library/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/library/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +29,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="com.haulmont.jpb.JpaRepository" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -42,19 +52,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/dosuciu/IdeaProjects/library/backend",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dosuciu/IdeaProjects/library/backend&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;5476504cb31b36fc69be5ce627f13499&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="Spring Boot.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.library.App" />
       <module name="backend" />
@@ -68,8 +84,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.library.App" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.library.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Spring Boot.App" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>
@@ -83,7 +113,13 @@
       <option name="presentableId" value="Default" />
       <updated>1675422569203</updated>
       <workItem from="1675422570409" duration="572000" />
-      <workItem from="1675423486879" duration="5301000" />
+      <workItem from="1675423486879" duration="7494000" />
+      <workItem from="1675438076102" duration="65000" />
+      <workItem from="1675438152319" duration="2251000" />
+      <workItem from="1675440418879" duration="2198000" />
+      <workItem from="1675672975989" duration="5747000" />
+      <workItem from="1675678739320" duration="6261000" />
+      <workItem from="1675685583800" duration="2414000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -99,7 +135,21 @@
       <option name="project" value="LOCAL" />
       <updated>1675431129173</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Created repositories">
+      <created>1675436711633</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1675436711633</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Created repositories">
+      <created>1675436722545</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1675436722545</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
