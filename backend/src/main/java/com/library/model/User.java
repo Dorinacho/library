@@ -1,11 +1,15 @@
 package com.library.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
-import java.math.BigInteger;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -13,21 +17,36 @@ import java.util.Set;
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
-    private BigInteger id;
+    @Column
+    @NonNull
+    private Long id;
     @Column
     private String name;
     @Column
     private String email;
 
-    @OneToMany(mappedBy = "userID")
+    @OneToMany(mappedBy = "user")
+    @JsonManagedReference
+    @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
 
-    public User(String name, String email) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -39,19 +58,7 @@ public class User {
         this.loans = loans;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setId(BigInteger id) {
-        this.id = id;
-    }
-
-    public BigInteger getId() {
+    public @NotNull Long getId() {
         return id;
     }
 }

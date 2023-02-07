@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "loans")
@@ -16,43 +16,52 @@ public class Loan {
     @Column(name = "loan_id")
     private long id;
 
-    @Column
-    private Date loanDate;
-    @Column
-    private Date returnDate;
-
     @ManyToOne(targetEntity = Book.class)
-    @JoinColumn(name = "isbn")
-    private Book bookISBN;
+    @JoinColumn(name = "book_id")
+    private Book book;
 
     @ManyToOne(targetEntity = User.class)
     @JoinColumn(name = "user_id")
-    private User userID;
+    private User user;
 
-    public Loan(Book bookISBN, User userID, Date loanDate, Date returnDate) {
-        this.bookISBN = bookISBN;
-        this.userID = userID;
-        this.loanDate = loanDate;
-        this.returnDate = returnDate;
+    @Column(name = "loan_date")
+    private LocalDate loanDate;
+    @Column(name = "return_date")
+    private LocalDate returnDate;
+
+    public long getId() {
+        return id;
     }
 
-    public Book getIsbn() {
-        return bookISBN;
-    }
-
-    public User getUserID() {
-        return userID;
-    }
-
-    public Date getLoanDate() {
+    public LocalDate getLoanDate() {
         return loanDate;
     }
 
-    public void setLoanDate(Date loanDate) {
+    public void setLoanDate(LocalDate loanDate) {
         this.loanDate = loanDate;
     }
 
-    public Date getReturnDate() {
+    public LocalDate getReturnDate() {
         return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

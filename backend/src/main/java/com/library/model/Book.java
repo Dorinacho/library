@@ -1,9 +1,14 @@
 package com.library.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -12,8 +17,13 @@ import java.util.Set;
 @Table(name = "books")
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Book {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
+    @NonNull
+    private Long id;
     @Size(max = 17)
     private String isbn;
     @Column
@@ -23,33 +33,37 @@ public class Book {
     @Column(name = "available_copies")
     private int availability;
 
-    @OneToMany(mappedBy = "bookISBN")
+    @OneToMany(mappedBy = "book")
+    @JsonManagedReference
+    @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
 
-    public Book(String title, String author, String isbn) {
-        this.title = title;
-        this.author = author;
+    public @NotNull Long getId() {
+        return id;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    public Set<Loan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(Set<Loan> loans) {
-        this.loans = loans;
     }
 
     public String getTitle() {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getAuthor() {
         return author;
     }
 
-    public String getISBN() {
-        return isbn;
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public int getAvailability() {
@@ -58,5 +72,13 @@ public class Book {
 
     public void setAvailability(int availability) {
         this.availability = availability;
+    }
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(Set<Loan> loans) {
+        this.loans = loans;
     }
 }

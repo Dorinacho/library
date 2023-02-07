@@ -1,22 +1,35 @@
 package com.library.controller;
 
 import com.library.model.Book;
-import com.library.repository.BookRepository;
+import com.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/library")
+@RequestMapping("/books")
 public class BookController {
     @Autowired
-    BookRepository bookRepository;
+    private BookService bookService;
 
-    @GetMapping("/books")
+    @GetMapping
     public List<Book> getBooks(){
-        return bookRepository.findAll();
+        return bookService.getBooks();
+    }
+
+    @PostMapping
+    public void addBook(@RequestBody Book book){
+        bookService.addBook(book);
+    }
+
+    @PutMapping("/{id}")
+    public void updateBook(@RequestBody Book book, @PathVariable(name = "id") Long bookID){
+        bookService.updateBook(book,bookID);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBook(@PathVariable(name = "id") Long bookID){
+        bookService.deleteBook(bookID);
     }
 }
