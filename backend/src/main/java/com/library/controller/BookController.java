@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/books")
+@CrossOrigin(origins = "http://localhost:8080")
 public class BookController {
     @Autowired
     private BookService bookService;
