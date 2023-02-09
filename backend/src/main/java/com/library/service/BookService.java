@@ -1,11 +1,7 @@
 package com.library.service;
 
 import com.library.model.Book;
-import com.library.model.Loan;
 import com.library.repository.BookRepository;
-import com.library.repository.LoanRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +12,16 @@ public class BookService {
 
     @Autowired
     private BookRepository bookRepository;
-    @Autowired
-    private LoanService loanService;
 
-    @PersistenceContext
-    EntityManager entityManager;
-
-    public List<Book> getBooks(){
+    public List<Book> getBooks() {
         return bookRepository.findAll();
     }
 
-    public void addBook(Book book){
+    public void addBook(Book book) {
         bookRepository.save(book);
     }
 
-    public void updateBook(Book bookData, Long id){
+    public void updateBook(Book bookData, Long id) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find book!"));
         book.setAvailability(bookData.getAvailability());
         book.setAuthor(bookData.getAuthor());
@@ -40,15 +31,7 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public void deleteBook(Long bookID){
-//        List<Loan> loans = loanService.getLoans();
-//        for(Loan loan: loans){
-//            if(loan.getBook().getId().equals(bookID)){
-//                loan.setBook(new Book(loan.getBook().getTitle()));
-//                loanService.updateLoan(loan, loan.getId());
-//            }
-//        }
-//        entityManager.detach(bookRepository.findById(bookID));
+    public void deleteBook(Long bookID) {
         bookRepository.deleteById(bookID);
     }
 }

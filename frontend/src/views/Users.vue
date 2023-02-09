@@ -19,8 +19,82 @@
 					:items="users"
 					:items-per-page="5"
 					class="elevation-1"
-                    :search="search"
-				></v-data-table>
+					:search="search"
+				>
+					<template v-slot:top>
+						<v-toolbar flat>
+							<v-spacer></v-spacer>
+							<v-dialog v-model="dialog" max-width="500px">
+								<template v-slot:activator="{ on, attrs }">
+									<v-btn
+										color="primary"
+										dark
+										class="mb-2"
+										v-bind="attrs"
+										v-on="on"
+									>
+										Add User
+									</v-btn>
+								</template>
+								<v-card>
+									<v-card-title>
+										<span class="text-h5">{{ formTitle }}</span>
+									</v-card-title>
+									<v-card-text>
+										<v-container>
+											<v-row>
+												<v-col cols="12" sm="6" md="4">
+													<v-text-field
+														v-model="editedUser.name"
+														label="Name"
+													></v-text-field>
+												</v-col>
+												<v-col cols="12" sm="6" md="4">
+													<v-text-field
+														v-model="editedUser.email"
+														label="Email"
+													></v-text-field>
+												</v-col>
+											</v-row>
+										</v-container>
+									</v-card-text>
+									<v-card-actions>
+										<v-spacer></v-spacer>
+										<v-btn color="blue darken-1" text @click="close">
+											Cancel
+										</v-btn>
+										<v-btn color="blue darken-1" text @click="save">
+											Save
+										</v-btn>
+									</v-card-actions>
+								</v-card>
+							</v-dialog>
+							<v-dialog v-model="dialogDelete" max-width="500px">
+								<v-card>
+									<v-card-title class="text-h5"
+										>Are you sure you want to delete this user?</v-card-title
+									>
+									<v-card-actions>
+										<v-spacer></v-spacer>
+										<v-btn color="blue darken-1" text @click="closeDelete"
+											>Cancel</v-btn
+										>
+										<v-btn color="blue darken-1" text @click="deleteItemConfirm"
+											>OK</v-btn
+										>
+										<v-spacer></v-spacer>
+									</v-card-actions>
+								</v-card>
+							</v-dialog>
+						</v-toolbar>
+					</template>
+					<template v-slot:[`item.actions`]="{ item }">
+						<v-icon small class="mr-2" @click="editItem(item)">
+							mdi-pencil
+						</v-icon>
+						<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+					</template></v-data-table
+				>
 			</v-card>
 		</div>
 	</div>
@@ -28,11 +102,13 @@
 
 <script>
 import Navbar from "../components/Navbar.vue";
-import axios from "axios";
+import UserService from "../services/user.service";
 export default {
 	data() {
 		return {
-			search:'',
+			dialog: false,
+			dialogDelete: false,
+			search: "",
 			headers: [
 				{
 					text: "ID",
@@ -42,19 +118,93 @@ export default {
 				},
 				{ text: "Name", value: "name" },
 				{ text: "Email", value: "email" },
+				{ text: "Actions", value: "actions", sortable: false },
 			],
 			users: [],
+			editedIndex: -1,
+			editedUser: {
+				id: 0,
+				name: "",
+				email: "",
+			},
+			defaultUser: {
+				name: "",
+				email: "",
+			},
 		};
+	},
+	computed: {
+		formTitle() {
+			return this.editedIndex === -1 ? "Add User" : "Edit User";
+		},
+	},
+	watch: {
+		dialog(val) {
+			val || this.close();
+		},
+		dialogDelete(val) {
+			val || this.closeDelete();
+		},
 	},
 	components: {
 		Navbar,
 	},
 	methods: {
 		fetchUsers() {
-			axios.get("http://localhost:8090/users").then((response) => {
+			UserService.getUsers().then((response) => {
 				this.users = response.data;
 				console.log(this.users);
 			});
+		},
+		editItem(user) {
+			this.editedIndex = this.users.indexOf(user);
+			this.editedUser = Object.assign({}, user);
+			this.dialog = true;
+		},
+
+		deleteItem(user) {
+			this.editedIndex = this.users.indexOf(user);
+			this.editedUser = Object.assign({}, user);
+			this.dialogDelete = true;
+		},
+
+		deleteItemConfirm() {
+			UserService.deleteUser(this.editedUser.id).then(() => {
+				this.fetchUsers();
+			});
+			this.closeDelete();
+		},
+
+		close() {
+			this.dialog = false;
+			this.$nextTick(() => {
+				this.editedUser = Object.assign({}, this.defaultUser);
+				this.editedIndex = -1;
+			});
+		},
+
+		closeDelete() {
+			this.dialogDelete = false;
+			this.$nextTick(() => {
+				this.editedUser = Object.assign({}, this.defaultUser);
+				this.editedIndex = -1;
+			});
+		},
+
+		save() {
+			if (this.editedIndex > -1) {
+				// Object.assign(this.Users[this.editedIndex], this.editedUser);
+				UserService.updateUser(this.editedUser, this.editedUser.id).then(
+					() => {
+						this.fetchUsers();
+					}
+				);
+			} else {
+				UserService.addUser(this.editedUser).then(() => {
+					this.fetchUsers();
+				});
+			}
+			this.close();
 		},
 	},
 	created() {

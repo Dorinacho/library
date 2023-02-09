@@ -23,7 +23,6 @@
 				>
 					<template v-slot:top>
 						<v-toolbar flat>
-							<v-divider class="mx-4" inset vertical></v-divider>
 							<v-spacer></v-spacer>
 							<v-dialog v-model="dialog" max-width="500px">
 								<template v-slot:activator="{ on, attrs }">
@@ -47,25 +46,25 @@
 											<v-row>
 												<v-col cols="12" sm="6" md="4">
 													<v-text-field
-														v-model="editedItem.title"
+														v-model="editedBook.title"
 														label="Title"
 													></v-text-field>
 												</v-col>
 												<v-col cols="12" sm="6" md="4">
 													<v-text-field
-														v-model="editedItem.author"
+														v-model="editedBook.author"
 														label="Author"
 													></v-text-field>
 												</v-col>
 												<v-col cols="12" sm="6" md="4">
 													<v-text-field
-														v-model="editedItem.isbn"
+														v-model="editedBook.isbn"
 														label="ISBN"
 													></v-text-field>
 												</v-col>
 												<v-col cols="12" sm="6" md="4">
 													<v-text-field
-														v-model="editedItem.availability"
+														v-model="editedBook.availability"
 														label="Available copies"
 													></v-text-field>
 												</v-col>
@@ -139,14 +138,14 @@ export default {
 			],
 			books: [],
 			editedIndex: -1,
-			editedItem: {
+			editedBook: {
 				id: 0,
 				author: "",
 				title: "",
 				isbn: "",
 				availability: 0,
 			},
-			defaultItem: {
+			defaultBook: {
 				author: "",
 				title: "",
 				isbn: "",
@@ -156,10 +155,9 @@ export default {
 	},
 	computed: {
 		formTitle() {
-			return this.editedIndex === -1 ? "New Book" : "Edit Book";
+			return this.editedIndex === -1 ? "Add Book" : "Edit Book";
 		},
 	},
-
 	watch: {
 		dialog(val) {
 			val || this.close();
@@ -180,18 +178,18 @@ export default {
 		},
 		editItem(book) {
 			this.editedIndex = this.books.indexOf(book);
-			this.editedItem = Object.assign({}, book);
+			this.editedBook = Object.assign({}, book);
 			this.dialog = true;
 		},
 
 		deleteItem(book) {
 			this.editedIndex = this.books.indexOf(book);
-			this.editedItem = Object.assign({}, book);
+			this.editedBook = Object.assign({}, book);
 			this.dialogDelete = true;
 		},
 
 		deleteItemConfirm() {
-			BookeService.deleteBook(this.editedItem.id).then(() => {
+			BookeService.deleteBook(this.editedBook.id).then(() => {
 				this.fetchBooks();
 			});
 			this.closeDelete();
@@ -200,7 +198,7 @@ export default {
 		close() {
 			this.dialog = false;
 			this.$nextTick(() => {
-				this.editedItem = Object.assign({}, this.defaultItem);
+				this.editedBook = Object.assign({}, this.defaultBook);
 				this.editedIndex = -1;
 			});
 		},
@@ -208,21 +206,21 @@ export default {
 		closeDelete() {
 			this.dialogDelete = false;
 			this.$nextTick(() => {
-				this.editedItem = Object.assign({}, this.defaultItem);
+				this.editedBook = Object.assign({}, this.defaultBook);
 				this.editedIndex = -1;
 			});
 		},
 
 		save() {
 			if (this.editedIndex > -1) {
-				// Object.assign(this.books[this.editedIndex], this.editedItem);
-				BookeService.updateBook(this.editedItem, this.editedItem.id).then(
+				// Object.assign(this.books[this.editedIndex], this.editedBook);
+				BookeService.updateBook(this.editedBook, this.editedBook.id).then(
 					() => {
 						this.fetchBooks();
 					}
 				);
 			} else {
-				BookeService.addBook(this.editedItem).then(() => {
+				BookeService.addBook(this.editedBook).then(() => {
 					this.fetchBooks();
 				});
 			}
