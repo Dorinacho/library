@@ -6,13 +6,13 @@ class BookService {
 	getBooks() {
 		return axios.get(BOOK_URL);
 	}
-    updateBook(book, id) {
+	updateBook(book, id) {
 		return axios.put(BOOK_URL + `/${id}`, book);
 	}
-    addBook(book) {
+	addBook(book) {
 		return axios.post(BOOK_URL, book);
 	}
-    deleteBook(id) {
+	deleteBook(id) {
 		return axios.delete(BOOK_URL + `/${id}`);
 	}
 }

@@ -2,6 +2,15 @@
 	<div>
 		<Navbar />
 		<div class="wrapper">
+			<v-alert
+				v-model="alert"
+				dense
+				elevation="5"
+				:type="alertType.type"
+				dismissible
+				class="alert"
+				>{{ this.alertType.text }}</v-alert
+			>
 			<v-card class="table">
 				<v-card-title>
 					Books
@@ -44,28 +53,30 @@
 									<v-card-text>
 										<v-container>
 											<v-row>
-												<v-col cols="12" sm="6" md="4">
+												<v-col cols="12" sm="6" md="7">
 													<v-text-field
 														v-model="editedBook.title"
 														label="Title"
 													></v-text-field>
 												</v-col>
-												<v-col cols="12" sm="6" md="4">
+												<v-col cols="12" sm="6" md="3">
+													<v-text-field
+														v-model="editedBook.availability"
+														label="Available copies"
+													></v-text-field>
+												</v-col>
+											</v-row>
+											<v-row>
+												<v-col cols="12" sm="6" md="5">
 													<v-text-field
 														v-model="editedBook.author"
 														label="Author"
 													></v-text-field>
 												</v-col>
-												<v-col cols="12" sm="6" md="4">
+												<v-col cols="12" sm="6" md="5">
 													<v-text-field
 														v-model="editedBook.isbn"
 														label="ISBN"
-													></v-text-field>
-												</v-col>
-												<v-col cols="12" sm="6" md="4">
-													<v-text-field
-														v-model="editedBook.availability"
-														label="Available copies"
 													></v-text-field>
 												</v-col>
 											</v-row>
@@ -117,9 +128,13 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import BookeService from "../services/book.service";
+// import errorMsg from "../helpers/errorMsg";
+
 export default {
 	data() {
 		return {
+			alertType: "",
+			alert: false,
 			dialog: false,
 			dialogDelete: false,
 			search: "",
@@ -173,7 +188,6 @@ export default {
 		fetchBooks() {
 			BookeService.getBooks().then((response) => {
 				this.books = response.data;
-				console.log(this.books);
 			});
 		},
 		editItem(book) {
@@ -213,12 +227,20 @@ export default {
 
 		save() {
 			if (this.editedIndex > -1) {
-				// Object.assign(this.books[this.editedIndex], this.editedBook);
-				BookeService.updateBook(this.editedBook, this.editedBook.id).then(
-					() => {
+				BookeService.updateBook(this.editedBook, this.editedBook.id)
+					.then(() => {
 						this.fetchBooks();
-					}
-				);
+					})
+					.catch((error) => {
+						console.log(error);
+						console.log(error.response.status);
+						this.alertType = {
+							value: "update",
+							text: "Could not update",
+							type: "error",
+						};
+						this.alert = true;
+					});
 			} else {
 				BookeService.addBook(this.editedBook).then(() => {
 					this.fetchBooks();
@@ -237,10 +259,19 @@ export default {
 .wrapper {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .table {
 	width: 80%;
 	margin-top: 30px;
+}
+
+.alert {
+	position: absolute;
+
+	top: 10%;
+	z-index: 100;
 }
 </style>

@@ -38,10 +38,6 @@ public class Book {
     @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
 
-    public Book(String title) {
-        this.title = title;
-    }
-
     public @NotNull Long getId() {
         return id;
     }
