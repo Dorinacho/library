@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -33,7 +34,8 @@ public class LoanService {
         loan.setBook(loanData.getBook());
         loan.setUser(loanData.getUser());
         loan.setLoanDate(loanData.getLoanDate());
-        loan.setReturnDate(loanData.getReturnDate());
+        final int DAYS_UNTIL_RETURN = 21;
+        loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
         System.out.println(loan);
         loanRepository.save(loan);
     }

@@ -89,7 +89,11 @@
 															scrollable
 														>
 															<v-spacer></v-spacer>
-															<v-btn text color="primary" @click="date1 = false">
+															<v-btn
+																text
+																color="primary"
+																@click="date1 = false"
+															>
 																Cancel
 															</v-btn>
 															<v-btn
@@ -102,44 +106,13 @@
 														</v-date-picker>
 													</v-menu>
 												</v-col>
-												<v-col cols="12" sm="6" md="4">
-													<v-menu
-														ref="date2"
-														v-model="date2"
-														:close-on-content-click="false"
-														:return-value.sync="editedLoan.returnDate"
-														transition="scale-transition"
-														offset-y
-														min-width="auto"
-													>
-														<template v-slot:activator="{ on, attrs }">
-															<v-text-field
-																v-model="editedLoan.returnDate"
-																label="Loan date"
-																prepend-icon="mdi-calendar"
-																v-bind="attrs"
-																v-on="on"
-															></v-text-field>
-														</template>
-														<v-date-picker
-															v-model="editedLoan.returnDate"
-															no-title
-															scrollable
-														>
-															<v-spacer></v-spacer>
-															<v-btn text color="primary" @click="date2 = false">
-																Cancel
-															</v-btn>
-															<v-btn
-																text
-																color="primary"
-																@click="$refs.date2.save(editedLoan.returnDate)"
-															>
-																OK
-															</v-btn>
-														</v-date-picker>
-													</v-menu>
-												</v-col>
+												<!-- <v-col cols="12" sm="6" md="4">
+													<v-text-field
+														v-model="editedLoan.returnDate"
+														label="Return date"
+														readonly
+													></v-text-field>
+												</v-col> -->
 											</v-row>
 										</v-container>
 									</v-card-text>
@@ -196,7 +169,7 @@ export default {
 	data() {
 		return {
 			date1: false,
-			date2: false,
+			// date2: false,
 			dialog: false,
 			dialogDelete: false,
 			search: "",
@@ -221,14 +194,18 @@ export default {
 				id: 0,
 				book: "",
 				user: "",
-				loanDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-				returnDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+				loanDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+					.toISOString()
+					.substr(0, 10),
+				returnDate:"",
 			},
 			defaultLoan: {
 				book: "",
 				user: "",
-				loanDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
-				returnDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+				loanDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+					.toISOString()
+					.substr(0, 10),
+				returnDate: "",
 			},
 		};
 	},
@@ -301,7 +278,7 @@ export default {
 
 		save() {
 			if (this.editedIndex > -1) {
-				// Object.assign(this.Loans[this.editedIndex], this.editedLoan);
+				// this.editedLoan.returnDate = this.editedLoan.loanDate + 14;
 				LoanService.updateLoan(this.editedLoan, this.editedLoan.id).then(() => {
 					this.fetchLoans();
 				});

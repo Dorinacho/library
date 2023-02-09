@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Created Services and Controllers for Entities">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/book.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/book.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Books.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Books.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +128,7 @@
       <workItem from="1675772446518" duration="4135000" />
       <workItem from="1675850385448" duration="5676000" />
       <workItem from="1675934244192" duration="93000" />
-      <workItem from="1675934405393" duration="8028000" />
+      <workItem from="1675934405393" duration="8048000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
