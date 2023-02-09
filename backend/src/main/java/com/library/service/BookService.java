@@ -1,7 +1,11 @@
 package com.library.service;
 
 import com.library.model.Book;
+import com.library.model.Loan;
 import com.library.repository.BookRepository;
+import com.library.repository.LoanRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +15,12 @@ import java.util.List;
 public class BookService {
 
     @Autowired
-    BookRepository bookRepository;
+    private BookRepository bookRepository;
+    @Autowired
+    private LoanService loanService;
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     public List<Book> getBooks(){
         return bookRepository.findAll();
@@ -32,6 +41,14 @@ public class BookService {
     }
 
     public void deleteBook(Long bookID){
+//        List<Loan> loans = loanService.getLoans();
+//        for(Loan loan: loans){
+//            if(loan.getBook().getId().equals(bookID)){
+//                loan.setBook(new Book(loan.getBook().getTitle()));
+//                loanService.updateLoan(loan, loan.getId());
+//            }
+//        }
+//        entityManager.detach(bookRepository.findById(bookID));
         bookRepository.deleteById(bookID);
     }
 }

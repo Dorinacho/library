@@ -23,5 +23,12 @@ export default {
 }
 .link {
 	margin: 0px 10px;
+	color:black !important;
+	text-decoration: none;
 }
+
+.link:active{
+	color: cornflowerblue !important;
+}
+
 </style>

@@ -1,17 +1,27 @@
-import { createRouter, createWebHistory } from 'vue-router';
+// import { createRouter, createWebHistory } from 'vue-router';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
 
-import HomePage from '@/components/Home.vue';
-import Books from '@/components/Books.vue';
-import Users from '@/components/Users.vue';
+import HomePage from '@/views/Home.vue';
+import Books from '@/views/Books.vue';
+import Users from '@/views/Users.vue';
+import Loans from '@/views/Loans.vue';
 
-export const routes = [
-    { path: '/', component: HomePage },
-    { path: '/books', component: Books },
-    { path: '/users', component: Users },
+Vue.use(VueRouter);
+
+const routes = [
+	{ path: '/', component: HomePage },
+	{ path: '/books', component: Books },
+	{ path: '/users', component: Users },
+    { path: '/loans', component: Loans },
 ];
 
-const router = createRouter({
-    history: createWebHistory(process.env.BASE_URL),
-    routes,
+// const router = createRouter({
+//     history: createWebHistory(process.env.BASE_URL),
+//     routes,
+// });
+
+const router = new VueRouter({
+	routes,
 });
 export default router;

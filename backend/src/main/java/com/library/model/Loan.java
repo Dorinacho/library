@@ -3,6 +3,7 @@ package com.library.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.time.LocalDate;
 
@@ -14,7 +15,8 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "loan_id")
-    private long id;
+    @NonNull
+    private Long id;
 
     @ManyToOne(targetEntity = Book.class)
     @JoinColumn(name = "book_id")
@@ -29,7 +31,7 @@ public class Loan {
     @Column(name = "return_date")
     private LocalDate returnDate;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

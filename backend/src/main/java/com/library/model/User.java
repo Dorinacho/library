@@ -29,7 +29,7 @@ public class User {
     @Column
     private String email;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
     @JsonManagedReference
     @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();

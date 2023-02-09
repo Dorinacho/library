@@ -33,10 +33,14 @@ public class Book {
     @Column(name = "available_copies")
     private int availability;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
+
+    public Book(String title) {
+        this.title = title;
+    }
 
     public @NotNull Long getId() {
         return id;
