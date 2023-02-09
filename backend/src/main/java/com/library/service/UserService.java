@@ -5,6 +5,7 @@ import com.library.model.User;
 import com.library.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -23,7 +24,10 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     public void addUser(User user) {
+        user.setPassword(bCryptPasswordEncoder
+                .encode(user.getPassword()));
         userRepository.save(user);
     }
 
