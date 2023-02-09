@@ -1,7 +1,6 @@
 package com.library.service;
 
 import com.library.model.Loan;
-import com.library.repository.BookRepository;
 import com.library.repository.LoanRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

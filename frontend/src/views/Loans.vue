@@ -66,7 +66,7 @@
 												</v-col>
 												<v-col cols="12" sm="6" md="4">
 													<v-menu
-														ref="menu"
+														ref="date1"
 														v-model="date1"
 														:close-on-content-click="false"
 														:return-value.sync="editedLoan.loanDate"
@@ -95,7 +95,7 @@
 															<v-btn
 																text
 																color="primary"
-																@click="$refs.menu.save(editedLoan.loanDate)"
+																@click="$refs.date1.save(editedLoan.loanDate)"
 															>
 																OK
 															</v-btn>
@@ -104,7 +104,7 @@
 												</v-col>
 												<v-col cols="12" sm="6" md="4">
 													<v-menu
-														ref="menu"
+														ref="date2"
 														v-model="date2"
 														:close-on-content-click="false"
 														:return-value.sync="editedLoan.returnDate"
@@ -133,7 +133,7 @@
 															<v-btn
 																text
 																color="primary"
-																@click="$refs.menu.save(editedLoan.returnDate)"
+																@click="$refs.date2.save(editedLoan.returnDate)"
 															>
 																OK
 															</v-btn>
@@ -221,14 +221,14 @@ export default {
 				id: 0,
 				book: "",
 				user: "",
-				loanDate: "",
-				returnDate: "",
+				loanDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+				returnDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
 			},
 			defaultLoan: {
 				book: "",
 				user: "",
-				loanDate: "",
-				returnDate: "",
+				loanDate: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
+				returnDate:(new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString().substr(0, 10),
 			},
 		};
 	},
