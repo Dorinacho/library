@@ -1,6 +1,9 @@
 package com.library.service;
 
 
+import com.library.DTOs.UserCreationDTO;
+import com.library.DTOs.UserDTO;
+import com.library.mapper.UserMapper;
 import com.library.model.User;
 import com.library.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +13,25 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class UserService {
 
+    private final UserRepository userRepository;
     @Autowired
-    UserRepository userRepository;
+    private RoleService roleService;
 
-    public List<User> getUsers() {
-        return userRepository.getUsers();
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    private UserMapper userMapper;
+
+    public List<UserDTO> getUsers() {
+        return userRepository.getUsers().stream()
+                .map(userMapper::toDto)
+                .collect(toList());
     }
 
     public User getUserByID(Long id) {
@@ -25,9 +39,11 @@ public class UserService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void addUser(User user) {
-        user.setPassword(bCryptPasswordEncoder
-                .encode(user.getPassword()));
+    public void addUser(UserCreationDTO userCreationDTO) {
+        User user = userMapper.toUser(userCreationDTO);
+
+//        user.setPassword(bCryptPasswordEncoder
+//                .encode(user.getPassword()));
         userRepository.save(user);
     }
 

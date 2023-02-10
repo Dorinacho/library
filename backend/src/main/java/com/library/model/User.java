@@ -7,17 +7,15 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,10 +31,35 @@ public class User {
     private String username;
     @Column(nullable = false, unique = true)
     private String password;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<Role> roles;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
+
+    public User(String name, String email, String username, String password, List<Role> roles) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     public String getName() {
         return name;

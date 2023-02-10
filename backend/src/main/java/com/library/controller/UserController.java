@@ -1,5 +1,7 @@
 package com.library.controller;
 
+import com.library.DTOs.UserCreationDTO;
+import com.library.DTOs.UserDTO;
 import com.library.model.User;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<User> getUsers() {
+    public List<UserDTO> getUsers() {
         return userService.getUsers();
     }
 
@@ -26,8 +28,8 @@ public class UserController {
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
-        userService.addUser(user);
+    public void addUser(@RequestBody UserCreationDTO userCreationDTO) {
+        userService.addUser(userCreationDTO);
     }
 
     @PutMapping("/{id}")
