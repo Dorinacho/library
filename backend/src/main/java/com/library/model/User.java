@@ -53,6 +53,18 @@ public class User {
         this.password = password;
     }
 
+    public User(String username, String password, Set<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -101,4 +113,7 @@ public class User {
         this.loans = loans;
     }
 
+    public Long getId() {
+        return id;
+    }
 }

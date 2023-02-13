@@ -1,30 +1,27 @@
 package com.library.service;
 
 
-import com.library.DTOs.UserCreationDTO;
-import com.library.DTOs.UserDTO;
+import com.library.dto.UserCreationDTO;
+import com.library.dto.UserDTO;
 import com.library.mapper.UserMapper;
 import com.library.model.User;
 import com.library.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static java.util.stream.Collectors.toList;
-
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
-
-
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordEncoder bCryptPasswordEncoder;
     private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, PasswordEncoder bCryptPasswordEncoder, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.userMapper = userMapper;
@@ -52,6 +49,7 @@ public class UserService {
         user.setName(userData.getName());
         user.setEmail(userData.getEmail());
         user.setLoans(userData.getLoans());
+        user.setRoles(userData.getRoles());
         userRepository.save(user);
     }
 

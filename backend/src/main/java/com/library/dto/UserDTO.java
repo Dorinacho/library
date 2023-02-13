@@ -1,4 +1,4 @@
-package com.library.DTOs;
+package com.library.dto;
 
 import com.library.model.ERole;
 
@@ -7,7 +7,7 @@ import java.util.List;
 public class UserDTO {
 
     private String name;
-    private List<String> roles;
+    private List<ERole> roles;
 
     public UserDTO(String name, List<ERole> roles) {
         this.name = name;
@@ -22,11 +22,11 @@ public class UserDTO {
         this.name = name;
     }
 
-    public List<String> getRoles() {
+    public List<ERole> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<ERole> roles) {
         this.roles = roles;
     }
 }

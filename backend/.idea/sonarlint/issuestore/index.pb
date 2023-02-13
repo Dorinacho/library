@@ -6,8 +6,6 @@ h
 h
 8src/main/java/com/library/controller/LoanController.java,b\7\b72f1372d5e574088a9dad3b52e8f673bb4fbe92
 Y
-)src/main/java/com/library/model/Loan.java,8\5\85ff18e2518a16fe2e24597e9916ad1991255218
-Y
 )src/main/java/com/library/model/Book.java,b\3\b370d1eecf3be2232ddfbd62f4313488ef05708b
 b
 2src/main/java/com/library/service/BookService.java,b\8\b83a1dae4a8d8bdd92e15ad9d9758d5f5df1bce0

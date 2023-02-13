@@ -1,7 +1,7 @@
 package com.library.mapper;
 
-import com.library.DTOs.UserCreationDTO;
-import com.library.DTOs.UserDTO;
+import com.library.dto.UserCreationDTO;
+import com.library.dto.UserDTO;
 import com.library.model.ERole;
 import com.library.model.Role;
 import com.library.model.User;

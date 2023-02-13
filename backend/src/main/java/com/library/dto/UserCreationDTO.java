@@ -1,13 +1,15 @@
-package com.library.DTOs;
+package com.library.dto;
 
-import java.util.List;
+import com.library.model.Role;
+
+import java.util.Set;
 
 public class UserCreationDTO {
     private String name;
     private String email;
     private String username;
     private String password;
-    private List<String> roles;
+    private Set<String> roles;
 
     public String getName() {
         return name;
@@ -41,11 +43,11 @@ public class UserCreationDTO {
         this.password = password;
     }
 
-    public List<String> getRoles() {
+    public Set<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(Set<String> roles) {
         this.roles = roles;
     }
 }

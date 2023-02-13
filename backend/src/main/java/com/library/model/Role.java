@@ -1,12 +1,8 @@
 package com.library.model;
 
 
-import com.library.DTOs.UserDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "roles")
