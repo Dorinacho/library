@@ -9,9 +9,15 @@ Y
 )src/main/java/com/library/model/Loan.java,8\5\85ff18e2518a16fe2e24597e9916ad1991255218
 Y
 )src/main/java/com/library/model/Book.java,b\3\b370d1eecf3be2232ddfbd62f4313488ef05708b
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 b
 2src/main/java/com/library/service/BookService.java,b\8\b83a1dae4a8d8bdd92e15ad9d9758d5f5df1bce0
 h
 8src/main/java/com/library/controller/BookController.java,0\7\07667767f64b5b98e92950a626f9144f62745b9c
+b
+2src/main/java/com/library/service/LoanService.java,7\7\776a3a081dc720839f7e77603f3241711372759f
+h
+8src/main/java/com/library/repository/LoanRepository.java,a\0\a0c9ee97cddb4b664746cf132fa019e65732733f
+j
+:.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml,3\f\3f245e8e70d461dd90efe4d72e91105965355519
+b
+2src/main/java/com/library/service/RoleService.java,2\d\2d767b69eec5a44899eb5f577a59f22861bfad8c

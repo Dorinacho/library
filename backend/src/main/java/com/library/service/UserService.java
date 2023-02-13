@@ -6,7 +6,7 @@ import com.library.DTOs.UserDTO;
 import com.library.mapper.UserMapper;
 import com.library.model.User;
 import com.library.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,19 +19,21 @@ import static java.util.stream.Collectors.toList;
 public class UserService {
 
     private final UserRepository userRepository;
-    @Autowired
-    private RoleService roleService;
 
-    public UserService(UserRepository userRepository) {
+
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.userMapper = userMapper;
     }
 
-    private UserMapper userMapper;
-
     public List<UserDTO> getUsers() {
-        return userRepository.getUsers().stream()
+        return userRepository.findAll().stream()
                 .map(userMapper::toDto)
-                .collect(toList());
+                .toList();
     }
 
     public User getUserByID(Long id) {
@@ -40,10 +42,8 @@ public class UserService {
 
     @Transactional(rollbackFor = Exception.class)
     public void addUser(UserCreationDTO userCreationDTO) {
+        userCreationDTO.setPassword(bCryptPasswordEncoder.encode(userCreationDTO.getPassword()));
         User user = userMapper.toUser(userCreationDTO);
-
-//        user.setPassword(bCryptPasswordEncoder
-//                .encode(user.getPassword()));
         userRepository.save(user);
     }
 

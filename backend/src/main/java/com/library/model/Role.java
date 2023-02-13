@@ -9,28 +9,30 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
+@Table(name = "roles")
 @NoArgsConstructor
-@AllArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
     private Long id;
     @Column
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private ERole name;
 
-    @ManyToMany(mappedBy = "roles")
-    List<User> users;
+    public Role(ERole name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public String getName() {
+    public ERole getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(ERole name) {
         this.name = name;
     }
 }
