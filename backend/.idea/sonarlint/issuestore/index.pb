@@ -11,8 +11,6 @@ Y
 )src/main/java/com/library/model/Book.java,b\3\b370d1eecf3be2232ddfbd62f4313488ef05708b
 b
 2src/main/java/com/library/service/BookService.java,b\8\b83a1dae4a8d8bdd92e15ad9d9758d5f5df1bce0
-h
-8src/main/java/com/library/controller/BookController.java,0\7\07667767f64b5b98e92950a626f9144f62745b9c
 b
 2src/main/java/com/library/service/LoanService.java,7\7\776a3a081dc720839f7e77603f3241711372759f
 h

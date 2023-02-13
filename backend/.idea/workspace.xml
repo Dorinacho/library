@@ -4,26 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Implemented the DTO design">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/7/07667767f64b5b98e92950a626f9144f62745b9c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/5/85ff18e2518a16fe2e24597e9916ad1991255218" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/3/b370d1eecf3be2232ddfbd62f4313488ef05708b" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/7/b72f1372d5e574088a9dad3b52e8f673bb4fbe92" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/8/b83a1dae4a8d8bdd92e15ad9d9758d5f5df1bce0" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e8036e648bf33f49297001faf7b847ef297bf1b1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/model/ERole.java" afterDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Starting to implement Security again">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/security/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/security/jwt/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/security/jwt/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/service/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/7/07667767f64b5b98e92950a626f9144f62745b9c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/DTOs/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/DTOs/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +140,7 @@
       <workItem from="1676018984935" duration="130000" />
       <workItem from="1676019314925" duration="2372000" />
       <workItem from="1676028665092" duration="11000000" />
-      <workItem from="1676278976828" duration="2187000" />
+      <workItem from="1676278976828" duration="4700000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -216,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676035476421</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Starting to implement Security again">
+      <created>1676281641387</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1676281641387</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -246,7 +242,8 @@
     <MESSAGE value="get from the database only the necessary data about users" />
     <MESSAGE value="WIP" />
     <MESSAGE value="Implemented the DTO design" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the DTO design" />
+    <MESSAGE value="Starting to implement Security again" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting to implement Security again" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
