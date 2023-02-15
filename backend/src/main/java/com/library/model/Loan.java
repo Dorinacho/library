@@ -1,7 +1,6 @@
 package com.library.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
@@ -10,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "loans")
 @NoArgsConstructor
-@AllArgsConstructor
 public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

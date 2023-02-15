@@ -6,20 +6,20 @@ import java.util.List;
 
 public class UserDTO {
 
-    private String name;
+    private String username;
     private List<ERole> roles;
 
-    public UserDTO(String name, List<ERole> roles) {
-        this.name = name;
+    public UserDTO(String username, List<ERole> roles) {
+        this.username = username;
         this.roles = roles;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public List<ERole> getRoles() {

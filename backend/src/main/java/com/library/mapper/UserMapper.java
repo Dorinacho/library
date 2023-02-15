@@ -12,14 +12,14 @@ import java.util.List;
 @Component
 public class UserMapper {
     public UserDTO toDto(User user) {
-        String name = user.getName();
+        String username = user.getUsername();
         List<ERole> roles = user
                 .getRoles()
                 .stream()
                 .map(Role::getName)
                 .toList();
 
-        return new UserDTO(name, roles);
+        return new UserDTO(username, roles);
     }
 
     public User toUser(UserCreationDTO userDTO) {

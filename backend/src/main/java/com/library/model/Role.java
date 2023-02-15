@@ -2,11 +2,9 @@ package com.library.model;
 
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "roles")
-@NoArgsConstructor
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +13,9 @@ public class Role {
     @Column
     @Enumerated(EnumType.STRING)
     private ERole name;
+
+    public Role() {
+    }
 
     public Role(ERole name) {
         this.name = name;
@@ -31,4 +32,5 @@ public class Role {
     public void setName(ERole name) {
         this.name = name;
     }
+
 }

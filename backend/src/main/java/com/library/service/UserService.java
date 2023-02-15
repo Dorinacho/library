@@ -6,7 +6,6 @@ import com.library.dto.UserDTO;
 import com.library.mapper.UserMapper;
 import com.library.model.User;
 import com.library.repository.UserRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,10 +45,21 @@ public class UserService {
 
     public void updateUser(User userData, Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find user!"));
-        user.setName(userData.getName());
-        user.setEmail(userData.getEmail());
-        user.setLoans(userData.getLoans());
-        user.setRoles(userData.getRoles());
+        if (userData.getName() != null) {
+            user.setName(userData.getName());
+        }
+        if (userData.getUsername() != null) {
+            user.setUsername(userData.getUsername());
+        }
+        if (userData.getName() != null) {
+            user.setEmail(userData.getEmail());
+        }
+        if (userData.getLoans() != null) {
+            user.setLoans(userData.getLoans());
+        }
+        if (userData.getRoles() != null) {
+            user.setRoles(userData.getRoles());
+        }
         userRepository.save(user);
     }
 

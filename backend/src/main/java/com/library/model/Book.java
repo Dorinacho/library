@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashSet;
@@ -16,13 +13,10 @@ import java.util.Set;
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column
-    @NonNull
     private Long id;
     @Size(max = 17)
     private String isbn;
