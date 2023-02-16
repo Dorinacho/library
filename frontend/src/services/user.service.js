@@ -7,14 +7,14 @@ class UserService {
 	getUsers() {
 		return axios.get(USER_URL, { headers: authHeader() });
 	}
-	updateUser(user) {
-		return axios.put(USER_URL, user, { headers: authHeader() });
+	updateUser(user, id) {
+		return axios.put(USER_URL + `/${id}`, user, { headers: authHeader() });
 	}
 	addUser(user) {
-		return axios.post(USER_URL, user);
+		return axios.post(USER_URL, user, { headers: authHeader() });
 	}
 	deleteUser(id) {
-		return axios.delete(USER_URL + `/${id}`);
+		return axios.delete(USER_URL + `/${id}`, { headers: authHeader() });
 	}
 }
 

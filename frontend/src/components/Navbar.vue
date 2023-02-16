@@ -1,16 +1,32 @@
 <template>
 	<nav id="navbar">
-		<router-link to="/" class="link">Home</router-link>
-		<router-link to="/login" class="link">Login</router-link>
-		<router-link to="/books" class="link">Books</router-link>
-		<router-link to="/loans" class="link">Loans</router-link>
-		<router-link to="/users" class="link">Users</router-link>
+		<router-link to="/home" class="link">Home</router-link>
+		<router-link v-if="loggedIn" to="/books" class="link">Books</router-link>
+		<router-link v-if="loggedIn" to="/loans" class="link">Loans</router-link>
+		<router-link v-if="loggedIn" to="/users" class="link">Users</router-link>
+		<router-link v-if="!loggedIn" to="/login" class="link">Login</router-link>
+		<v-btn v-if="loggedIn" class="link" @click="logout()"
+			>Logout</v-btn
+		>
 	</nav>
 </template>
 
 <script>
-export default {
+// import AuthService from "../services/auth/auth.service";
 
+export default {
+	methods: {
+		logout() {
+			this.$store.dispatch("auth/logout").then(() => {
+				this.$router.push("/home");
+			});
+		},
+	},
+	computed: {
+		loggedIn() {
+			return this.$store.state.auth.status.loggedIn;
+		},
+	},
 };
 </script>
 <style>
@@ -24,12 +40,11 @@ export default {
 }
 .link {
 	margin: 0px 10px;
-	color:black !important;
+	color: black !important;
 	text-decoration: none;
 }
 
-.link:active{
+.link:active {
 	color: cornflowerblue !important;
 }
-
 </style>

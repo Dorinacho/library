@@ -2,6 +2,15 @@
 	<div>
 		<Navbar />
 		<div class="wrapper">
+			<v-alert
+				v-model="alert"
+				dense
+				elevation="5"
+				:type="alertType.type"
+				dismissible
+				class="alert"
+				>{{ this.alertType.text }}</v-alert
+			>
 			<v-card class="table">
 				<v-card-title>
 					Users
@@ -31,18 +40,27 @@
 									<v-card-text>
 										<v-container>
 											<v-row>
-												<v-col cols="12" sm="6" md="5">
-													<v-text-field
-														v-model="editedUser.name"
-														label="Name"
-													></v-text-field>
-												</v-col>
-												<v-col cols="12" sm="6" md="7">
-													<v-text-field
-														v-model="editedUser.email"
-														label="Email"
-													></v-text-field>
-												</v-col>
+												<!-- <v-col cols="12" sm="6" md="5"> -->
+												<v-text-field
+													v-model="editedUser.name"
+													label="Name"
+												></v-text-field>
+											</v-row>
+											<v-row>
+												<!-- <v-col cols="12" sm="6" md="5"> -->
+												<v-text-field
+													v-model="editedUser.username"
+													label="Username"
+												></v-text-field>
+											</v-row>
+											<v-row>
+												<!-- </v-col> -->
+												<!-- <v-col cols="12" sm="6" md="7"> -->
+												<v-text-field
+													v-model="editedUser.email"
+													label="Email"
+												></v-text-field>
+												<!-- </v-col> -->
 											</v-row>
 										</v-container>
 									</v-card-text>
@@ -95,6 +113,8 @@ import UserService from "../services/user.service";
 export default {
 	data() {
 		return {
+			alertType: "",
+			alert: false,
 			dialog: false,
 			dialogDelete: false,
 			search: "",
@@ -113,11 +133,13 @@ export default {
 			users: [],
 			editedIndex: -1,
 			editedUser: {
+				id:"",
 				name: "",
 				username: "",
 				email: "",
 			},
 			defaultUser: {
+				id:"",
 				name: "",
 				username: "",
 				email: "",
@@ -185,9 +207,20 @@ export default {
 		save() {
 			if (this.editedIndex > -1) {
 				// Object.assign(this.Users[this.editedIndex], this.editedUser);
-				UserService.updateUser(this.editedUser).then(() => {
-					this.fetchUsers();
-				});
+				UserService.updateUser(this.editedUser, this.editedUser.id)
+					.then(() => {
+						this.fetchUsers();
+					})
+					.catch((error) => {
+						console.log(error);
+						console.log(error.response.status);
+						this.alertType = {
+							value: "update",
+							text: "Could not update",
+							type: "error",
+						};
+						this.alert = true;
+					});
 			} else {
 				UserService.addUser(this.editedUser).then(() => {
 					this.fetchUsers();
@@ -206,10 +239,18 @@ export default {
 .wrapper {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .table {
 	width: 80%;
 	margin-top: 30px;
+}
+
+.alert {
+	position: absolute;
+	top: 10%;
+	z-index: 100;
 }
 </style>

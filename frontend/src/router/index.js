@@ -11,7 +11,7 @@ import Login from '@/views/Login.vue';
 Vue.use(VueRouter);
 
 const routes = [
-	{ path: '/', component: HomePage ,alias: ['/home', 'home']},
+	{ path: '/home', component: HomePage},
 	{ path: '/books', component: Books },
 	{ path: '/users', component: Users },
 	{ path: '/loans', component: Loans },

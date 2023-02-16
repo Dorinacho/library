@@ -270,7 +270,6 @@ export default {
 
 .alert {
 	position: absolute;
-
 	top: 10%;
 	z-index: 100;
 }

@@ -19,7 +19,9 @@ class AuthService {
 		// axios
 		// 	.post(AUTH_URL + 'signout')
 		// 	.then(console.log('You have been logged out!'));
-		localStorage.removeItem('user');
+		localStorage.removeItem('username');
+		localStorage.removeItem('token');
+		localStorage.removeItem('roles');
 	}
 	register(user) {
 		return axios.post(AUTH_URL + 'signup', user);

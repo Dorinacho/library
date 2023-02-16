@@ -1,19 +1,20 @@
 import axios from 'axios';
+import authHeader from './auth/auth-header';
 
 const LOAN_URL = 'http://localhost:8090/loans';
 
 class LoanService {
 	getLoans() {
-		return axios.get(LOAN_URL);
+		return axios.get(LOAN_URL, { headers: authHeader() });
 	}
-    updateLoan(loan, id) {
-		return axios.put(LOAN_URL + `/${id}`, loan);
+	updateLoan(loan, id) {
+		return axios.put(LOAN_URL + `/${id}`, loan, { headers: authHeader() });
 	}
-    addLoan(loan) {
-		return axios.post(LOAN_URL, loan);
+	addLoan(loan) {
+		return axios.post(LOAN_URL, loan, { headers: authHeader() });
 	}
-    deleteLoan(id) {
-		return axios.delete(LOAN_URL + `/${id}`);
+	deleteLoan(id) {
+		return axios.delete(LOAN_URL + `/${id}`, { headers: authHeader() });
 	}
 }
 
