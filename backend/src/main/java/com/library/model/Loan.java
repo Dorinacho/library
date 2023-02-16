@@ -3,6 +3,7 @@ package com.library.model;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 
@@ -29,7 +30,7 @@ public class Loan {
     @Column(name = "return_date")
     private LocalDate returnDate;
 
-    public Long getId() {
+    public @NotNull Long getId() {
         return id;
     }
 

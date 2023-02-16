@@ -44,8 +44,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(UserDTO userData) {
-        User user = userRepository.findByUsername(userData.getUsername()).orElseThrow(() -> new RuntimeException("Could not find user!"));
+    public void updateUser(User userData, Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find user!"));
         if (userData.getName() != null) {
             user.setName(userData.getName());
         }
@@ -55,12 +55,12 @@ public class UserService {
         if (userData.getName() != null) {
             user.setEmail(userData.getEmail());
         }
-//        if (userData.getLoans() != null) {
-//            user.setLoans(userData.getLoans());
-//        }
-//        if (userData.getRoles() != null) {
-//            user.setRoles(userData.getRoles());
-//        }
+        if (userData.getLoans() != null) {
+            user.setLoans(userData.getLoans());
+        }
+        if (userData.getRoles() != null) {
+            user.setRoles(userData.getRoles());
+        }
         userRepository.save(user);
     }
 

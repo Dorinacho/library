@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.dto.UserCreationDTO;
 import com.library.dto.UserDTO;
 import com.library.model.User;
 import com.library.service.UserService;
@@ -24,22 +25,25 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public User getUserByID(@PathVariable(name = "id") Long id) {
         return userService.getUserByID(id);
     }
 
-//    @PostMapping
-//    public void addUser(@RequestBody UserCreationDTO userCreationDTO) {
-//        userService.addUser(userCreationDTO);
-//    }
-
-    @PutMapping
+    @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public void updateUser(@RequestBody UserDTO user) {
-        userService.updateUser(user);
+    public void addUser(@RequestBody UserCreationDTO userCreationDTO) {
+        userService.addUser(userCreationDTO);
+    }
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    public void updateUser(@RequestBody User user, @PathVariable Long id) {
+        userService.updateUser(user, id);
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public void deleteUser(@PathVariable(name = "id") Long userID) {
         userService.deleteUser(userID);
     }

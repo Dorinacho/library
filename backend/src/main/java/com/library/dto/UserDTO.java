@@ -1,17 +1,20 @@
 package com.library.dto;
 
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class UserDTO {
+    private Long id;
     private String name;
     private String username;
     private String email;
 
-    public UserDTO(String name, String username, String email) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
