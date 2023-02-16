@@ -1,7 +1,5 @@
 package com.library.dto;
 
-import com.library.model.Role;
-
 import java.util.Set;
 
 public class UserCreationDTO {

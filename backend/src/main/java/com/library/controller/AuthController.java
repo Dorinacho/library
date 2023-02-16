@@ -1,36 +1,32 @@
 package com.library.controller;
 
 import com.library.dto.UserCreationDTO;
-import com.library.dto.UserDTO;
 import com.library.dto.UserLoginDTO;
 import com.library.model.ERole;
 import com.library.model.Role;
 import com.library.model.User;
 import com.library.repository.RoleRepository;
 import com.library.repository.UserRepository;
+import com.library.security.jwt.JwtResponse;
 import com.library.security.jwt.JwtUtils;
 import com.library.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/library/auth")
+@CrossOrigin(origins = "http://localhost:8080")
 public class AuthController {
     public static final String ERROR_MESSAGE = "Error: Role is not found.";
     @Autowired
@@ -58,25 +54,29 @@ public class AuthController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
+        String jwt = jwtUtils.generateJwtToken(authentication);
 
         List<ERole> roles = userDetails.getAuthorities().stream()
                 .map(item -> ERole.valueOf(item.getAuthority()))
                 .toList();
 
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
-                .body(new UserDTO(userDetails.getUsername(),
-                        roles));
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                userDetails.getUsername(),
+                roles));
     }
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody UserCreationDTO signUpRequest) {
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity.badRequest().body("Error: Username is already taken!");
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: Username is already taken!");
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity.badRequest().body("Error: Email is already in use!");
+            return ResponseEntity
+                    .badRequest()
+                    .body("Error: Email is already in use!");
         }
 
         // Create new user's account
@@ -86,7 +86,6 @@ public class AuthController {
                 encoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRoles();
-        System.out.println(strRoles);
         Set<Role> roles = new HashSet<>();
 
         if (strRoles == null) {
@@ -123,11 +122,11 @@ public class AuthController {
         return ResponseEntity.ok("User registered successfully!");
     }
 
-    @PostMapping("/signout")
-    public ResponseEntity<?> logoutUser() {
-        ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
-                .body("You've been signed out!");
-    }
+//    @PostMapping("/signout")
+//    public ResponseEntity<?> logoutUser() {
+//        ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+//        return ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+//                .body("You've been signed out!");
+//    }
 
 }

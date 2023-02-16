@@ -6,6 +6,7 @@ import com.library.dto.UserDTO;
 import com.library.mapper.UserMapper;
 import com.library.model.User;
 import com.library.repository.UserRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,8 +44,8 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public void updateUser(User userData, Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find user!"));
+    public void updateUser(UserDTO userData) {
+        User user = userRepository.findByUsername(userData.getUsername()).orElseThrow(() -> new RuntimeException("Could not find user!"));
         if (userData.getName() != null) {
             user.setName(userData.getName());
         }
@@ -54,16 +55,25 @@ public class UserService {
         if (userData.getName() != null) {
             user.setEmail(userData.getEmail());
         }
-        if (userData.getLoans() != null) {
-            user.setLoans(userData.getLoans());
-        }
-        if (userData.getRoles() != null) {
-            user.setRoles(userData.getRoles());
-        }
+//        if (userData.getLoans() != null) {
+//            user.setLoans(userData.getLoans());
+//        }
+//        if (userData.getRoles() != null) {
+//            user.setRoles(userData.getRoles());
+//        }
         userRepository.save(user);
     }
 
     public void deleteUser(Long userID) {
         userRepository.deleteById(userID);
+    }
+
+    public ResponseEntity<?> checkUsername(String username) {
+        boolean isTaken = userRepository.existsByUsername(username);
+        if (isTaken) {
+            return ResponseEntity.badRequest().body("Username is taken");
+        }
+
+        return ResponseEntity.ok("Username is not taken");
     }
 }

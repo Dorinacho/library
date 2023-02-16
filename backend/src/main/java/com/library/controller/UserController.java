@@ -33,9 +33,10 @@ public class UserController {
 //        userService.addUser(userCreationDTO);
 //    }
 
-    @PutMapping("/{id}")
-    public void updateUser(@RequestBody User user, @PathVariable(name = "id") Long userID) {
-        userService.updateUser(user, userID);
+    @PutMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public void updateUser(@RequestBody UserDTO user) {
+        userService.updateUser(user);
     }
 
     @DeleteMapping("/{id}")

@@ -1,32 +1,28 @@
 package com.library.dto;
 
-import com.library.model.ERole;
 
-import java.util.List;
+import lombok.Data;
 
 public class UserDTO {
-
+    private String name;
     private String username;
-    private List<ERole> roles;
+    private String email;
 
-    public UserDTO(String username, List<ERole> roles) {
+    public UserDTO(String name, String username, String email) {
+        this.name = name;
         this.username = username;
-        this.roles = roles;
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public List<ERole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<ERole> roles) {
-        this.roles = roles;
+    public String getEmail() {
+        return email;
     }
 }

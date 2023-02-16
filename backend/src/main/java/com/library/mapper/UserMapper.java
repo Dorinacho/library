@@ -2,24 +2,17 @@ package com.library.mapper;
 
 import com.library.dto.UserCreationDTO;
 import com.library.dto.UserDTO;
-import com.library.model.ERole;
-import com.library.model.Role;
 import com.library.model.User;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class UserMapper {
     public UserDTO toDto(User user) {
+        String name = user.getName();
         String username = user.getUsername();
-        List<ERole> roles = user
-                .getRoles()
-                .stream()
-                .map(Role::getName)
-                .toList();
+        String email = user.getEmail();
 
-        return new UserDTO(username, roles);
+        return new UserDTO(name, username, email);
     }
 
     public User toUser(UserCreationDTO userDTO) {
