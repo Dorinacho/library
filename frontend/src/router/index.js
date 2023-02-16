@@ -6,14 +6,16 @@ import HomePage from '@/views/Home.vue';
 import Books from '@/views/Books.vue';
 import Users from '@/views/Users.vue';
 import Loans from '@/views/Loans.vue';
+import Login from '@/views/Login.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-	{ path: '/', component: HomePage },
+	{ path: '/', component: HomePage ,alias: ['/home', 'home']},
 	{ path: '/books', component: Books },
 	{ path: '/users', component: Users },
-    { path: '/loans', component: Loans },
+	{ path: '/loans', component: Loans },
+	{ path: '/login', component: Login },
 ];
 
 // const router = createRouter({

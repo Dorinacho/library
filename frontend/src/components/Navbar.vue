@@ -1,6 +1,7 @@
 <template>
 	<nav id="navbar">
 		<router-link to="/" class="link">Home</router-link>
+		<router-link to="/login" class="link">Login</router-link>
 		<router-link to="/books" class="link">Books</router-link>
 		<router-link to="/loans" class="link">Loans</router-link>
 		<router-link to="/users" class="link">Users</router-link>

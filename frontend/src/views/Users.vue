@@ -91,6 +91,7 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import UserService from "../services/user.service";
+
 export default {
 	data() {
 		return {
@@ -98,25 +99,27 @@ export default {
 			dialogDelete: false,
 			search: "",
 			headers: [
-				{
-					text: "ID",
-					align: "start",
-					sortable: false,
-					value: "id",
-				},
+				// {
+				// 	text: "ID",
+				// 	align: "start",
+				// 	sortable: false,
+				// 	value: "id",
+				// },
 				{ text: "Name", value: "name" },
+				{ text: "Username", value: "username" },
 				{ text: "Email", value: "email" },
 				{ text: "Actions", value: "actions", sortable: false },
 			],
 			users: [],
 			editedIndex: -1,
 			editedUser: {
-				id: 0,
 				name: "",
+				username: "",
 				email: "",
 			},
 			defaultUser: {
 				name: "",
+				username: "",
 				email: "",
 			},
 		};
@@ -182,11 +185,9 @@ export default {
 		save() {
 			if (this.editedIndex > -1) {
 				// Object.assign(this.Users[this.editedIndex], this.editedUser);
-				UserService.updateUser(this.editedUser, this.editedUser.id).then(
-					() => {
-						this.fetchUsers();
-					}
-				);
+				UserService.updateUser(this.editedUser).then(() => {
+					this.fetchUsers();
+				});
 			} else {
 				UserService.addUser(this.editedUser).then(() => {
 					this.fetchUsers();
