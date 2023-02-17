@@ -3,30 +3,50 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import HomePage from '@/views/Home.vue';
-import Books from '@/views/Books.vue';
-import Users from '@/views/Users.vue';
-import Loans from '@/views/Loans.vue';
 import Login from '@/views/Login.vue';
 import SignUp from '@/views/SignUp.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
-	{ path: '/home', component: HomePage, name: 'home' },
-	{ path: '/', component: HomePage, name: 'home' },
-	{ path: '/books', component: Books },
-	{ path: '/users', component: Users },
-	{ path: '/loans', component: Loans },
-	{ path: '/login', component: Login },
-	{ path: '/signup', component: SignUp },
+	{ path: '/home', name: 'home', component: HomePage },
+	{ path: '/', component: HomePage },
+	{
+		path: '/books',
+		name: 'books',
+		component: () => import('@/views/Books.vue'),
+	},
+	{
+		path: '/users',
+		name: 'users',
+		component: () => import('@/views/Users.vue'),
+	},
+	{
+		path: '/loans',
+		name: 'loans',
+		component: () => import('@/views/Loans.vue'),
+	},
+	{ path: '/login', name: 'login', component: Login },
+	{ path: '/signup', name: 'signup', component: SignUp },
+	// { path: '*', redirect: '/' },
 ];
-
-// const router = createRouter({
-//     history: createWebHistory(process.env.BASE_URL),
-//     routes,
-// });
 
 const router = new VueRouter({
 	routes,
 });
+
+// router.beforeEach((to, from, next) => {
+// 	const publicPages = ['/login', '/register', '/home'];
+// 	const authRequired = !publicPages.includes(to.path);
+// 	const loggedIn = localStorage.getItem('user');
+
+// 	// trying to access a restricted page + not logged in
+// 	// redirect to login page
+// 	if (authRequired && !loggedIn) {
+// 		next('/login');
+// 	} else {
+// 		next();
+// 	}
+// });
+
 export default router;

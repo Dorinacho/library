@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth/auth-header';
 
-const BOOK_URL = 'http://localhost:8090/books';
+const BOOK_URL = 'http://localhost:8090/library/books';
 
 class BookService {
 	getBooks() {

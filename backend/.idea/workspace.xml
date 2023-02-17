@@ -4,22 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Secured the controllers">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Roles and loans are no longer deleted on update">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/0/303e48bc9147a61a4d97433e6be53b7e27b9e498" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/6/66ea710c58ab7de3030b33c19776fac784213a6f" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/d/8dd0365cce2753d80839b6d687384b5d6943fe7f" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/a/9a470cc37fc36ee11e56ee69970647087e203716" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/security/jwt/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/security/jwt/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" afterDir="false" />
@@ -166,7 +157,7 @@
       <workItem from="1676474226514" duration="551000" />
       <workItem from="1676540128215" duration="11691000" />
       <workItem from="1676619550251" duration="3201000" />
-      <workItem from="1676626975457" duration="2791000" />
+      <workItem from="1676626975457" duration="3129000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -273,7 +264,21 @@
       <option name="project" value="LOCAL" />
       <updated>1676556884740</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Changed controller paths">
+      <created>1676631124733</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1676631124733</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Roles and loans are no longer deleted on update">
+      <created>1676631156232</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1676631156232</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,7 +314,9 @@
     <MESSAGE value="Finished authentication" />
     <MESSAGE value="Finished authentication (again)" />
     <MESSAGE value="Secured the controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Secured the controllers" />
+    <MESSAGE value="Changed controller paths" />
+    <MESSAGE value="Roles and loans are no longer deleted on update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Roles and loans are no longer deleted on update" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

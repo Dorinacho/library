@@ -5,8 +5,8 @@ const AUTH_URL = 'http://localhost:8090/library/auth/';
 class AuthService {
 	async login(user) {
 		return axios.post(AUTH_URL + 'signin', user).then((respone) => {
-			console.log("This is the data")
-			console.log(respone)
+			console.log('This is the data');
+			console.log(respone);
 			if (respone.data.accessToken) {
 				localStorage.setItem('username', JSON.stringify(respone.data.username));
 				localStorage.setItem('token', JSON.stringify(respone.data.accessToken));
@@ -22,7 +22,6 @@ class AuthService {
 		localStorage.removeItem('username');
 		localStorage.removeItem('token');
 		localStorage.removeItem('roles');
-		
 	}
 	register(user) {
 		return axios.post(AUTH_URL + 'signup', user);

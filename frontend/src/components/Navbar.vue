@@ -32,22 +32,24 @@ export default {
 	},
 };
 </script>
-<style>
+<style lang="scss">
+@import "../scss/_variables.scss";
+
 #navbar {
 	height: 60px;
 	width: 100%;
 	display: flex;
-	background-color: bisque;
+	background-color: $pain-gray;
 	align-items: center;
 	justify-content: flex-end;
 }
 .link {
 	margin: 0px 10px;
-	color: black !important;
+	color: $ghost_white !important;
 	text-decoration: none;
 }
 
-.link:active {
-	color: cornflowerblue !important;
-}
+// .link:active {
+// 	color: cornflowerblue !important;
+// }
 </style>
