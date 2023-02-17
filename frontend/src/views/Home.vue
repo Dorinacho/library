@@ -3,7 +3,7 @@
 		<div>
 			<center>This is the HomePage</center>
 		</div>
-		<div class="container">
+		<div class="container" v-if="loggedIn">
 			<header class="jumbotron">
 				<h3>
 					<strong>{{ currentUser.username }}</strong> Profile
@@ -32,14 +32,14 @@ export default {
 			return this.$store.state.auth.user;
 		},
 		loggedIn() {
-			return this.$store.state.auth.loggedIn;
+			return this.$store.state.auth.status.loggedIn;
 		},
 	},
 	mounted() {
 		console.log(this.currentUser)
-		if (!this.currentUser) {
-			this.$router.push("/login");
-		}
+		// if (!this.currentUser) {
+		// 	this.$router.push("/login");
+		// }
 	},
 };
 </script>

@@ -12,8 +12,8 @@ import SignUp from '@/views/SignUp.vue';
 Vue.use(VueRouter);
 
 const routes = [
-	{ path: '/home', component: HomePage },
-	{ path: '/', component: HomePage },
+	{ path: '/home', component: HomePage, name: 'home' },
+	{ path: '/', component: HomePage, name: 'home' },
 	{ path: '/books', component: Books },
 	{ path: '/users', component: Users },
 	{ path: '/loans', component: Loans },
