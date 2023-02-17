@@ -8,7 +8,7 @@
 			>Sign up</router-link
 		>
 		<router-link v-if="!loggedIn" to="/login" class="link">Login</router-link>
-		<v-btn v-if="loggedIn" class="link" @click="logout()">Logout</v-btn>
+		<v-btn v-if="loggedIn" class="link" id="btn" @click="logout()">Logout</v-btn>
 	</nav>
 </template>
 
@@ -49,6 +49,9 @@ export default {
 	text-decoration: none;
 }
 
+#btn{
+	color: $pain-gray !important;
+}
 // .link:active {
 // 	color: cornflowerblue !important;
 // }

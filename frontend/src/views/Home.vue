@@ -1,10 +1,13 @@
 <template>
 	<div>
-		<div>
+		<!-- <div>
 			<center>This is the HomePage</center>
-		</div>
-		<div class="container" v-if="loggedIn">
-			<header class="jumbotron">
+		</div> -->
+		<div class="wrapper">
+			<div id="rectangle">
+				
+			</div><p id="text">It's time to read a book. Grab yours now</p>
+			<!-- <header class="jumbotron">
 				<h3>
 					<strong>{{ currentUser.username }}</strong> Profile
 				</h3>
@@ -19,7 +22,7 @@
 				<li v-for="(role, index) in currentUser.roles" :key="index">
 					{{ role }}
 				</li>
-			</ul>
+			</ul> -->
 		</div>
 	</div>
 </template>
@@ -36,7 +39,7 @@ export default {
 		},
 	},
 	mounted() {
-		console.log(this.currentUser)
+		console.log(this.currentUser);
 		// if (!this.currentUser) {
 		// 	this.$router.push("/login");
 		// }
@@ -44,4 +47,44 @@ export default {
 };
 </script>
 <style>
+/* valentin-antonini-0eTLk6dA_Ds-unsplash 1 */
+.wrapper {
+	background: url("../assets/home-background.jpg");
+	position: absolute;
+	width: 100%;
+	height: 91.65%;
+	background-size: 90% 150%;
+}
+
+#rectangle {
+	box-sizing: border-box;
+
+	position: absolute;
+	width: 514px;
+	height: 176px;
+	left: 137px;
+	top: 131px;
+
+	background: #000000;
+	opacity: 0.5;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 25px;
+}
+
+/* It’s time to read a book. Get yours now */
+#text {
+	position: absolute;
+	width: 492px;
+	height: 129px;
+	left: 159px;
+	top: 155px;
+
+	font-family: "Kiwi Maru";
+	font-style: normal;
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 58px;
+
+	color: #ffffff;
+}
 </style>
