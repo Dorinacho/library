@@ -19,5 +19,9 @@ export default {
 	data: () => ({
 		//
 	}),
+	created() {
+		console.log(localStorage.getItem("user"));
+		this.$store.dispatch("auth/refreshPage");
+	},
 };
 </script>

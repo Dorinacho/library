@@ -5,7 +5,6 @@ const initialState = user
 	? { status: { loggedIn: true }, user }
 	: { status: { loggedIn: false }, user: null };
 
-
 export const auth = {
 	namespaced: true,
 	state: initialState,
@@ -26,6 +25,9 @@ export const auth = {
 			AuthService.logout();
 			commit('logout');
 		},
+		refreshPage({ commit }) {
+			commit('refreshPage', user);
+		},
 		register({ commit }, user) {
 			return AuthService.register(user).then(
 				(response) => {
@@ -40,6 +42,10 @@ export const auth = {
 		},
 	},
 	mutations: {
+		refreshPage(state, user) {
+			state.status.loggedIn = true;
+			state.user = user;
+		},
 		loginSuccess(state, user) {
 			state.status.loggedIn = true;
 			state.user = user;

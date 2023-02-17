@@ -295,10 +295,18 @@ export default {
 .wrapper {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .table {
 	width: 80%;
 	margin-top: 30px;
 }
+
+/* .alert {
+	position: absolute;
+	top: 10%;
+	z-index: 100;
+} */
 </style>
