@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Roles and loans are no longer deleted on update">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/1/714a688e0e36bf87dfe2ee109227555e1010b340" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/7/776a3a081dc720839f7e77603f3241711372759f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e8036e648bf33f49297001faf7b847ef297bf1b1" beforeDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Small controller fix">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/2/6263dd8b69e2521fba46815786c033b45e75f759" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/LoanController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Users.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Users.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/security/jwt/JwtResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/security/jwt/JwtResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,10 +88,10 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.App (1)">
-    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.library.App" />
-      <module name="backend" />
+  <component name="RunManager">
+    <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="library" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.library.App" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.library.*" />
@@ -106,20 +102,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="App (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="library" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.library.App" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.App" />
-      <item itemvalue="Spring Boot.App (1)" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
+        <item itemvalue="Spring Boot.App" />
       </list>
     </recent_temporary>
   </component>
@@ -157,7 +142,9 @@
       <workItem from="1676474226514" duration="551000" />
       <workItem from="1676540128215" duration="11691000" />
       <workItem from="1676619550251" duration="3201000" />
-      <workItem from="1676626975457" duration="5724000" />
+      <workItem from="1676626975457" duration="7866000" />
+      <workItem from="1676648202784" duration="454000" />
+      <workItem from="1676648675116" duration="1340000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -278,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676631156232</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Small controller fix">
+      <created>1676646603079</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1676646603079</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,7 +310,8 @@
     <MESSAGE value="Secured the controllers" />
     <MESSAGE value="Changed controller paths" />
     <MESSAGE value="Roles and loans are no longer deleted on update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Roles and loans are no longer deleted on update" />
+    <MESSAGE value="Small controller fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Small controller fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -7,18 +7,27 @@ import java.util.List;
 public class JwtResponse {
     private final List<ERole> roles;
     private String username;
-    private String token;
+    private final String token;
     private String type = "Bearer";
 
-    public JwtResponse(String username, List<ERole> roles) {
-        this.username = username;
-        this.roles = roles;
-    }
+    private boolean isAdmin;
+
+    private boolean isMod;
+
 
     public JwtResponse(String accessToken, String username, List<ERole> roles) {
         this.token = accessToken;
         this.username = username;
         this.roles = roles;
+        for (ERole role : roles) {
+            if (role.equals(ERole.ROLE_ADMIN)) {
+                this.isAdmin = true;
+            } else if (role.equals(ERole.ROLE_MODERATOR)) {
+                this.isMod = true;
+            } else {
+                this.isAdmin = this.isMod = false;
+            }
+        }
     }
 
     public String getAccessToken() {
@@ -43,5 +52,13 @@ public class JwtResponse {
 
     public List<ERole> getRoles() {
         return roles;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
+    public boolean isMod() {
+        return isMod;
     }
 }

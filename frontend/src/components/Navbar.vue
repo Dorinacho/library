@@ -1,14 +1,16 @@
 <template>
 	<nav id="navbar">
 		<router-link to="/home" class="link">Home</router-link>
-		<router-link v-if="loggedIn" to="/books" class="link">Books</router-link>
-		<router-link v-if="loggedIn" to="/loans" class="link">Loans</router-link>
-		<router-link v-if="loggedIn" to="/users" class="link">Users</router-link>
+		<router-link v-if="isAdmin" to="/books" class="link">Books</router-link>
+		<router-link v-if="isAdmin" to="/loans" class="link">Loans</router-link>
+		<router-link v-if="isAdmin" to="/users" class="link">Users</router-link>
 		<router-link v-if="!loggedIn" to="/signup" class="link"
 			>Sign up</router-link
 		>
 		<router-link v-if="!loggedIn" to="/login" class="link">Login</router-link>
-		<v-btn v-if="loggedIn" class="link" id="btn" @click="logout()">Logout</v-btn>
+		<v-btn v-if="loggedIn" class="link" id="btn" @click="logout()"
+			>Logout</v-btn
+		>
 	</nav>
 </template>
 
@@ -16,6 +18,11 @@
 // import AuthService from "../services/auth/auth.service";
 
 export default {
+	data() {
+		return {
+			
+		};
+	},
 	methods: {
 		logout() {
 			this.$store.dispatch("auth/logout").then(() => {
@@ -28,6 +35,10 @@ export default {
 	computed: {
 		loggedIn() {
 			return this.$store.state.auth.status.loggedIn;
+		},
+		isAdmin() {
+			if (this.$store.state.auth.user == null) return false;
+			else return this.$store.state.auth.user.admin;
 		},
 	},
 };
@@ -49,7 +60,7 @@ export default {
 	text-decoration: none;
 }
 
-#btn{
+#btn {
 	color: $pain-gray !important;
 }
 // .link:active {

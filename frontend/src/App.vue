@@ -20,8 +20,8 @@ export default {
 		//
 	}),
 	created() {
-		console.log(localStorage.getItem("user"));
-		this.$store.dispatch("auth/refreshPage");
+		if (this.$store.state.auth.user != null)
+			this.$store.dispatch("auth/refreshPage");
 	},
 };
 </script>
