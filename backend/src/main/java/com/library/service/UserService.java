@@ -46,6 +46,8 @@ public class UserService {
 
     public void updateUser(User userData, Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find user!"));
+        System.out.println(userData.toString());
+        System.out.println(user.toString());
         if (userData.getName() != null) {
             user.setName(userData.getName());
         }
@@ -55,12 +57,13 @@ public class UserService {
         if (userData.getName() != null) {
             user.setEmail(userData.getEmail());
         }
-        if (userData.getLoans() != null) {
+        if (!userData.getLoans().isEmpty()) {
             user.setLoans(userData.getLoans());
         }
-        if (userData.getRoles() != null) {
+        if (!userData.getRoles().isEmpty()) {
             user.setRoles(userData.getRoles());
         }
+        System.out.println(user);
         userRepository.save(user);
     }
 
