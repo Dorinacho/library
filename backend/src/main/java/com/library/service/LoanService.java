@@ -1,6 +1,8 @@
 package com.library.service;
 
+import com.library.model.Book;
 import com.library.model.Loan;
+import com.library.repository.BookRepository;
 import com.library.repository.LoanRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,11 @@ import java.util.NoSuchElementException;
 @Service
 public class LoanService {
 
+    final int DAYS_UNTIL_RETURN = 21;
     @Autowired
     private LoanRepository loanRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
     public List<Loan> getLoans() {
         return loanRepository.findAll();
@@ -26,6 +31,10 @@ public class LoanService {
     }
 
     public void addLoan(@RequestBody @NotNull Loan loan) {
+        Book book = bookRepository.findById(loan.getBook().getId()).orElseThrow(() -> new RuntimeException("Book was not found!"));
+        book.setAvailability(book.getAvailability() - 1);
+        bookRepository.save(book);
+        loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
         loanRepository.save(loan);
     }
 
@@ -34,7 +43,6 @@ public class LoanService {
         loan.setBook(loanData.getBook());
         loan.setUser(loanData.getUser());
         loan.setLoanDate(loanData.getLoanDate());
-        final int DAYS_UNTIL_RETURN = 21;
         loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
         System.out.println(loan);
         loanRepository.save(loan);

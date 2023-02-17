@@ -75,4 +75,16 @@ public class Book {
     public void setLoans(Set<Loan> loans) {
         this.loans = loans;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", availability=" + availability +
+                ", loans=" + loans +
+                '}';
+    }
 }

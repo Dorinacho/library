@@ -29,7 +29,7 @@ public class LoanController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public void addLoan(@RequestBody Loan loan) {
         loanService.addLoan(loan);
     }
