@@ -22,6 +22,7 @@ class AuthService {
 		localStorage.removeItem('username');
 		localStorage.removeItem('token');
 		localStorage.removeItem('roles');
+		this.$router.push("/home");
 	}
 	register(user) {
 		return axios.post(AUTH_URL + 'signup', user);

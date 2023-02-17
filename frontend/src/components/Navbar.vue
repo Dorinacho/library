@@ -4,10 +4,11 @@
 		<router-link v-if="loggedIn" to="/books" class="link">Books</router-link>
 		<router-link v-if="loggedIn" to="/loans" class="link">Loans</router-link>
 		<router-link v-if="loggedIn" to="/users" class="link">Users</router-link>
-		<router-link v-if="!loggedIn" to="/login" class="link">Login</router-link>
-		<v-btn v-if="loggedIn" class="link" @click="logout()"
-			>Logout</v-btn
+		<router-link v-if="!loggedIn" to="/signup" class="link"
+			>Sign up</router-link
 		>
+		<router-link v-if="!loggedIn" to="/login" class="link">Login</router-link>
+		<v-btn v-if="loggedIn" class="link" @click="logout()">Logout</v-btn>
 	</nav>
 </template>
 
@@ -17,9 +18,7 @@
 export default {
 	methods: {
 		logout() {
-			this.$store.dispatch("auth/logout").then(() => {
-				this.$router.push("/home");
-			});
+			this.$store.dispatch("auth/logout");
 		},
 	},
 	computed: {

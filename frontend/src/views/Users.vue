@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<Navbar />
 		<div class="wrapper">
 			<v-alert
 				v-model="alert"
@@ -107,7 +106,6 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
 import UserService from "../services/user.service";
 
 export default {
@@ -133,13 +131,13 @@ export default {
 			users: [],
 			editedIndex: -1,
 			editedUser: {
-				id:"",
+				id: "",
 				name: "",
 				username: "",
 				email: "",
 			},
 			defaultUser: {
-				id:"",
+				id: "",
 				name: "",
 				username: "",
 				email: "",
@@ -158,9 +156,6 @@ export default {
 		dialogDelete(val) {
 			val || this.closeDelete();
 		},
-	},
-	components: {
-		Navbar,
 	},
 	methods: {
 		fetchUsers() {

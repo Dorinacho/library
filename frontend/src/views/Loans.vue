@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<Navbar />
 		<div class="wrapper">
 			<v-card class="table">
 				<v-card-title>
@@ -160,7 +159,6 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
 import LoanService from "../services/loan.service";
 import BookService from "../services/book.service";
 import UserService from "../services/user.service";
@@ -197,7 +195,7 @@ export default {
 				loanDate: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
 					.toISOString()
 					.substr(0, 10),
-				returnDate:"",
+				returnDate: "",
 			},
 			defaultLoan: {
 				book: "",
@@ -221,9 +219,6 @@ export default {
 		dialogDelete(val) {
 			val || this.closeDelete();
 		},
-	},
-	components: {
-		Navbar,
 	},
 	methods: {
 		fetchLoans() {

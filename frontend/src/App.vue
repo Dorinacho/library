@@ -1,22 +1,23 @@
 <template>
-  <v-app>
-    <v-main>
-     
-      <router-view></router-view>
-    </v-main>
-  </v-app>
+	<v-app>
+		<v-main>
+			<Navbar />
+			<router-view></router-view>
+		</v-main>
+	</v-app>
 </template>
 
 <script>
-// import HomePage from './components/HomePage.vue'
+import Navbar from "./components/Navbar.vue";
 
 export default {
-  name: 'App',
+	name: "App",
+	components: {
+		Navbar,
+	},
 
-
-
-  data: () => ({
-    //
-  }),
-}
+	data: () => ({
+		//
+	}),
+};
 </script>

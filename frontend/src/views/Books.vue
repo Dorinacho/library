@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<Navbar />
 		<div class="wrapper">
 			<v-alert
 				v-model="alert"
@@ -126,7 +125,6 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar.vue";
 import BookeService from "../services/book.service";
 // import errorMsg from "../helpers/errorMsg";
 
@@ -180,9 +178,6 @@ export default {
 		dialogDelete(val) {
 			val || this.closeDelete();
 		},
-	},
-	components: {
-		Navbar,
 	},
 	methods: {
 		fetchBooks() {
