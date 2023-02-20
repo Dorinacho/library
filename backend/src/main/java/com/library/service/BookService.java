@@ -28,6 +28,7 @@ public class BookService {
         book.setTitle(bookData.getTitle());
         book.setIsbn(bookData.getIsbn());
         book.setLoans(bookData.getLoans());
+        book.setDescription(bookData.getDescription());
         bookRepository.save(book);
     }
 

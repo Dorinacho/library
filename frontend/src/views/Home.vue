@@ -1,12 +1,12 @@
 <template>
-	<div>
+	<!-- <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" id="parallax"> -->
+	<!-- <v-parallax src="../assets/home-background.jpg"> -->
 		<!-- <div>
 			<center>This is the HomePage</center>
 		</div> -->
 		<div class="wrapper">
-			<div id="rectangle">
-				
-			</div><p id="text">It's time to read a book. Grab yours now</p>
+			<div id="rectangle"></div>
+			<p id="text">It's time to read a book. Grab yours now</p>
 			<!-- <header class="jumbotron">
 				<h3>
 					<strong>{{ currentUser.username }}</strong> Profile
@@ -24,7 +24,7 @@
 				</li>
 			</ul> -->
 		</div>
-	</div>
+	<!-- </v-parallax> -->
 </template>
 
 <script>
@@ -47,18 +47,18 @@ export default {
 };
 </script>
 <style>
-/* valentin-antonini-0eTLk6dA_Ds-unsplash 1 */
-.wrapper {
+/* .wrapper {
 	background: url("../assets/home-background.jpg");
-	position: absolute;
-	width: 100%;
-	height: 91.65%;
-	background-size: 90% 150%;
-}
+	background-size: auto;
+	background-position: center center;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	overflow: scroll;
+} */
+
 
 #rectangle {
 	box-sizing: border-box;
-
 	position: absolute;
 	width: 514px;
 	height: 176px;

@@ -79,6 +79,15 @@
 													></v-text-field>
 												</v-col>
 											</v-row>
+											<v-row>
+												<v-col cols="12" sm="6" md="12">
+													<v-textarea
+														v-model="editedBook.description"
+														variant="outlined"
+														label="Description"
+													></v-textarea>
+												</v-col>
+											</v-row>
 										</v-container>
 									</v-card-text>
 
@@ -157,12 +166,14 @@ export default {
 				title: "",
 				isbn: "",
 				availability: 0,
+				description: "",
 			},
 			defaultBook: {
 				author: "",
 				title: "",
 				isbn: "",
 				availability: 0,
+				description: "",
 			},
 		};
 	},
@@ -181,6 +192,7 @@ export default {
 	},
 	methods: {
 		fetchBooks() {
+			console.log(this.books)
 			BookeService.getBooks().then((response) => {
 				this.books = response.data;
 			});

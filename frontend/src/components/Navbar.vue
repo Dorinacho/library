@@ -2,6 +2,7 @@
 	<nav id="navbar">
 		<router-link to="/home" class="link">Home</router-link>
 		<router-link v-if="isAdmin" to="/books" class="link">Books</router-link>
+		<router-link v-if="!isAdmin && loggedIn" to="/user/books" class="link">Books</router-link>
 		<router-link v-if="loggedIn" to="/loans" class="link">Loans</router-link>
 		<router-link v-if="isAdmin" to="/users" class="link">Users</router-link>
 		<router-link v-if="!loggedIn" to="/signup" class="link"

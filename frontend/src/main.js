@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
 import vuetify from './plugins/vuetify';
+import Vuetify from 'vuetify';
 import router from './router/index.js';
 import store from './store/index';
 import VeeValidate from 'vee-validate';
@@ -26,6 +27,7 @@ Vue.config.devtools = true;
 // Silence logs and warnings
 Vue.config.silent = false;
 Vue.use(VeeValidate);
+Vue.use(Vuetify);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 new Vue({

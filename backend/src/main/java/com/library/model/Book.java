@@ -27,6 +27,9 @@ public class Book {
     @Column(name = "available_copies")
     private int availability;
 
+    @Column
+    private String description;
+
     @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
@@ -66,6 +69,14 @@ public class Book {
 
     public void setAvailability(int availability) {
         this.availability = availability;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Set<Loan> getLoans() {
