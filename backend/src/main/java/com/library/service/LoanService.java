@@ -1,9 +1,12 @@
 package com.library.service;
 
+import com.library.dto.LoanDTO;
+import com.library.mapper.LoanMapper;
 import com.library.model.Book;
 import com.library.model.Loan;
 import com.library.repository.BookRepository;
 import com.library.repository.LoanRepository;
+import com.library.repository.UserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +24,19 @@ public class LoanService {
     private LoanRepository loanRepository;
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private LoanMapper loanMapper;
 
     public List<Loan> getLoans() {
         return loanRepository.findAll();
+    }
+
+    public List<LoanDTO> getLoansForUser(String username) {
+        long id = userRepository.findByUsername(username).get().getId();
+        return loanRepository.findLoansByUserId(id).stream().map(loan -> loanMapper.toDto(loan)).toList();
     }
 
     public Loan getLoanByID(Long id) {

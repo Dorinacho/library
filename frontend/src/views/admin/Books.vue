@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import BookeService from "../services/book.service";
+import BookeService from "../../services/book.service";
 // import errorMsg from "../helpers/errorMsg";
 
 export default {

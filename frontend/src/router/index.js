@@ -14,17 +14,17 @@ const routes = [
 	{
 		path: '/books',
 		name: 'books',
-		component: () => import('@/views/Books.vue'),
+		component: () => import('@/views/admin/Books.vue'),
 	},
 	{
 		path: '/users',
 		name: 'users',
-		component: () => import('@/views/Users.vue'),
+		component: () => import('@/views/admin/Users.vue'),
 	},
 	{
 		path: '/loans',
 		name: 'loans',
-		component: () => import('@/views/Loans.vue'),
+		component: () => import('@/views/admin/Loans.vue'),
 	},
 	{ path: '/login', name: 'login', component: Login },
 	{ path: '/signup', name: 'signup', component: SignUp },

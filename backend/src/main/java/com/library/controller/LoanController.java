@@ -1,5 +1,6 @@
 package com.library.controller;
 
+import com.library.dto.LoanDTO;
 import com.library.model.Loan;
 import com.library.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,15 @@ public class LoanController {
     LoanService loanService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or hasRole('MODERATOR')")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
     public List<Loan> getLoans() {
         return loanService.getLoans();
+    }
+
+    @GetMapping("/user/{username}")
+    @PreAuthorize("hasRole('USER')")
+    public List<LoanDTO> getLoansForUser(@PathVariable String username) {
+        return loanService.getLoansForUser(username);
     }
 
     @GetMapping("/{id}")

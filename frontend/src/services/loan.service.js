@@ -7,6 +7,9 @@ class LoanService {
 	getLoans() {
 		return axios.get(LOAN_URL, { headers: authHeader() });
 	}
+	getLoansForUser(username) {
+		return axios.get(LOAN_URL + `/user/${username}`, { headers: authHeader() });
+	}
 	updateLoan(loan, id) {
 		return axios.put(LOAN_URL + `/${id}`, loan, { headers: authHeader() });
 	}

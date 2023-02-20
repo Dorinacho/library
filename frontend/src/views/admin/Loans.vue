@@ -14,6 +14,7 @@
 					></v-text-field>
 				</v-card-title>
 				<v-data-table
+					v-if="isAdmin"
 					:headers="headers"
 					:items="loans"
 					:items-per-page="5"
@@ -53,7 +54,7 @@
 														return-object
 													></v-select>
 												</v-col>
-												<v-col class="d-flex" cols="12" sm="6">
+												<v-col class="d-flex" cols="12" sm="6" v-if="isAdmin">
 													<v-select
 														v-model="editedLoan.user"
 														:items="users"
@@ -116,7 +117,7 @@
 										</v-container>
 									</v-card-text>
 
-									<v-card-actions>
+									<v-card-actions v-if="isAdmin">
 										<v-spacer></v-spacer>
 										<v-btn color="blue darken-1" text @click="close">
 											Cancel
@@ -146,22 +147,30 @@
 							</v-dialog>
 						</v-toolbar>
 					</template>
-					<template v-slot:[`item.actions`]="{ item }">
+					<template v-slot:[`item.actions`]="{ item }" v-if="isAdmin">
 						<v-icon small class="mr-2" @click="editItem(item)">
 							mdi-pencil
 						</v-icon>
 						<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
 					</template></v-data-table
 				>
+				<v-data-table
+					v-if="!isAdmin"
+					:headers="headersUser"
+					:items="loans"
+					:items-per-page="5"
+					class="elevation-1"
+					:search="search"
+				></v-data-table>
 			</v-card>
 		</div>
 	</div>
 </template>
 
 <script>
-import LoanService from "../services/loan.service";
-import BookService from "../services/book.service";
-import UserService from "../services/user.service";
+import LoanService from "../../services/loan.service";
+import BookService from "../../services/book.service";
+import UserService from "../../services/user.service";
 
 export default {
 	data() {
@@ -183,6 +192,11 @@ export default {
 				{ text: "Loan date", value: "loanDate" },
 				{ text: "Return date", value: "returnDate" },
 				{ text: "Actions", value: "actions", sortable: false },
+			],
+			headersUser: [
+				{ text: "Book", value: "bookTitle" },
+				{ text: "Loan date", value: "loanDate" },
+				{ text: "Return date", value: "returnDate" },
 			],
 			loans: [],
 			books: [],
@@ -211,6 +225,9 @@ export default {
 		formTitle() {
 			return this.editedIndex === -1 ? "Add Loan" : "Edit Loan";
 		},
+		isAdmin() {
+			return this.$store.state.auth.status.admin;
+		},
 	},
 	watch: {
 		dialog(val) {
@@ -222,10 +239,19 @@ export default {
 	},
 	methods: {
 		fetchLoans() {
-			LoanService.getLoans().then((response) => {
-				this.loans = response.data;
-				console.log(this.loans);
-			});
+			if (this.isAdmin) {
+				LoanService.getLoans().then((response) => {
+					this.loans = response.data;
+					console.log(this.loans);
+				});
+			} else {
+				LoanService.getLoansForUser(this.$store.state.auth.user.username).then(
+					(response) => {
+						this.loans = response.data;
+						console.log(this.loans);
+					}
+				);
+			}
 		},
 		fetchData() {
 			this.fetchLoans();

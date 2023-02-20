@@ -2,13 +2,13 @@
 	<nav id="navbar">
 		<router-link to="/home" class="link">Home</router-link>
 		<router-link v-if="isAdmin" to="/books" class="link">Books</router-link>
-		<router-link v-if="isAdmin" to="/loans" class="link">Loans</router-link>
+		<router-link v-if="loggedIn" to="/loans" class="link">Loans</router-link>
 		<router-link v-if="isAdmin" to="/users" class="link">Users</router-link>
 		<router-link v-if="!loggedIn" to="/signup" class="link"
 			>Sign up</router-link
 		>
 		<router-link v-if="!loggedIn" to="/login" class="link">Login</router-link>
-		<v-btn v-if="loggedIn" class="link" id="btn" @click="logout()"
+		<v-btn v-if="loggedIn" v-ripple class="link" id="btn" @click="logout()"
 			>Logout</v-btn
 		>
 	</nav>
