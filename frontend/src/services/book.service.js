@@ -1,20 +1,20 @@
 import axios from 'axios';
-import authHeader from './auth/auth-header';
+import library from './auth/library';
 
 const BOOK_URL = 'http://localhost:8090/library/books';
 
 class BookService {
 	getBooks() {
-		return axios.get(BOOK_URL, { headers: authHeader() });
+		return library.get('/books');
 	}
 	updateBook(book, id) {
-		return axios.put(BOOK_URL + `/${id}`, book, { headers: authHeader() });
+		return axios.put(BOOK_URL + `/${id}`, book);
 	}
 	addBook(book) {
-		return axios.post(BOOK_URL, book, { headers: authHeader() });
+		return axios.post(BOOK_URL, book);
 	}
 	deleteBook(id) {
-		return axios.delete(BOOK_URL + `/${id}`, { headers: authHeader() });
+		return axios.delete(BOOK_URL + `/${id}`);
 	}
 }
 

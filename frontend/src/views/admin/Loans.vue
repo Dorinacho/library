@@ -226,7 +226,7 @@ export default {
 			return this.editedIndex === -1 ? "Add Loan" : "Edit Loan";
 		},
 		isAdmin() {
-			return this.$store.state.auth.status.admin;
+			return this.$store.state.auth.user.admin;
 		},
 	},
 	watch: {

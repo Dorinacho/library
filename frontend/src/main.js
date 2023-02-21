@@ -7,6 +7,8 @@ import store from './store/index';
 import VeeValidate from 'vee-validate';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import setupInterceptors from './services/auth/setupInterceptors';
+import Vuex from 'vuex';
 import {
 	faHome,
 	faUser,
@@ -28,7 +30,10 @@ Vue.config.devtools = true;
 Vue.config.silent = false;
 Vue.use(VeeValidate);
 Vue.use(Vuetify);
+Vue.use(Vuex);
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+
+setupInterceptors(store);
 
 new Vue({
 	vuetify,

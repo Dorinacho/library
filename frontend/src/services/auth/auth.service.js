@@ -1,19 +1,21 @@
-import axios from 'axios';
-
-const AUTH_URL = 'http://localhost:8090/library/auth/';
+import library from './library';
+import TokenService from './token.service';
 
 class AuthService {
 	async login(user) {
-		return axios.post(AUTH_URL + 'signin', user).then((respone) => {
+		return library
+		.post('auth/signin', user)
+		.then((response) => {
 			console.log('This is the data');
-			console.log(respone);
-			if (respone.data.accessToken) {
+			console.log(response);
+			if (response.data.accessToken) {
 				// localStorage.setItem('username', JSON.stringify(respone.data.username));
 				// localStorage.setItem('token', JSON.stringify(respone.data.accessToken));
 				// localStorage.setItem('roles', JSON.stringify(respone.data.roles));
-				localStorage.setItem('user', JSON.stringify(respone.data));
+				// localStorage.setItem('user', JSON.stringify(respone.data));
+				TokenService.setUser(response.data);
 			}
-			return respone.data;
+			return response.data;
 		});
 	}
 	logout() {
@@ -23,10 +25,11 @@ class AuthService {
 		// localStorage.removeItem('username');
 		// localStorage.removeItem('token');
 		// localStorage.removeItem('roles');
-		localStorage.removeItem('user');
+		// localStorage.removeItem('user');
+		TokenService.removeUser();
 	}
 	register(user) {
-		return axios.post(AUTH_URL + 'signup', user);
+		return library.post('/auth/signup', user);
 	}
 }
 

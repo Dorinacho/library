@@ -23,23 +23,29 @@ public class RefreshTokenService {
     @Autowired
     private UserRepository userRepository;
 
-    public Optional<RefreshToken> findByToken(String token){
+    public Optional<RefreshToken> findByToken(String token) {
         return refreshTokenRepository.findByToken(token);
     }
 
-    public RefreshToken createRefreshToken(Long userId){
+    public RefreshToken createRefreshToken(Long userId) {
         RefreshToken refreshToken = new RefreshToken();
-
+        for (
+                RefreshToken token : refreshTokenRepository.findAll()
+        ) {
+            if (token.getUser().getId() == userId) {
+                refreshTokenRepository.delete(token);
+            }
+        }
         refreshToken.setUser(userRepository.findById(userId).get());
         refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
         refreshToken.setToken(UUID.randomUUID().toString());
 
         refreshToken = refreshTokenRepository.save(refreshToken);
-        return  refreshToken;
+        return refreshToken;
     }
 
-    public RefreshToken verifyRefreshToken(RefreshToken refreshToken){
-        if(refreshToken.getExpiryDate().compareTo(Instant.now()) < 0){
+    public RefreshToken verifyRefreshToken(RefreshToken refreshToken) {
+        if (refreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
             refreshTokenRepository.delete(refreshToken);
             throw new RuntimeException("Refresh token was expired");
         }
@@ -47,7 +53,7 @@ public class RefreshTokenService {
     }
 
     @Transactional
-    public int deleteByUserId(Long userId){
+    public int deleteByUserId(Long userId) {
         return refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
     }
 }
