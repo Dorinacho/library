@@ -1,13 +1,14 @@
 <template>
 	<div class="wrapper">
 		<div v-for="book in books" :key="book.isbn">
-			<Book :bookData="book" />
+			<Book :bookData="book" @loanBook="loanTheBook" />
 		</div>
 	</div>
 </template>
 
 <script>
-import BookeService from "../../services/book.service";
+import BookService from "../../services/book.service";
+import LoanService from "../../services/loan.service";
 import Book from "../../components/Book.vue";
 
 export default {
@@ -19,12 +20,24 @@ export default {
 	components: {
 		Book,
 	},
+	emits: ["loanBook"],
 	methods: {
 		fetchBooks() {
-			BookeService.getBooks().then((response) => {
+			BookService.getBooks().then((response) => {
 				this.books = response.data;
 			});
 			console.log(this.books);
+		},
+		loanTheBook(isbn) {
+			console.log("parent");
+			console.log(isbn);
+			LoanService.addLoanForUser(this.$store.state.auth.user.username, isbn)
+				.then(this.fetchBooks())
+				.then(console.log("Book loaned with success!"))
+				.catch((e) => {
+					console.warn(e);
+				})
+				.then(this.fetchBooks());
 		},
 	},
 	created() {
@@ -36,11 +49,9 @@ export default {
 <style lang="scss" scoped>
 .wrapper {
 	display: flex;
-    overflow: inherit;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
+	overflow: inherit;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
-
-
 </style>

@@ -24,6 +24,11 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @GetMapping("/usernames")
+    public List<String> getUsernames() {
+        return userService.getUsernames();
+    }
+
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public User getUserByID(@PathVariable(name = "id") Long id) {

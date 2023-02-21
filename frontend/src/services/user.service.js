@@ -7,8 +7,11 @@ class UserService {
 	getUsers() {
 		return axios.get(USER_URL, { headers: authHeader() });
 	}
+	getUsernames() {
+		return axios.get(USER_URL + '/usernames', { headers: authHeader() });
+	}
 	updateUser(user, id) {
-		console.log(user)
+		console.log(user);
 		return axios.put(USER_URL + `/${id}`, user, { headers: authHeader() });
 	}
 	addUser(user) {

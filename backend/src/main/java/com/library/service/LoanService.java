@@ -1,9 +1,11 @@
 package com.library.service;
 
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.library.dto.LoanDTO;
 import com.library.mapper.LoanMapper;
 import com.library.model.Book;
 import com.library.model.Loan;
+import com.library.model.User;
 import com.library.repository.BookRepository;
 import com.library.repository.LoanRepository;
 import com.library.repository.UserRepository;
@@ -47,6 +49,16 @@ public class LoanService {
         Book book = bookRepository.findById(loan.getBook().getId()).orElseThrow(() -> new RuntimeException("Book was not found!"));
         book.setAvailability(book.getAvailability() - 1);
         bookRepository.save(book);
+        loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
+        loanRepository.save(loan);
+    }
+
+    public void addLoanForUser(String username, String isbn) {
+        Book book = bookRepository.findByIsbn(isbn.replace('=',' ').trim()).orElseThrow(() -> new RuntimeException("Book was not found!"));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User was not found!"));
+        book.setAvailability(book.getAvailability() - 1);
+        bookRepository.save(book);
+        Loan loan = new Loan(book, user, LocalDate.now());
         loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
         loanRepository.save(loan);
     }

@@ -16,6 +16,12 @@ class LoanService {
 	addLoan(loan) {
 		return axios.post(LOAN_URL, loan, { headers: authHeader() });
 	}
+	addLoanForUser(username, isbn) {
+		console.log(isbn);
+		return axios.post(LOAN_URL + `/${username}`, isbn, {
+			headers: authHeader(),
+		});
+	}
 	deleteLoan(id) {
 		return axios.delete(LOAN_URL + `/${id}`, { headers: authHeader() });
 	}

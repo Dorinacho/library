@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -36,9 +38,16 @@ public class LoanController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void addLoan(@RequestBody Loan loan) {
         loanService.addLoan(loan);
+    }
+
+    @PostMapping("/{username}")
+    @PreAuthorize("hasRole('USER')")
+    public void addLoanForUser(@PathVariable(name = "username") String username, @RequestBody String isbn) {
+        System.out.println(isbn);
+        loanService.addLoanForUser(username, isbn );
     }
 
     @PutMapping("/{id}")

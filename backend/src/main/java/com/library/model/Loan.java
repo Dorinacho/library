@@ -30,6 +30,12 @@ public class Loan {
     @Column(name = "return_date")
     private LocalDate returnDate;
 
+    public Loan(Book book, User user, LocalDate loanDate) {
+        this.book = book;
+        this.user = user;
+        this.loanDate = loanDate;
+    }
+
     public @NotNull Long getId() {
         return id;
     }

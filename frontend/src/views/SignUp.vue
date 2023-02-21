@@ -17,11 +17,8 @@
 							class="form-control"
 							name="name"
 						/>
-						<div
-							v-if="submitted && errors.has('username')"
-							class="alert-danger"
-						>
-							{{ errors.first("username") }}
+						<div v-if="submitted && errors.has('name')" class="alert-danger">
+							{{ errors.first("name") }}
 						</div>
 					</div>
 					<div class="form-group">
@@ -46,8 +43,11 @@
 							class="form-control"
 							name="username"
 						/>
-						<div v-if="submitted && errors.has('email')" class="alert-danger">
-							{{ errors.first("email") }}
+						<div
+							v-if="submitted && errors.has('username')"
+							class="alert-danger"
+						>
+							{{ errors.first("username") }}
 						</div>
 					</div>
 					<div class="form-group">
@@ -66,8 +66,10 @@
 							{{ errors.first("password") }}
 						</div>
 					</div>
-					<div class="form-group">
-						<button class="btn btn-primary btn-block">Sign Up</button>
+					<div class="form-group button">
+						<v-btn class="btn btn-primary btn-block" @click="handleRegister()"
+							>Sign Up</v-btn
+						>
 					</div>
 				</div>
 			</form>
@@ -84,6 +86,8 @@
 </template>
 
 <script>
+import UserService from "../services/user.service";
+
 export default {
 	name: "SignUp",
 	data() {
@@ -97,20 +101,42 @@ export default {
 			submitted: false,
 			successful: false,
 			message: "",
+			usernameTaken: false,
 		};
 	},
 	computed: {
 		loggedIn() {
 			return this.$store.state.auth.status.loggedIn;
 		},
+		// usernameTaken(){
+		// 	return this.checkUsername();
+		// }
 	},
+	// watch:{
+	// 	'user.username'(newValue, oldValue){
+	// 		if(newValue !== oldValue){
+	// 			this.checkUsername();
+	// 		}
+	// 	}
+	// },
 	mounted() {
 		if (this.loggedIn) {
 			this.$router.push("/profile");
 		}
 	},
 	methods: {
+		checkUsername() {
+			UserService.getUsernames().then((response) => {
+				response.data.forEach((username) => {
+					if (username === this.user.username) {
+						this.usernameTaken = true;
+						console.log(this.usernameTaken);
+					}console.log(this.usernameTaken);
+				});
+			});
+		},
 		handleRegister() {
+			this.checkUsername();
 			this.message = "";
 			this.submitted = true;
 			this.$validator.validate().then((isValid) => {
@@ -138,7 +164,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../scss/_variables.scss";
+
 label {
 	display: block;
 	margin-top: 10px;
@@ -150,7 +178,7 @@ label {
 }
 
 .card {
-	background-color: #f7f7f7;
+	background-color: black;
 	padding: 20px 25px 30px;
 	margin: 0 auto 25px;
 	margin-top: 50px;
@@ -170,5 +198,16 @@ label {
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
+}
+
+.form-control {
+	background-color: $ghost-white;
+	width: 100%;
+}
+
+.button {
+	display: flex;
+	margin: 20px 0 0 0;
+	justify-content: center;
 }
 </style>

@@ -41,14 +41,14 @@
 						Password is required!
 					</div>
 				</div>
-				<div class="form-group">
-					<button class="btn btn-primary btn-block" :disabled="loading">
+				<div class="form-group button">
+					<v-btn class="btn btn-primary btn-block" :disabled="loading" @click="handleLogin()">
 						<span
 							v-show="loading"
 							class="spinner-border spinner-border-sm"
 						></span>
 						<span>Login</span>
-					</button>
+					</v-btn>
 				</div>
 				<div class="form-group">
 					<div v-if="message" class="alert alert-danger" role="alert">
@@ -113,7 +113,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../scss/_variables.scss";
+
 label {
 	display: block;
 	margin-top: 10px;
@@ -125,13 +127,13 @@ label {
 }
 
 .card {
-	background-color: #f7f7f7;
+	background-color: black;
 	padding: 20px 25px 30px;
 	margin: 0 auto 25px;
-	margin-top: 50px;
+	// margin-top: 50px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
-	border-radius: 2px;
+	border-radius: 20px;
 	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -145,5 +147,16 @@ label {
 	-moz-border-radius: 50%;
 	-webkit-border-radius: 50%;
 	border-radius: 50%;
+}
+
+.form-control {
+	background-color: $ghost-white;
+	width: 100%;
+}
+
+.button {
+	display: flex;
+	margin: 20px 0 0 0;
+	justify-content: center;
 }
 </style>

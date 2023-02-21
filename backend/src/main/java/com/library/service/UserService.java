@@ -33,15 +33,26 @@ public class UserService {
                 .toList();
     }
 
+    public List<String> getUsernames() {
+        return userRepository.findAll().stream()
+                .map(User::getUsername)
+                .toList();
+    }
+
     public User getUserByID(Long id) {
         return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void addUser(UserCreationDTO userCreationDTO) {
-        userCreationDTO.setPassword(bCryptPasswordEncoder.encode(userCreationDTO.getPassword()));
-        User user = userMapper.toUser(userCreationDTO);
-        userRepository.save(user);
+        boolean userExists = userRepository.findByUsername(userCreationDTO.getUsername()).isPresent();
+        if(!userExists) {
+            userCreationDTO.setPassword(bCryptPasswordEncoder.encode(userCreationDTO.getPassword()));
+            User user = userMapper.toUser(userCreationDTO);
+            userRepository.save(user);
+        }else{
+            throw new RuntimeException("Username is taken");
+        }
     }
 
     public void updateUser(User userData, Long id) {

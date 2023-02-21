@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="Small controller fix">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/8/b83a1dae4a8d8bdd92e15ad9d9758d5f5df1bce0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/8/c8c8426a308c3f36993576f8ebe66492efce291e" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/dto/LoanDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/dto/LoanDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/model/Loan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/model/Loan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repository/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Book.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Book.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +156,10 @@
       <workItem from="1676884783786" duration="194000" />
       <workItem from="1676885016415" duration="1826000" />
       <workItem from="1676886853826" duration="88000" />
-      <workItem from="1676886950427" duration="5455000" />
+      <workItem from="1676886950427" duration="9551000" />
+      <workItem from="1676911552686" duration="145000" />
+      <workItem from="1676966256278" duration="253000" />
+      <workItem from="1676966518109" duration="3166000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -318,6 +327,20 @@
     <MESSAGE value="Roles and loans are no longer deleted on update" />
     <MESSAGE value="Small controller fix" />
     <option name="LAST_COMMIT_MESSAGE" value="Small controller fix" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java</url>
+          <line>56</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
