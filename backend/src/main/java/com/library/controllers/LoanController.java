@@ -1,14 +1,12 @@
-package com.library.controller;
+package com.library.controllers;
 
 import com.library.dto.LoanDTO;
-import com.library.model.Loan;
+import com.library.models.Loan;
 import com.library.service.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

@@ -1,7 +1,7 @@
 package com.library.mapper;
 
 import com.library.dto.LoanDTO;
-import com.library.model.Loan;
+import com.library.models.Loan;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;

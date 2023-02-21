@@ -3,11 +3,11 @@ package com.library.dto;
 import java.time.LocalDate;
 
 public class LoanDTO {
-    private String bookTitle;
+    private final String bookTitle;
 
-    private LocalDate loanDate;
+    private final LocalDate loanDate;
 
-    private LocalDate returnDate;
+    private final LocalDate returnDate;
 
     public LoanDTO(String bookTitle, LocalDate loanDate, LocalDate returnDate) {
         this.bookTitle = bookTitle;

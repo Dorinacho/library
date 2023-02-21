@@ -1,14 +1,17 @@
-package com.library.controller;
+package com.library.controllers;
 
 import com.library.dto.UserCreationDTO;
 import com.library.dto.UserLoginDTO;
-import com.library.model.ERole;
-import com.library.model.Role;
-import com.library.model.User;
-import com.library.repository.RoleRepository;
-import com.library.repository.UserRepository;
+import com.library.models.ERole;
+import com.library.models.RefreshToken;
+import com.library.models.Role;
+import com.library.models.User;
+import com.library.repositories.RoleRepository;
+import com.library.repositories.UserRepository;
 import com.library.security.jwt.JwtResponse;
 import com.library.security.jwt.JwtUtils;
+import com.library.security.jwt.TokenRefreshResponse;
+import com.library.service.RefreshTokenService;
 import com.library.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,20 +33,17 @@ import java.util.Set;
 public class AuthController {
     public static final String ERROR_MESSAGE = "Error: Role is not found.";
     @Autowired
+    RefreshTokenService refreshTokenService;
+    @Autowired
     private AuthenticationManager authenticationManager;
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private RoleRepository roleRepository;
-
     @Autowired
     private PasswordEncoder encoder;
-
     @Autowired
     private JwtUtils jwtUtils;
-
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserLoginDTO loginRequest) {
@@ -56,13 +56,29 @@ public class AuthController {
 
         String jwt = jwtUtils.generateJwtToken(authentication);
 
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(userDetails.getId());
+
         List<ERole> roles = userDetails.getAuthorities().stream()
                 .map(item -> ERole.valueOf(item.getAuthority()))
                 .toList();
 
         return ResponseEntity.ok(new JwtResponse(jwt,
+                refreshToken.getToken(),
                 userDetails.getUsername(),
                 roles));
+    }
+
+    @PostMapping("/refreshtoken")
+    public ResponseEntity<?> refreshtoken(@Valid @RequestBody String requestRefreshToken) {
+        return refreshTokenService.findByToken(requestRefreshToken)
+                .map(refreshToken -> refreshTokenService.verifyRefreshToken(refreshToken))
+                .map(RefreshToken::getUser)
+                .map(user -> {
+                    String token = jwtUtils.generateTokenFromUsername(user.getUsername());
+                    return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
+                })
+                .orElseThrow(() -> new RuntimeException(
+                        "Refresh token is not in database!"));
     }
 
     @PostMapping("/signup")

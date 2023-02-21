@@ -1,7 +1,7 @@
 package com.library.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.library.model.User;
+import com.library.models.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

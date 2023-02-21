@@ -2,7 +2,7 @@ package com.library.mapper;
 
 import com.library.dto.UserCreationDTO;
 import com.library.dto.UserDTO;
-import com.library.model.User;
+import com.library.models.User;
 import org.springframework.stereotype.Component;
 
 @Component

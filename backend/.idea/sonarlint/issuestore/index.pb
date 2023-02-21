@@ -1,8 +1,6 @@
 
 V
 &src/test/java/com/library/AppTest.java,f\9\f9b1648717fa08e838fb1d85420c4d813b4c0846
-b
-2src/main/java/com/library/service/RoleService.java,2\d\2d767b69eec5a44899eb5f577a59f22861bfad8c
 w
 G.idea/sonarlint/issuestore/b/7/b72f1372d5e574088a9dad3b52e8f673bb4fbe92,3\d\3d36c73367eeec290931c995990a08d61642a6f5
 w
@@ -25,26 +23,10 @@ Y
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 h
 8src/main/java/com/library/controller/TestController.java,d\9\d93e6cfe497e1fc0b2ca89ce207aae83430ce2c4
-m
-=src/main/java/com/library/security/jwt/AuthEntryPointJwt.java,3\0\303e48bc9147a61a4d97433e6be53b7e27b9e498
-k
-;src/main/java/com/library/security/jwt/AuthTokenFilter.java,7\a\7abc3ea48fd45c3a1746531848d75f83a3e2c99b
-m
-=src/main/java/com/library/service/UserDetailsServiceImpl.java,8\d\8dd0365cce2753d80839b6d687384b5d6943fe7f
-f
-6src/main/java/com/library/service/UserDetailsImpl.java,9\a\9a470cc37fc36ee11e56ee69970647087e203716
-d
-4src/main/java/com/library/security/jwt/JwtUtils.java,e\d\edb89d5fd237cbd9ab8b410dcfd35f0083b43213
 h
 8src/main/java/com/library/controller/RoleController.java,6\6\66ea710c58ab7de3030b33c19776fac784213a6f
 Y
 )src/main/java/com/library/model/User.java,2\b\2b3bac54463f9ed1cb99477f70dc40c899164db0
-S
-#.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-h
-8src/main/java/com/library/controller/AuthController.java,7\3\73ef3cb044ffda0605c33613ccb50e3e7f4143a6
-g
-7src/main/java/com/library/security/jwt/JwtResponse.java,8\6\86a976132944cc69b2775c2ae02c04853549e246
 _
 /src/main/java/com/library/dto/UserLoginDTO.java,6\2\6263dd8b69e2521fba46815786c033b45e75f759
 b
@@ -57,11 +39,5 @@ h
 8src/main/java/com/library/repository/RoleRepository.java,1\b\1b1affac7e9b9b5807d08fed7dee9b07dcd2c7af
 h
 8src/main/java/com/library/repository/LoanRepository.java,a\0\a0c9ee97cddb4b664746cf132fa019e65732733f
-`
-0src/main/java/com/library/mapper/UserMapper.java,5\e\5ed363ea08b637e749e410f6bdbf051cc90e218d
-`
-0src/main/java/com/library/mapper/LoanMapper.java,d\2\d2e5781cf9b3bb4c58567c1e257632ea781eefb2
 Y
 )src/main/java/com/library/model/Book.java,b\3\b370d1eecf3be2232ddfbd62f4313488ef05708b
-h
-8src/main/java/com/library/controller/BookController.java,0\7\07667767f64b5b98e92950a626f9144f62745b9c

@@ -1,7 +1,7 @@
-package com.library.repository;
+package com.library.repositories;
 
-import com.library.model.ERole;
-import com.library.model.Role;
+import com.library.models.ERole;
+import com.library.models.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

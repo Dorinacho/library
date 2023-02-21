@@ -1,6 +1,6 @@
 package com.library.security.jwt;
 
-import com.library.model.ERole;
+import com.library.models.ERole;
 
 import java.util.List;
 
@@ -9,14 +9,16 @@ public class JwtResponse {
     private String username;
     private final String token;
     private String type = "Bearer";
+    private String refreshToken;
 
     private boolean isAdmin;
 
     private boolean isMod;
 
 
-    public JwtResponse(String accessToken, String username, List<ERole> roles) {
+    public JwtResponse(String accessToken, String refreshToken, String username, List<ERole> roles) {
         this.token = accessToken;
+        this.refreshToken = refreshToken;
         this.username = username;
         this.roles = roles;
         for (ERole role : roles) {
@@ -32,6 +34,14 @@ public class JwtResponse {
 
     public String getAccessToken() {
         return token;
+    }
+
+    public String getRefreshToken() {
+        return refreshToken;
+    }
+
+    public void setRefreshToken(String refreshToken) {
+        this.refreshToken = refreshToken;
     }
 
     public String getTokenType() {

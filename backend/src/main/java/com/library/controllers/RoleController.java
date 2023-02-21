@@ -1,7 +1,7 @@
-package com.library.controller;
+package com.library.controllers;
 
-import com.library.model.Role;
-import com.library.repository.RoleRepository;
+import com.library.models.Role;
+import com.library.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

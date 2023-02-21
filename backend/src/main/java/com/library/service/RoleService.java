@@ -1,7 +1,7 @@
 package com.library.service;
 
-import com.library.model.Role;
-import com.library.repository.RoleRepository;
+import com.library.models.Role;
+import com.library.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

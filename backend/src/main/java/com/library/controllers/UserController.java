@@ -1,8 +1,8 @@
-package com.library.controller;
+package com.library.controllers;
 
 import com.library.dto.UserCreationDTO;
 import com.library.dto.UserDTO;
-import com.library.model.User;
+import com.library.models.User;
 import com.library.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

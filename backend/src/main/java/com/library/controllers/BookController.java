@@ -1,6 +1,6 @@
-package com.library.controller;
+package com.library.controllers;
 
-import com.library.model.Book;
+import com.library.models.Book;
 import com.library.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

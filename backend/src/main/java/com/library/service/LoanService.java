@@ -1,14 +1,13 @@
 package com.library.service;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.library.dto.LoanDTO;
 import com.library.mapper.LoanMapper;
-import com.library.model.Book;
-import com.library.model.Loan;
-import com.library.model.User;
-import com.library.repository.BookRepository;
-import com.library.repository.LoanRepository;
-import com.library.repository.UserRepository;
+import com.library.models.Book;
+import com.library.models.Loan;
+import com.library.models.User;
+import com.library.repositories.BookRepository;
+import com.library.repositories.LoanRepository;
+import com.library.repositories.UserRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
