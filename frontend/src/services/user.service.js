@@ -1,24 +1,22 @@
-import axios from 'axios';
-import authHeader from './auth/auth-header';
+import library from './auth/library';
 
-const USER_URL = 'http://localhost:8090/library/users';
 
 class UserService {
 	getUsers() {
-		return axios.get(USER_URL, { headers: authHeader() });
+		return library.get('/users');
 	}
 	getUsernames() {
-		return axios.get(USER_URL + '/usernames', { headers: authHeader() });
+		return library.get('/users/usernames');
 	}
 	updateUser(user, id) {
 		console.log(user);
-		return axios.put(USER_URL + `/${id}`, user, { headers: authHeader() });
+		return library.put(`/users/${id}`, user);
 	}
 	addUser(user) {
-		return axios.post(USER_URL, user, { headers: authHeader() });
+		return library.post('/users', user);
 	}
 	deleteUser(id) {
-		return axios.delete(USER_URL + `/${id}`, { headers: authHeader() });
+		return library.delete(`/users/${id}`);
 	}
 }
 
