@@ -1,6 +1,9 @@
 package com.library.service;
 
+import com.library.exceptions.ResourceNotFoundException;
+import com.library.exceptions.TokenRefreshException;
 import com.library.models.RefreshToken;
+import com.library.models.User;
 import com.library.repositories.RefreshTokenRepository;
 import com.library.repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -32,11 +35,14 @@ public class RefreshTokenService {
         for (
                 RefreshToken token : refreshTokenRepository.findAll()
         ) {
-            if (token.getUser().getId() == userId) {
+            if (token.getUser().getId().equals(userId)) {
                 refreshTokenRepository.delete(token);
             }
         }
-        refreshToken.setUser(userRepository.findById(userId).get());
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            refreshToken.setUser(user.get());
+        }
         refreshToken.setExpiryDate(Instant.now().plusMillis(refreshTokenDurationMs));
         refreshToken.setToken(UUID.randomUUID().toString());
 
@@ -47,13 +53,17 @@ public class RefreshTokenService {
     public RefreshToken verifyRefreshToken(RefreshToken refreshToken) {
         if (refreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
             refreshTokenRepository.delete(refreshToken);
-            throw new RuntimeException("Refresh token was expired");
+            throw new TokenRefreshException(refreshToken.getToken(), "Refresh token was expired");
         }
         return refreshToken;
     }
 
     @Transactional
     public int deleteByUserId(Long userId) {
-        return refreshTokenRepository.deleteByUser(userRepository.findById(userId).get());
+        Optional<User> user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            return refreshTokenRepository.deleteByUser(user.get());
+        }
+        throw new ResourceNotFoundException("Could not fin user with id " + userId);
     }
 }

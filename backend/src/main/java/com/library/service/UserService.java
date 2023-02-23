@@ -52,12 +52,12 @@ public class UserService {
             User user = userMapper.toUser(userCreationDTO);
             userRepository.save(user);
         } else {
-            throw new RuntimeException("Username is taken");
+            throw new ResourceNotFoundException("Username is taken");
         }
     }
 
     public void updateUser(User userData, Long id) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find user!"));
+        User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Could not find user!"));
         System.out.println(userData.toString());
         System.out.println(user.toString());
         if (userData.getName() != null) {
@@ -83,7 +83,7 @@ public class UserService {
         userRepository.deleteById(userID);
     }
 
-    public ResponseEntity<?> checkUsername(String username) {
+    public ResponseEntity<String> checkUsername(String username) {
         boolean isTaken = userRepository.existsByUsername(username);
         if (isTaken) {
             return ResponseEntity.badRequest().body("Username is taken");

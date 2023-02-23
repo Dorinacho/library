@@ -4,18 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="implemented Refresh token in backend">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/d/2d767b69eec5a44899eb5f577a59f22861bfad8c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/e/5ed363ea08b637e749e410f6bdbf051cc90e218d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/2/d2e5781cf9b3bb4c58567c1e257632ea781eefb2" beforeDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="improved error handling">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/1/11d8d25118ec0329ce2eabc4723cb95b77be32a8" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/b/1b1affac7e9b9b5807d08fed7dee9b07dcd2c7af" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/b/2b3bac54463f9ed1cb99477f70dc40c899164db0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/d/3d36c73367eeec290931c995990a08d61642a6f5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/d/4d0e048ba94ce74684a529cf4845a3413262bace" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/6/66ea710c58ab7de3030b33c19776fac784213a6f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/1/714a688e0e36bf87dfe2ee109227555e1010b340" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c7b71747455a3e6cea01dc6a3ea120457622eee" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/8/983a9c88840528a874503e3513faa33d4e630a5b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a0c9ee97cddb4b664746cf132fa019e65732733f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/3/b370d1eecf3be2232ddfbd62f4313488ef05708b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d93e6cfe497e1fc0b2ca89ce207aae83430ce2c4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/b/dbbbe714ebbd0b61f491fade0dff61417a780129" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repositories/RefreshTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repositories/RefreshTokenRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/RefreshTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/store/auth.module.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/store/auth.module.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/admin/Loans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/admin/Loans.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/RoleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +166,13 @@
       <workItem from="1676886950427" duration="9551000" />
       <workItem from="1676911552686" duration="145000" />
       <workItem from="1676966256278" duration="253000" />
-      <workItem from="1676966518109" duration="15178000" />
+      <workItem from="1676966518109" duration="15459000" />
+      <workItem from="1677052601150" duration="2374000" />
+      <workItem from="1677054988795" duration="6669000" />
+      <workItem from="1677074411523" duration="1118000" />
+      <workItem from="1677137796312" duration="175000" />
+      <workItem from="1677138086754" duration="154000" />
+      <workItem from="1677138252408" duration="1462000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -331,46 +347,8 @@
     <MESSAGE value="Roles and loans are no longer deleted on update" />
     <MESSAGE value="Small controller fix" />
     <MESSAGE value="implemented Refresh token in backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="implemented Refresh token in backend" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>75</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>73</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>58</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="improved error handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved error handling" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,5 +1,6 @@
 package com.library.service;
 
+import com.library.exceptions.ResourceNotFoundException;
 import com.library.models.Book;
 import com.library.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class BookService {
     }
 
     public void updateBook(Book bookData, Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find book!"));
+        Book book = bookRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Could not find book!"));
         book.setAvailability(bookData.getAvailability());
         book.setAuthor(bookData.getAuthor());
         book.setTitle(bookData.getTitle());

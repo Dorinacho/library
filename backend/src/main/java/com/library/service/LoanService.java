@@ -1,6 +1,7 @@
 package com.library.service;
 
 import com.library.dto.LoanDTO;
+import com.library.exceptions.ResourceNotFoundException;
 import com.library.mapper.LoanMapper;
 import com.library.models.Book;
 import com.library.models.Loan;
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class LoanService {
 
-    final int DAYS_UNTIL_RETURN = 21;
+    private static final int DAYS_UNTIL_RETURN = 21;
     @Autowired
     private LoanRepository loanRepository;
     @Autowired
@@ -36,16 +37,20 @@ public class LoanService {
     }
 
     public List<LoanDTO> getLoansForUser(String username) {
-        long id = userRepository.findByUsername(username).get().getId();
-        return loanRepository.findLoansByUserId(id).stream().map(loan -> loanMapper.toDto(loan)).toList();
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
+            long id = user.get().getId();
+            return loanRepository.findLoansByUserId(id).stream().map(loan -> loanMapper.toDto(loan)).toList();
+        }
+        throw new ResourceNotFoundException("User " + username + " could not be found by username");
     }
 
     public Loan getLoanByID(Long id) {
-        return loanRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return loanRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Loan could not be found!"));
     }
 
     public void addLoan(@RequestBody @NotNull Loan loan) {
-        Book book = bookRepository.findById(loan.getBook().getId()).orElseThrow(() -> new RuntimeException("Book was not found!"));
+        Book book = bookRepository.findById(loan.getBook().getId()).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
         book.setAvailability(book.getAvailability() - 1);
         bookRepository.save(book);
         loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
@@ -53,8 +58,8 @@ public class LoanService {
     }
 
     public void addLoanForUser(String username, String isbn) {
-        Book book = bookRepository.findByIsbn(isbn.replace('=',' ').trim()).orElseThrow(() -> new RuntimeException("Book was not found!"));
-        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User was not found!"));
+        Book book = bookRepository.findByIsbn(isbn.replace('=', ' ').trim()).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User was not found!"));
         book.setAvailability(book.getAvailability() - 1);
         bookRepository.save(book);
         Loan loan = new Loan(book, user, LocalDate.now());
@@ -63,7 +68,7 @@ public class LoanService {
     }
 
     public void updateLoan(@NotNull Loan loanData, Long loanID) {
-        Loan loan = loanRepository.findById(loanID).orElseThrow(() -> new RuntimeException("Loan was not found!"));
+        Loan loan = loanRepository.findById(loanID).orElseThrow(() -> new ResourceNotFoundException("Loan was not found!"));
         loan.setBook(loanData.getBook());
         loan.setUser(loanData.getUser());
         loan.setLoanDate(loanData.getLoanDate());
