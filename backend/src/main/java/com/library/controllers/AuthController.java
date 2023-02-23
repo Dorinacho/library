@@ -2,10 +2,12 @@ package com.library.controllers;
 
 import com.library.dto.UserCreationDTO;
 import com.library.dto.UserLoginDTO;
+import com.library.exceptions.TokenRefreshException;
 import com.library.models.ERole;
 import com.library.models.RefreshToken;
 import com.library.models.Role;
 import com.library.models.User;
+import com.library.repositories.RefreshTokenRepository;
 import com.library.repositories.RoleRepository;
 import com.library.repositories.UserRepository;
 import com.library.security.jwt.JwtResponse;
@@ -44,6 +46,8 @@ public class AuthController {
     private PasswordEncoder encoder;
     @Autowired
     private JwtUtils jwtUtils;
+    @Autowired
+    private RefreshTokenRepository refreshTokenRepository;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody UserLoginDTO loginRequest) {
@@ -77,7 +81,7 @@ public class AuthController {
                     String token = jwtUtils.generateTokenFromUsername(user.getUsername());
                     return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
                 })
-                .orElseThrow(() -> new RuntimeException(
+                .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
                         "Refresh token is not in database!"));
     }
 

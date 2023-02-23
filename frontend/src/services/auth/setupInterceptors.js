@@ -29,24 +29,32 @@ const setup = (store) => {
 			console.log(err);
 
 			if (originalConfig.url !== '/auth/signin' && err.response) {
-				// Access token was expired
-				if (err.response.status === 401 && !originalConfig._retry) {
+				// if (err.response.status === 403) {
+				// 	TokenService.removeUser();
+				// 	// this.$router.push("/login");
+				// }
+				// // Access token was expired
+				// else
+				 if (err.response.status === 401 && !originalConfig._retry) {
 					originalConfig._retry = true;
 
 					try {
 						// console.log(TokenService.getLocalRefreshToken())
+						//the route from the api
 						const rs = await axiosInstance.post('/auth/refreshToken', {
 							refreshToken: TokenService.getLocalRefreshToken(),
 						});
 
 						const { accessToken } = rs.data;
 
+						//dipatching an action to make the mutation
 						store.dispatch('auth/refreshToken', accessToken);
 						console.log('we are here');
 						TokenService.updateLocalAccessToken(accessToken);
 
 						return axiosInstance(originalConfig);
 					} catch (_error) {
+						store.dispatch("auth/logout");
 						return Promise.reject(_error);
 					}
 				}

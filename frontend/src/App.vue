@@ -24,10 +24,10 @@ export default {
 	data: () => ({
 		//
 	}),
-	created() {
-		if (this.$store.state.auth.user != null)
-			this.$store.dispatch("auth/refreshPage");
-	},
+	// created() {
+	// 	if (this.$store.state.auth.user != null)
+	// 		this.$store.dispatch("auth/refreshPage");
+	// },
 	methods: {
 		logOut() {
 			this.$store.dispatch("auth/logout");

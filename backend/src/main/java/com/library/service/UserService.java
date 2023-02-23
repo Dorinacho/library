@@ -3,6 +3,7 @@ package com.library.service;
 
 import com.library.dto.UserCreationDTO;
 import com.library.dto.UserDTO;
+import com.library.exceptions.ResourceNotFoundException;
 import com.library.mapper.UserMapper;
 import com.library.models.User;
 import com.library.repositories.UserRepository;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -40,17 +40,18 @@ public class UserService {
     }
 
     public User getUserByID(Long id) {
-        return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+        return userRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Could not find user with id: " + id));
     }
 
     @Transactional(rollbackFor = Exception.class)
     public void addUser(UserCreationDTO userCreationDTO) {
         boolean userExists = userRepository.findByUsername(userCreationDTO.getUsername()).isPresent();
-        if(!userExists) {
+        if (!userExists) {
             userCreationDTO.setPassword(bCryptPasswordEncoder.encode(userCreationDTO.getPassword()));
             User user = userMapper.toUser(userCreationDTO);
             userRepository.save(user);
-        }else{
+        } else {
             throw new RuntimeException("Username is taken");
         }
     }
