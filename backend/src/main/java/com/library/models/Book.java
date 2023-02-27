@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.NoArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -35,7 +34,24 @@ public class Book {
     @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
 
-    public @NotNull Long getId() {
+    public Book(Long id, String isbn, String title, String author, int availability, String description) {
+        this.id = id;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.availability = availability;
+        this.description = description;
+    }
+
+    public Book(String isbn, String title, String author, int availability, String description) {
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.availability = availability;
+        this.description = description;
+    }
+
+    public Long getId() {
         return id;
     }
 

@@ -58,8 +58,12 @@ public class LoanService {
     }
 
     public void addLoanForUser(String username, String isbn) {
+        // for some reason an equals is attached at the end of the ISBN
         Book book = bookRepository.findByIsbn(isbn.replace('=', ' ').trim()).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
         User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User was not found!"));
+//        for (Loan loan : user.getLoans()){
+//            if()
+//        }
         book.setAvailability(book.getAvailability() - 1);
         bookRepository.save(book);
         Loan loan = new Loan(book, user, LocalDate.now());

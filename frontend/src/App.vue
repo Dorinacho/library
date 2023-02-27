@@ -3,9 +3,9 @@
 		<v-main>
 			<Navbar />
 			<!-- <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg" id="parallax"> -->
-			<v-parallax src="./assets/books.jpg" id="parallax">
-				<router-view></router-view>
-			</v-parallax>
+			<!-- <v-parallax src="./assets/books.jpg" id="parallax"> -->
+			<router-view class="view"></router-view>
+			<!-- </v-parallax> -->
 		</v-main>
 	</v-app>
 	<!-- TODO : FIX THE SERVICES FOR THE REFRESH TOKEN -->
@@ -51,4 +51,12 @@ export default {
 	height: 100% !important;
 	width: 100% !important;
 }
+.view {
+	background-image: url("./assets/books.jpg");
+	width: 100%;
+	height: 100%;
+	animation: 10s linear infinite;
+}
+
+
 </style>

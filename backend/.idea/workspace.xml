@@ -4,28 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="improved error handling">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/1/11d8d25118ec0329ce2eabc4723cb95b77be32a8" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/b/1b1affac7e9b9b5807d08fed7dee9b07dcd2c7af" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/b/2b3bac54463f9ed1cb99477f70dc40c899164db0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/d/3d36c73367eeec290931c995990a08d61642a6f5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/d/4d0e048ba94ce74684a529cf4845a3413262bace" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/6/66ea710c58ab7de3030b33c19776fac784213a6f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/1/714a688e0e36bf87dfe2ee109227555e1010b340" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/c/8c7b71747455a3e6cea01dc6a3ea120457622eee" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/8/983a9c88840528a874503e3513faa33d4e630a5b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/0/a0c9ee97cddb4b664746cf132fa019e65732733f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/3/b370d1eecf3be2232ddfbd62f4313488ef05708b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/9/d93e6cfe497e1fc0b2ca89ce207aae83430ce2c4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/b/dbbbe714ebbd0b61f491fade0dff61417a780129" beforeDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="simple tests for BookController">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/BookControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/library/user/WithMockUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/library/user/WithMockUserSecurityContextFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/f/3f245e8e70d461dd90efe4d72e91105965355519" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/e/6eeb487283a79f91cb769121fb6dd8f4a4904be4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/exceptions/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/exceptions/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/models/Book.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/RefreshTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/RoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/RoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +99,70 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.App">
+    <configuration name="BookControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.library.controllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.library.controllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.library.controllerTests.BookControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookControllerTest.shouldGetBooks" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.library.controllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.library.controllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.library.controllerTests.BookControllerTest" />
+      <option name="METHOD_NAME" value="shouldGetBooks" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookControllerTest.shouldNotGetBookById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.library.controllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.library.controllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.library.controllerTests.BookControllerTest" />
+      <option name="METHOD_NAME" value="shouldNotGetBookById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BookControllerTest.shouldReturnNotFoundUpdateBook" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.library.controllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.library.controllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.library.controllerTests.BookControllerTest" />
+      <option name="METHOD_NAME" value="shouldReturnNotFoundUpdateBook" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="library" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.library.App" />
@@ -119,7 +178,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BookControllerTest.shouldReturnNotFoundUpdateBook" />
+        <item itemvalue="JUnit.BookControllerTest" />
+        <item itemvalue="JUnit.BookControllerTest.shouldGetBooks" />
         <item itemvalue="Spring Boot.App" />
+        <item itemvalue="JUnit.BookControllerTest.shouldNotGetBookById" />
       </list>
     </recent_temporary>
   </component>
@@ -172,7 +235,12 @@
       <workItem from="1677074411523" duration="1118000" />
       <workItem from="1677137796312" duration="175000" />
       <workItem from="1677138086754" duration="154000" />
-      <workItem from="1677138252408" duration="1462000" />
+      <workItem from="1677138252408" duration="10568000" />
+      <workItem from="1677156778580" duration="799000" />
+      <workItem from="1677159498940" duration="1734000" />
+      <workItem from="1677230235469" duration="9745000" />
+      <workItem from="1677488316667" duration="863000" />
+      <workItem from="1677489184387" duration="7256000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -307,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676990341339</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="improved error handling">
+      <created>1677140854029</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1677140854029</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,7 +423,8 @@
     <MESSAGE value="Small controller fix" />
     <MESSAGE value="implemented Refresh token in backend" />
     <MESSAGE value="improved error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved error handling" />
+    <MESSAGE value="simple tests for BookController" />
+    <option name="LAST_COMMIT_MESSAGE" value="simple tests for BookController" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
