@@ -117,6 +117,10 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/_variables.scss";
 
+.view{
+	position: fixed;
+}
+
 label {
 	display: block;
 	margin-top: 10px;
@@ -131,7 +135,7 @@ label {
 	background-color: black;
 	padding: 20px 25px 30px;
 	margin: 0 auto 25px;
-	// margin-top: 50px;
+	margin-top: 50px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 20px;

@@ -131,7 +131,8 @@ export default {
 					if (username === this.user.username) {
 						this.usernameTaken = true;
 						console.log(this.usernameTaken);
-					}console.log(this.usernameTaken);
+					}
+					console.log(this.usernameTaken);
 				});
 			});
 		},
@@ -167,6 +168,10 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/_variables.scss";
 
+.view{
+	position: fixed;
+}
+
 label {
 	display: block;
 	margin-top: 10px;
@@ -184,7 +189,7 @@ label {
 	margin-top: 50px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
-	border-radius: 2px;
+	border-radius: 20px;
 	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
