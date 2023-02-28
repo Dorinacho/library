@@ -1,13 +1,25 @@
 package com.library.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.Set;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserCreationDTO {
     private String name;
     private String email;
     private String username;
     private String password;
     private Set<String> roles;
+
+    public UserCreationDTO(String name, String email, String username, String password) {
+        this.name = name;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
 
     public String getName() {
         return name;

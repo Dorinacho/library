@@ -64,6 +64,6 @@ public class RefreshTokenService {
         if (user.isPresent()) {
             return refreshTokenRepository.deleteByUser(user.get());
         }
-        throw new ResourceNotFoundException("Could not fin user with id " + userId);
+        throw new ResourceNotFoundException("Could not find user with id " + userId);
     }
 }

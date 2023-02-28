@@ -7,12 +7,10 @@ import com.library.repositories.BookRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +19,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -119,8 +118,6 @@ class BookControllerTest {
     @Test
     void shouldReturnNotFoundUpdateBook() throws Exception {
         Long id = 2L;
-        Book book = new Book("978-5-6038-8700-5", "Martin Eden", "Jack London", 8,
-                "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
         Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", "Jack LONdon", 8,
                 "This is a unit test");
 
@@ -130,6 +127,17 @@ class BookControllerTest {
         mockMvc.perform(put("/library/books/{id}", id).contentType(MediaType.APPLICATION_JSON).with(csrf())
                         .content(objectMapper.writeValueAsString(updatedBook)))
                 .andExpect(status().isNotFound())
+                .andDo(print());
+    }
+
+    @Test
+    void shouldDeleteBook() throws Exception {
+        long id = 1L;
+
+        doNothing().when(bookRepository).deleteById(anyLong());
+
+        mockMvc.perform(delete("/library/books/{id}", id).with(csrf()))
+                .andExpect(status().isNoContent())
                 .andDo(print());
     }
 }

@@ -1,6 +1,5 @@
 package com.library.controllers;
 
-import com.library.dto.UserCreationDTO;
 import com.library.dto.UserDTO;
 import com.library.models.User;
 import com.library.service.UserService;
@@ -49,27 +48,29 @@ public class UserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<User> getUserByID(@PathVariable(name = "id") Long id) {
-        return new ResponseEntity<>(userService.getUserByID(id), HttpStatus.OK);
+        if (userService.getUserByID(id).isPresent()) {
+            return new ResponseEntity<>(userService.getUserByID(id).get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<User> addUser(@RequestBody UserCreationDTO userCreationDTO) {
-        try {
-            userService.addUser(userCreationDTO);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (Exception e) {
-            logger.error("Error => " + e.getMessage());
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping
+//    @PreAuthorize("hasRole('ADMIN')")
+//    public ResponseEntity<User> addUser(@RequestBody UserCreationDTO userCreationDTO) {
+//        try {
+//            userService.addUser(userCreationDTO);
+//            return new ResponseEntity<>(HttpStatus.CREATED);
+//        } catch (Exception e) {
+//            logger.error("Error => " + e.getMessage());
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
         try {
-            userService.updateUser(user, id);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(userService.updateUser(user, id), HttpStatus.OK);
         } catch (Exception e) {
             logger.error("Error => " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -78,7 +79,7 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<User> deleteUser(@PathVariable(name = "id") Long userID) {
+    public ResponseEntity<HttpStatus> deleteUser(@PathVariable(name = "id") Long userID) {
         try {
             userService.deleteUser(userID);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
