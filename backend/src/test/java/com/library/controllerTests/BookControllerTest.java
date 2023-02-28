@@ -5,9 +5,9 @@ import com.library.controllers.BookController;
 import com.library.models.Book;
 import com.library.repositories.BookRepository;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -25,10 +25,12 @@ import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BookController.class)
-@WithMockUser(roles = {"ADMIN"})
+//@WithMockUser(roles = {"ADMIN"})
+@WithMockUser(authorities = {"ROLE_USER"})
 class BookControllerTest {
     @MockBean
     private BookRepository bookRepository;
@@ -42,14 +44,14 @@ class BookControllerTest {
     @Test
     void shouldGetBooks() throws Exception {
         List<Book> books = new ArrayList<>(
-                Arrays.asList(new Book(1L,"978-1-7777-0182-3", "Martin Eden", "Jack London", 5, "Martin Eden is a sailor"),
-                        new Book(2L,"978-1-8888-0182-3", "The spy", "Secret author", 8, "test book numero 2"),
-                        new Book(3L,"978-1-9999-0182-3", "THe apps", "Dorin Suciu", 2, "test book numero tres")));
+                Arrays.asList(new Book(1L, "978-1-7777-0182-3", "Martin Eden", "Jack London", 5, "Martin Eden is a sailor"),
+                        new Book(2L, "978-1-8888-0182-3", "The spy", "Secret author", 8, "test book numero 2"),
+                        new Book(3L, "978-1-9999-0182-3", "THe apps", "Dorin Suciu", 2, "test book numero tres")));
 
         when(bookRepository.findAll()).thenReturn(books);
         mockMvc.perform(get("/library/books"))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(books.size()))
+                .andExpect(jsonPath("$.size()").value(books.size()))
                 .andDo(print());
     }
 
@@ -63,11 +65,11 @@ class BookControllerTest {
 
         mockMvc.perform(get("/library/books/{id}", id))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(book.getTitle()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.author").value(book.getAuthor()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.isbn").value(book.getIsbn()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.availability").value(book.getAvailability()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(book.getDescription()))
+                .andExpect(jsonPath("$.title").value(book.getTitle()))
+                .andExpect(jsonPath("$.author").value(book.getAuthor()))
+                .andExpect(jsonPath("$.isbn").value(book.getIsbn()))
+                .andExpect(jsonPath("$.availability").value(book.getAvailability()))
+                .andExpect(jsonPath("$.description").value(book.getDescription()))
                 .andDo(print());
     }
 
@@ -106,11 +108,11 @@ class BookControllerTest {
         mockMvc.perform(put("/library/books/{id}", id).contentType(MediaType.APPLICATION_JSON).with(csrf())
                         .content(objectMapper.writeValueAsString(updatedBook)))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.title").value(updatedBook.getTitle()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.author").value(updatedBook.getAuthor()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.isbn").value(updatedBook.getIsbn()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.availability").value(updatedBook.getAvailability()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.description").value(updatedBook.getDescription()))
+                .andExpect(jsonPath("$.title").value(updatedBook.getTitle()))
+                .andExpect(jsonPath("$.author").value(updatedBook.getAuthor()))
+                .andExpect(jsonPath("$.isbn").value(updatedBook.getIsbn()))
+                .andExpect(jsonPath("$.availability").value(updatedBook.getAvailability()))
+                .andExpect(jsonPath("$.description").value(updatedBook.getDescription()))
                 .andDo(print());
     }
 
