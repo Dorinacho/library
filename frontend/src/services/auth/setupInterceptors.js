@@ -4,14 +4,14 @@ import TokenService from './token.service';
 const setup = (store) => {
 	axiosInstance.interceptors.request.use(
 		(config) => {
-			console.log('we are in request');
+			// console.log('we are in request');
 			if (TokenService.checkLocalStorage()) {
 				const token = TokenService.getLocalAccessToken();
 				if (token) {
 					config.headers['Authorization'] = 'Bearer ' + token;
 				}
 			}
-			console.log(config);
+			// console.log(config);
 			return config;
 		},
 		(error) => {
@@ -25,8 +25,8 @@ const setup = (store) => {
 		},
 		async (err) => {
 			const originalConfig = err.config;
-			console.log('we are in response');
-			console.log(err);
+			// console.log('we are in response');
+			// console.log(err);
 
 			if (originalConfig.url !== '/auth/signin' && err.response) {
 				// if (err.response.status === 403) {
@@ -41,15 +41,14 @@ const setup = (store) => {
 					try {
 						// console.log(TokenService.getLocalRefreshToken())
 						//the route from the api
-						const rs = await axiosInstance.post('/auth/refreshToken', {
-							refreshToken: TokenService.getLocalRefreshToken(),
-						});
+						const rs = await axiosInstance.post('/auth/refreshToken',  TokenService.getLocalRefreshToken()
+						);
 
 						const { accessToken } = rs.data;
 
 						//dipatching an action to make the mutation
 						store.dispatch('auth/refreshToken', accessToken);
-						console.log('we are here');
+						// console.log('we are here');
 						TokenService.updateLocalAccessToken(accessToken);
 
 						return axiosInstance(originalConfig);
