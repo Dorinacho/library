@@ -45,16 +45,16 @@ public class LoanService {
         throw new ResourceNotFoundException("User " + username + " could not be found by username");
     }
 
-    public Loan getLoanByID(Long id) {
-        return loanRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Loan could not be found!"));
+    public Optional<Loan> getLoanByID(Long id) {
+        return loanRepository.findById(id);
     }
 
-    public void addLoan(@RequestBody @NotNull Loan loan) {
+    public Loan addLoan(@RequestBody @NotNull Loan loan) {
         Book book = bookRepository.findById(loan.getBook().getId()).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
         book.setAvailability(book.getAvailability() - 1);
         bookRepository.save(book);
         loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
-        loanRepository.save(loan);
+        return loanRepository.save(loan);
     }
 
     public void addLoanForUser(String username, String isbn) {

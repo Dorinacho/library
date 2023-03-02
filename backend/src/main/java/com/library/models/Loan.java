@@ -2,8 +2,6 @@ package com.library.models;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDate;
 
@@ -14,7 +12,6 @@ public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "loan_id")
-    @NonNull
     private Long id;
 
     @ManyToOne(targetEntity = Book.class)
@@ -36,7 +33,7 @@ public class Loan {
         this.loanDate = loanDate;
     }
 
-    public @NotNull Long getId() {
+    public Long getId() {
         return id;
     }
 
