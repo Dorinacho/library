@@ -55,7 +55,7 @@ export default {
 	background-image: url("./assets/books.jpg");
 	width: 100%;
 	height: 100%;
-	animation: 10s linear infinite;
+	animation:  10s linear infinite;
 }
 
 

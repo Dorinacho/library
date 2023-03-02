@@ -1,11 +1,11 @@
 package com.library.models;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.Hibernate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
-import java.util.Objects;
 
 @Entity
 @Table(name = "refresh_token")
