@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -58,12 +59,16 @@ public class LoanService {
     }
 
     public void addLoanForUser(String username, String isbn) {
-        // for some reason an equals is attached at the end of the ISBN
-        Book book = bookRepository.findByIsbn(isbn.replace('=', ' ').trim()).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
+        // for some reason double quotes are attached to the isbn
+        Book book = bookRepository.findByIsbn(isbn.substring(1, isbn.length() - 1)).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
         User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User was not found!"));
-//        for (Loan loan : user.getLoans()){
-//            if()
-//        }
+        for (Loan loan : user.getLoans()){
+            if(loan.getBook() == book){
+                if(loan.getReturnDate().isAfter(LocalDate.now())){
+                    throw new RuntimeException("You already borrowed this book!");
+                }
+            }
+        }
         book.setAvailability(book.getAvailability() - 1);
         bookRepository.save(book);
         Loan loan = new Loan(book, user, LocalDate.now());
@@ -71,14 +76,14 @@ public class LoanService {
         loanRepository.save(loan);
     }
 
-    public void updateLoan(@NotNull Loan loanData, Long loanID) {
+    public Loan updateLoan(@NotNull Loan loanData, Long loanID) {
         Loan loan = loanRepository.findById(loanID).orElseThrow(() -> new ResourceNotFoundException("Loan was not found!"));
         loan.setBook(loanData.getBook());
         loan.setUser(loanData.getUser());
         loan.setLoanDate(loanData.getLoanDate());
         loan.setReturnDate(LocalDate.parse(loan.getLoanDate().toString()).plusDays(DAYS_UNTIL_RETURN));
         System.out.println(loan);
-        loanRepository.save(loan);
+        return loanRepository.save(loan);
     }
 
     public void deleteLoan(Long bookID) {

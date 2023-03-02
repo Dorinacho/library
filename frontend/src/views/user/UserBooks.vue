@@ -1,5 +1,16 @@
 <template>
 	<div class="wrapper">
+		<v-dialog v-model="alert" class="dialog" width="auto">
+			<v-alert
+				v-model="alert"
+				dense
+				elevation="5"
+				:type="alertType.type"
+				dismissible
+				class="alert"
+				>{{ this.alertType.text }}</v-alert
+			>
+		</v-dialog>
 		<div v-for="book in books" :key="book.isbn">
 			<Book :bookData="book" @loanBook="loanTheBook" />
 		</div>
@@ -14,7 +25,13 @@ import Book from "../../components/Book.vue";
 export default {
 	data() {
 		return {
+			alert: false,
 			books: [],
+			alertType: {
+				value: "update",
+				text: "You already borrowed this book!",
+				type: "error",
+			},
 		};
 	},
 	components: {
@@ -31,13 +48,18 @@ export default {
 		loanTheBook(isbn) {
 			console.log("parent");
 			console.log(isbn);
+			console.log(
+				typeof isbn + " -> " + typeof this.$store.state.auth.user.username
+			);
 			LoanService.addLoanForUser(this.$store.state.auth.user.username, isbn)
-				.then(this.fetchBooks())
-				.then(console.log("Book loaned with success!"))
 				.catch((e) => {
+					if (e.response.status == 500) {
+						this.alert = true;
+					}
 					console.warn(e);
 				})
-				.then(this.fetchBooks());
+				.then(this.fetchBooks())
+				.then(console.log("Book loaned with success!"));
 		},
 	},
 	created() {
@@ -53,5 +75,11 @@ export default {
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: space-around;
+}
+
+.dialog{
+	width: auto;
+	height: 40px;
+    overflow: initial;
 }
 </style>

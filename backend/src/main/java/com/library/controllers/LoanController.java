@@ -1,6 +1,7 @@
 package com.library.controllers;
 
 import com.library.dto.LoanDTO;
+import com.library.exceptions.ResourceNotFoundException;
 import com.library.models.Loan;
 import com.library.service.LoanService;
 import org.slf4j.Logger;
@@ -65,20 +66,39 @@ public class LoanController {
 
     @PostMapping("/{username}")
     @PreAuthorize("hasRole('USER')")
-    public void addLoanForUser(@PathVariable(name = "username") String username, @RequestBody String isbn) {
-        System.out.println(isbn);
-        loanService.addLoanForUser(username, isbn);
+    public ResponseEntity<Loan> addLoanForUser(@PathVariable(name = "username") String username, @RequestBody String isbn) {
+        try {
+            loanService.addLoanForUser(username, isbn);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (ResourceNotFoundException e) {
+            logger.error("Error => " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e){
+            logger.error("Error => " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or hasRole('MODERATOR')")
-    public void updateLoan(@RequestBody Loan loan, @PathVariable(name = "id") Long loanID) {
-        loanService.updateLoan(loan, loanID);
+    public ResponseEntity<Loan> updateLoan(@RequestBody Loan loan, @PathVariable(name = "id") Long loanID) {
+        try {
+            return new ResponseEntity<>(loanService.updateLoan(loan, loanID), HttpStatus.OK);
+        } catch (Exception e) {
+            logger.error("Error => " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
-    public void deleteLoan(@PathVariable(name = "id") Long loanID) {
-        loanService.deleteLoan(loanID);
+    public ResponseEntity<HttpStatus> deleteLoan(@PathVariable(name = "id") Long loanID) {
+        try {
+            loanService.deleteLoan(loanID);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            logger.error("Error => " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

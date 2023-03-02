@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="added tests for Loans and fixed the LoanController">
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="controller fixes">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/models/RefreshToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/models/RefreshToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/LoanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/LoanController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Book.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Book.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/auth/setupInterceptors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/auth/setupInterceptors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/auth/token.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/auth/token.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +80,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;d521f765a49c72507257a2620612ee96&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -236,7 +240,8 @@
       <workItem from="1677659476884" duration="2568000" />
       <workItem from="1677662062464" duration="3030000" />
       <workItem from="1677743457240" duration="135000" />
-      <workItem from="1677743631314" duration="8141000" />
+      <workItem from="1677743631314" duration="13057000" />
+      <workItem from="1677765824986" duration="2454000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -406,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677747368097</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="fixed the RefreshToken issue">
+      <created>1677753301528</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1677753301528</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +440,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Added necessary dependencies" />
     <MESSAGE value="Created the needed models" />
     <MESSAGE value="Created repositories" />
     <MESSAGE value="Fixed the dependency issues and created the entity relations" />
@@ -452,7 +463,9 @@
     <MESSAGE value="fixed UserController" />
     <MESSAGE value="added tests for Users" />
     <MESSAGE value="added tests for Loans and fixed the LoanController" />
-    <option name="LAST_COMMIT_MESSAGE" value="added tests for Loans and fixed the LoanController" />
+    <MESSAGE value="fixed the RefreshToken issue" />
+    <MESSAGE value="controller fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="controller fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -461,6 +474,21 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/library/service/RefreshTokenService.java</url>
           <line>53</line>
           <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/LoanController.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/LoanController.java</url>
+          <line>72</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/LoanController.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
