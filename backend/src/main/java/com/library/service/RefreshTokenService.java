@@ -7,7 +7,6 @@ import com.library.models.User;
 import com.library.repositories.RefreshTokenRepository;
 import com.library.repositories.UserRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +19,14 @@ public class RefreshTokenService {
     @Value("${library.app.jwtRefreshExpirationMs}")
     private Long refreshTokenDurationMs;
 
-    @Autowired
-    private RefreshTokenRepository refreshTokenRepository;
+    private final RefreshTokenRepository refreshTokenRepository;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public RefreshTokenService( RefreshTokenRepository refreshTokenRepository, UserRepository userRepository) {
+        this.refreshTokenRepository = refreshTokenRepository;
+        this.userRepository = userRepository;
+    }
 
     public Optional<RefreshToken> findByToken(String token) {
         return refreshTokenRepository.findByToken(token);
@@ -50,19 +52,18 @@ public class RefreshTokenService {
         return refreshToken;
     }
 
-    public RefreshToken verifyRefreshToken(RefreshToken refreshToken) {
+    public void verifyRefreshToken(RefreshToken refreshToken) {
         if (refreshToken.getExpiryDate().compareTo(Instant.now()) < 0) {
             refreshTokenRepository.delete(refreshToken);
             throw new TokenRefreshException(refreshToken.getToken(), "Refresh token was expired");
         }
-        return refreshToken;
     }
 
     @Transactional
-    public int deleteByUserId(Long userId) {
+    public void deleteByUserId(Long userId) {
         Optional<User> user = userRepository.findById(userId);
         if (user.isPresent()) {
-            return refreshTokenRepository.deleteByUser(user.get());
+            refreshTokenRepository.deleteByUser(user.get());
         }
         throw new ResourceNotFoundException("Could not find user with id " + userId);
     }

@@ -29,7 +29,7 @@ const routes = [
 	{
 		path: '/loans',
 		name: 'loans',
-		component: () => import('@/views/admin/Loans.vue'),
+		component: () => import('@/views/Loans.vue'),
 	},
 	{ path: '/login', name: 'login', component: Login },
 	{ path: '/signup', name: 'signup', component: SignUp },

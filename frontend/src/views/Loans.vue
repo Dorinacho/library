@@ -152,6 +152,12 @@
 							mdi-pencil
 						</v-icon>
 						<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+					</template>
+					<template v-slot:[`item.actions`]="{ item }" v-else-if="!isAdmin">
+						<!-- <v-btn color="blue darken-1" text @click="returnBook(item)"
+							>Return Book</v-btn
+						> -->
+						<v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
 					</template></v-data-table
 				>
 				<v-data-table
@@ -168,9 +174,9 @@
 </template>
 
 <script>
-import LoanService from "../../services/loan.service";
-import BookService from "../../services/book.service";
-import UserService from "../../services/user.service";
+import LoanService from "../services/loan.service";
+import BookService from "../services/book.service";
+import UserService from "../services/user.service";
 
 export default {
 	data() {
@@ -197,6 +203,7 @@ export default {
 				{ text: "Book", value: "bookTitle" },
 				{ text: "Loan date", value: "loanDate" },
 				{ text: "Return date", value: "returnDate" },
+				{ text: "Actions", value: "actions", sortable: false },
 			],
 			loans: [],
 			books: [],
@@ -309,6 +316,11 @@ export default {
 				});
 			}
 			this.close();
+		},
+		returnBook(loan) {
+			LoanService.deleteLoan(loan).then(() => {
+				this.fetchLoans();
+			});
 		},
 	},
 	created() {

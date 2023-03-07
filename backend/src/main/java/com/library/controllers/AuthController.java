@@ -7,7 +7,6 @@ import com.library.models.ERole;
 import com.library.models.RefreshToken;
 import com.library.models.Role;
 import com.library.models.User;
-import com.library.repositories.RefreshTokenRepository;
 import com.library.repositories.RoleRepository;
 import com.library.repositories.UserRepository;
 import com.library.security.jwt.JwtResponse;
@@ -18,7 +17,6 @@ import com.library.service.UserDetailsImpl;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,22 +35,28 @@ import java.util.Set;
 @CrossOrigin(origins = "http://localhost:8080")
 public class AuthController {
     public static final String ERROR_MESSAGE = "Error: Role is not found.";
-    @Autowired
-    RefreshTokenService refreshTokenService;
+    private final RefreshTokenService refreshTokenService;
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder encoder;
+    private final JwtUtils jwtUtils;
     Logger logger = LoggerFactory.getLogger(AuthController.class);
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private PasswordEncoder encoder;
-    @Autowired
-    private JwtUtils jwtUtils;
-    @Autowired
-    private RefreshTokenRepository refreshTokenRepository;
 
+    public AuthController(RefreshTokenService refreshTokenService, AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder, JwtUtils jwtUtils) {
+        this.refreshTokenService = refreshTokenService;
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.encoder = encoder;
+        this.jwtUtils = jwtUtils;
+    }
+
+    /**
+     * @param loginRequest, containing the username and password
+     *
+     * @return a response entity containing the JWTResponse
+     */
     @PostMapping("/signin")
     public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody UserLoginDTO loginRequest) {
         Authentication authentication = authenticationManager
@@ -77,14 +81,21 @@ public class AuthController {
     }
 
     @PostMapping("/refreshToken")
-    public ResponseEntity<TokenRefreshResponse> refreshtoken(@Valid @RequestBody String requestRefreshToken) {
+    public ResponseEntity<TokenRefreshResponse> refreshToken(@Valid @RequestBody String requestRefreshToken) {
         String test = requestRefreshToken.substring(1, requestRefreshToken.length() - 1);
         Optional<RefreshToken> refreshToken = refreshTokenService.findByToken(test);
 
         if (refreshToken.isPresent()) {
             User user = refreshToken.get().getUser();
-            String token = jwtUtils.generateTokenFromUsername(user.getUsername());
-            return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
+            try {
+                refreshTokenService.verifyRefreshToken(refreshToken.get());
+                String accessToken = jwtUtils.generateTokenFromUsername(user.getUsername());
+                return ResponseEntity.ok(new TokenRefreshResponse(accessToken, refreshToken.get().getToken()));
+            } catch (TokenRefreshException exception) {
+//                refreshTokenService.deleteByUserId(user.getId());
+                logger.error(exception.getMessage());
+                throw new TokenRefreshException(refreshToken.get().getToken(), "Refresh token was expired");
+            }
         } else {
             throw new TokenRefreshException(requestRefreshToken,
                     "Refresh token is not in database!");
@@ -121,21 +132,21 @@ public class AuthController {
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
-                    case "admin" -> {
+                    case "admin":
                         Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> new RuntimeException(ERROR_MESSAGE));
                         roles.add(adminRole);
-                    }
-                    case "mod" -> {
+                        break;
+                    case "mod":
                         Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException(ERROR_MESSAGE));
                         roles.add(modRole);
-                    }
-                    default -> {
+                        break;
+                    default:
                         Role userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> new RuntimeException(ERROR_MESSAGE));
                         roles.add(userRole);
-                    }
+                        break;
                 }
 
             });

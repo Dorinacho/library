@@ -26,6 +26,7 @@ class AuthService {
 		// localStorage.removeItem('token');
 		// localStorage.removeItem('roles');
 		// localStorage.removeItem('user');
+		
 		TokenService.removeUser();
 	}
 	register(user) {
