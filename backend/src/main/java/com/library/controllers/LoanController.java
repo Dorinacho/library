@@ -6,22 +6,25 @@ import com.library.models.Loan;
 import com.library.service.LoanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/library/loans")
 @CrossOrigin(origins = "http://localhost:8080")
 public class LoanController {
+    private final LoanService loanService;
     Logger logger
-            = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    private LoanService loanService;
+            = LoggerFactory.getLogger(LoanController.class);
+
+    public LoanController(LoanService loanService) {
+        this.loanService = loanService;
+    }
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('MODERATOR')")
@@ -46,8 +49,9 @@ public class LoanController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or hasRole('MODERATOR')")
     public ResponseEntity<Loan> getLoanByID(@PathVariable(name = "id") Long id) {
-        if (loanService.getLoanByID(id).isPresent()) {
-            return new ResponseEntity<>(loanService.getLoanByID(id).get(), HttpStatus.OK);
+        Optional<Loan> loan = loanService.getLoanByID(id);
+        if (loan.isPresent()) {
+            return new ResponseEntity<>(loan.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -73,7 +77,7 @@ public class LoanController {
         } catch (ResourceNotFoundException e) {
             logger.error("Error => " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("Error => " + e.getMessage());
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

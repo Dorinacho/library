@@ -4,7 +4,6 @@ import com.library.models.Book;
 import com.library.repositories.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,11 +16,13 @@ import java.util.Optional;
 @RequestMapping("/library/books")
 @CrossOrigin(origins = "http://localhost:8080")
 public class BookController {
+    private final BookRepository bookRepository;
     Logger logger
             = LoggerFactory.getLogger(BookController.class);
 
-    @Autowired
-    private BookRepository bookRepository;
+    public BookController(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     @GetMapping
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or hasRole('MODERATOR')")

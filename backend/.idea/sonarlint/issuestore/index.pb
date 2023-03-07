@@ -3,8 +3,6 @@ T
 $.idea/codeStyles/codeStyleConfig.xml,d\d\dd7b3350c29c49497756c7f32c69a3bed18b1cba
 _
 /src/main/java/com/library/dto/UserLoginDTO.java,6\2\6263dd8b69e2521fba46815786c033b45e75f759
-j
-:src/main/java/com/library/repositories/BookRepository.java,8\f\8f72537514afdc89bd1a0ca9a053b46dc3baff89
 `
 0src/main/java/com/library/mapper/LoanMapper.java,d\2\d2e5781cf9b3bb4c58567c1e257632ea781eefb2
 j
@@ -29,18 +27,12 @@ p
 @src/main/java/com/library/advice/ControllerExceptionHandler.java,7\4\74c7e955912248bc591095c5a2e4f13d6e338def
 j
 :.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml,3\f\3f245e8e70d461dd90efe4d72e91105965355519
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
-i
-9src/main/java/com/library/controllers/RoleController.java,0\f\0fd2a2bddddf6d90b6155443af846534d55077db
 g
 7src/main/java/com/library/security/jwt/JwtResponse.java,8\6\86a976132944cc69b2775c2ae02c04853549e246
 m
 =src/main/java/com/library/security/jwt/AuthEntryPointJwt.java,3\0\303e48bc9147a61a4d97433e6be53b7e27b9e498
 k
 ;src/main/java/com/library/security/jwt/AuthTokenFilter.java,7\a\7abc3ea48fd45c3a1746531848d75f83a3e2c99b
-p
-@src/main/java/com/library/security/jwt/TokenRefreshResponse.java,1\e\1eed0ed867a9187ab291ba29670bcf2a2dcc92e2
 s
 Csrc/main/java/com/library/exceptions/ResourceNotFoundException.java,4\6\46fcffffc106e73787343399b3b030495ff9017d
 Z
@@ -60,15 +52,9 @@ Asrc/test/java/com/library/controllerTests/BookControllerTest.java,1\5\158b0301
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-Z
-*src/main/java/com/library/models/Loan.java,9\7\970fdccfdf8bf8cda413562fbe50a095ab1b9d98
-q
-Asrc/test/java/com/library/controllerTests/LoanControllerTest.java,3\3\33116565b0593929307c210ac5b1426d5d9047a6
 b
 2src/main/java/com/library/service/UserService.java,c\8\c8c8426a308c3f36993576f8ebe66492efce291e
 Z
 *src/main/java/com/library/models/User.java,0\d\0dc8255e206215c10a7cda3b22a2f8d3f8f3e35e
 i
 9src/main/java/com/library/security/WebSecurityConfig.java,0\4\04656c7564476aa8d29fccf987774d47051cc297
-i
-9src/main/java/com/library/controllers/BookController.java,2\1\212867c57521826e47445b9f09b396a5ea897ace

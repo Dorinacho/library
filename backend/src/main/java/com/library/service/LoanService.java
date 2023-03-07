@@ -9,12 +9,12 @@ import com.library.models.User;
 import com.library.repositories.BookRepository;
 import com.library.repositories.LoanRepository;
 import com.library.repositories.UserRepository;
+import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -23,17 +23,25 @@ import java.util.Optional;
 public class LoanService {
 
     private static final int DAYS_UNTIL_RETURN = 21;
-    @Autowired
-    private LoanRepository loanRepository;
-    @Autowired
-    private BookRepository bookRepository;
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private LoanMapper loanMapper;
+    private final LoanRepository loanRepository;
+
+    private final BookRepository bookRepository;
+
+    private final UserRepository userRepository;
+
+    private final LoanMapper loanMapper;
+
+    public LoanService(LoanRepository loanRepository, BookRepository bookRepository, UserRepository userRepository, LoanMapper loanMapper) {
+        this.loanRepository = loanRepository;
+        this.bookRepository = bookRepository;
+        this.userRepository = userRepository;
+        this.loanMapper = loanMapper;
+    }
 
     public List<Loan> getLoans() {
+        List<Loan> loans = loanRepository.findAll();
+        checkIfLoansExpired(loans);
         return loanRepository.findAll();
     }
 
@@ -41,7 +49,8 @@ public class LoanService {
         Optional<User> user = userRepository.findByUsername(username);
         if (user.isPresent()) {
             long id = user.get().getId();
-            return loanRepository.findLoansByUserId(id).stream().map(loan -> loanMapper.toDto(loan)).toList();
+            List<Loan> loans = loanRepository.findLoansByUserId(id);
+            return checkIfLoansExpired(loans).stream().map(loan -> loanMapper.toDto(loan)).toList();
         }
         throw new ResourceNotFoundException("User " + username + " could not be found by username");
     }
@@ -62,9 +71,9 @@ public class LoanService {
         // for some reason double quotes are attached to the isbn
         Book book = bookRepository.findByIsbn(isbn.substring(1, isbn.length() - 1)).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
         User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User was not found!"));
-        for (Loan loan : user.getLoans()){
-            if(loan.getBook() == book){
-                if(loan.getReturnDate().isAfter(LocalDate.now())){
+        for (Loan loan : user.getLoans()) {
+            if (loan.getBook() == book) {
+                if (loan.getReturnDate().isAfter(LocalDate.now())) {
                     throw new RuntimeException("You already borrowed this book!");
                 }
             }
@@ -88,5 +97,18 @@ public class LoanService {
 
     public void deleteLoan(Long bookID) {
         loanRepository.deleteById(bookID);
+    }
+
+    private List<Loan> checkIfLoansExpired(List<Loan> loans) {
+        for (Loan loan : loans) {
+            if (loan.getReturnDate().isBefore(LocalDate.now())) {
+                Book book = loan.getBook();
+                book.setAvailability(loan.getBook().getAvailability() + 1);
+                bookRepository.save(book);
+                loanRepository.delete(loan);
+                loans.remove(loan);
+            }
+        }
+        return loans;
     }
 }

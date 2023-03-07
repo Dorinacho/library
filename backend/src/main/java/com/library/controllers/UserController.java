@@ -5,23 +5,26 @@ import com.library.models.User;
 import com.library.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/library/users")
 @CrossOrigin(origins = "http://localhost:8080")
 public class UserController {
 
+    private final UserService userService;
     Logger logger
             = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('USER')")
@@ -47,8 +50,9 @@ public class UserController {
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<User> getUserByID(@PathVariable(name = "id") Long id) {
-        if (userService.getUserByID(id).isPresent()) {
-            return new ResponseEntity<>(userService.getUserByID(id).get(), HttpStatus.OK);
+        Optional<User> user = userService.getUserByID(id);
+        if (user.isPresent()) {
+            return new ResponseEntity<>(user.get(), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
