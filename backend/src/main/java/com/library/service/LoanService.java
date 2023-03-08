@@ -9,9 +9,7 @@ import com.library.models.User;
 import com.library.repositories.BookRepository;
 import com.library.repositories.LoanRepository;
 import com.library.repositories.UserRepository;
-import lombok.AllArgsConstructor;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 

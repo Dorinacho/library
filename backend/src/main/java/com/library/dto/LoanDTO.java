@@ -2,6 +2,7 @@ package com.library.dto;
 
 import java.time.LocalDate;
 
+// a record, object with private fields, getters for each field and a public constructor with all the members
 public class LoanDTO {
     private final String bookTitle;
 
