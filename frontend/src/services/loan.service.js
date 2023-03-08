@@ -1,5 +1,5 @@
+import { errorMsg } from '@/helpers/errorMsg';
 import library from './auth/library';
-
 
 class LoanService {
 	getLoans() {
@@ -15,10 +15,13 @@ class LoanService {
 		return library.post('/loans', loan);
 	}
 	addLoanForUser(username, isbn) {
-		return library.post(`/loans/${username}`, isbn);
+		return library.post(`/loans/${username}`, toString(isbn));
 	}
 	deleteLoan(id) {
 		return library.delete(`/loans/${id}`);
+	}
+	returnBook(username, loan) {
+		return library.delete(`/loans/user/${username}`, { data: loan });
 	}
 }
 

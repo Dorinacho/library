@@ -44,7 +44,6 @@ const setup = (store) => {
 							'/auth/refreshToken',
 							TokenService.getLocalRefreshToken()
 						);
-						console.log(rs.data);
 						const { accessToken } = rs.data;
 
 						//dipatching an action to make the mutation

@@ -7,3 +7,6 @@ export default function authHeader() {
       return {};
     }
   }
+
+
+  // not used anywhere for now

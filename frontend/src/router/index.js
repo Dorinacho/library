@@ -31,6 +31,11 @@ const routes = [
 		name: 'loans',
 		component: () => import('@/views/Loans.vue'),
 	},
+	{
+		path: '/user/loans',
+		name: 'userLoans',
+		component: () => import('@/views/user/UserLoans.vue'),
+	},
 	{ path: '/login', name: 'login', component: Login },
 	{ path: '/signup', name: 'signup', component: SignUp },
 	// { path: '*', redirect: '/' },

@@ -46,8 +46,6 @@ export default {
 			console.log(this.books);
 		},
 		loanTheBook(isbn) {
-			console.log("parent");
-			console.log(isbn);
 			console.log(
 				typeof isbn + " -> " + typeof this.$store.state.auth.user.username
 			);
