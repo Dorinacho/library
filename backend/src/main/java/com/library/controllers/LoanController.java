@@ -38,7 +38,7 @@ public class LoanController {
 
     @GetMapping("/user/{username}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<List<LoanDTO>> getLoansForUser(@PathVariable String username) {
+    public ResponseEntity<List<LoanDTO>> getLoansForUser(@PathVariable(name = "username") String username) {
         List<LoanDTO> loans = loanService.getLoansForUser(username);
         if (loans.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -50,10 +50,10 @@ public class LoanController {
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or hasRole('MODERATOR')")
     public ResponseEntity<Loan> getLoanByID(@PathVariable(name = "id") Long id) {
         Optional<Loan> loan = loanService.getLoanByID(id);
-        if (loan.isPresent()) {
-            return new ResponseEntity<>(loan.get(), HttpStatus.OK);
+        if (loan.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(loan.get(), HttpStatus.OK);
     }
 
     @PostMapping
@@ -99,6 +99,18 @@ public class LoanController {
     public ResponseEntity<HttpStatus> deleteLoan(@PathVariable(name = "id") Long loanID) {
         try {
             loanService.deleteLoan(loanID);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            logger.error("Error => " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/user/{username}")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<HttpStatus> deleteLoan(@PathVariable(name = "username") String username, @RequestBody LoanDTO loan) {
+        try {
+            loanService.deleteLoan(username, loan);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (Exception e) {
             logger.error("Error => " + e.getMessage());

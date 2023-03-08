@@ -97,6 +97,23 @@ public class LoanService {
         loanRepository.deleteById(bookID);
     }
 
+    public void deleteLoan(String username, LoanDTO loanData) {
+        Optional<Book> book = bookRepository.findByTitle(loanData.getBookTitle());
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) {
+            throw new ResourceNotFoundException("User with username => " + username + " could not be found!");
+        } else if (book.isEmpty()) {
+            throw new ResourceNotFoundException("Book with title => " + loanData.getBookTitle() + " could not be found!");
+        } else {
+            Long userID = user.get().getId();
+            Long bookID = book.get().getId();
+            Loan loan = loanRepository.findLoanByLoanDTO(userID, bookID, loanData.getLoanDate(), loanData.getReturnDate());
+            loanRepository.delete(loan);
+        }
+
+
+    }
+
     private List<Loan> checkIfLoansExpired(List<Loan> loans) {
         for (Loan loan : loans) {
             if (loan.getReturnDate().isBefore(LocalDate.now())) {

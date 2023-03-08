@@ -2,8 +2,6 @@
 T
 $.idea/codeStyles/codeStyleConfig.xml,d\d\dd7b3350c29c49497756c7f32c69a3bed18b1cba
 j
-:src/main/java/com/library/repositories/LoanRepository.java,f\4\f40985bd3fae789d69a54d6b5d5a671e353a03f2
-j
 :src/main/java/com/library/repositories/RoleRepository.java,8\2\8201528a0cdb220267c6d6f3be5286802f950f27
 i
 9src/main/java/com/library/controllers/TestController.java,4\c\4cb36f1aa9de2bd997ef1b38c3be1279cb48230d
