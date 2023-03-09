@@ -2,8 +2,10 @@ package com.library.controllers;
 
 import com.library.models.Book;
 import com.library.repositories.BookRepository;
+//import com.library.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +19,9 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:8080")
 public class BookController {
     private final BookRepository bookRepository;
+
+//    @Autowired
+//    private BookService bookService;
     Logger logger
             = LoggerFactory.getLogger(BookController.class);
 
@@ -29,10 +34,11 @@ public class BookController {
     public ResponseEntity<List<Book>> getBooks() {
         List<Book> books;
         books = bookRepository.findAll();
-        if (books.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if (!books.isEmpty()) {
+            return new ResponseEntity<>(books, HttpStatus.OK);
+
         }
-        return new ResponseEntity<>(books, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{id}")

@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="return book functionality">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/dto/BookDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/models/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/repositories/AuthorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Navbar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/auth/auth-header.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/auth/auth-header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/auth/library.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/auth/library.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/auth/setupInterceptors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/auth/setupInterceptors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/auth/token.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/auth/token.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserLoans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserLoans.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/models/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/SignUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/SignUp.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,6 +85,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.library.models" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -253,6 +257,8 @@
       <workItem from="1678189806986" duration="302000" />
       <workItem from="1678190120604" duration="6429000" />
       <workItem from="1678263314067" duration="11793000" />
+      <workItem from="1678349123742" duration="3130000" />
+      <workItem from="1678367469151" duration="6603000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -512,6 +518,27 @@
     <MESSAGE value="code refactoring" />
     <MESSAGE value="return book functionality" />
     <option name="LAST_COMMIT_MESSAGE" value="return book functionality" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -12,6 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "books")
 @NoArgsConstructor
+@Getter
+@Setter
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,8 +25,10 @@ public class Book {
     private String isbn;
     @Column
     private String title;
-    @Column
-    private String author;
+
+    @ManyToOne(targetEntity = Author.class)
+    @JoinColumn(name = "author")
+    private Author author;
     @Column(name = "available_copies")
     private int availability;
 
@@ -34,7 +40,7 @@ public class Book {
     @JsonIgnore
     private Set<Loan> loans = new LinkedHashSet<>();
 
-    public Book(Long id, String isbn, String title, String author, int availability, String description) {
+    public Book(Long id, String isbn, String title, Author author, int availability, String description) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -43,64 +49,12 @@ public class Book {
         this.description = description;
     }
 
-    public Book(String isbn, String title, String author, int availability, String description) {
+    public Book(String isbn, String title, Author author, int availability, String description) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.availability = availability;
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getAvailability() {
-        return availability;
-    }
-
-    public void setAvailability(int availability) {
-        this.availability = availability;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Loan> getLoans() {
-        return loans;
-    }
-
-    public void setLoans(Set<Loan> loans) {
-        this.loans = loans;
     }
 
     @Override

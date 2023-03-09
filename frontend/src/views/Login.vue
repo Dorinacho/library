@@ -123,6 +123,7 @@ export default {
 
 label {
 	display: block;
+	color: white;
 	margin-top: 10px;
 }
 
