@@ -152,7 +152,7 @@ export default {
 					sortable: false,
 					value: "id",
 				},
-				{ text: "Author", value: "author" },
+				{ text: "Author", value: "author.name" },
 				{ text: "Title", value: "title" },
 				{ text: "ISBN", value: "isbn" },
 				{ text: "Available copies", value: "availability" },
@@ -192,10 +192,10 @@ export default {
 	},
 	methods: {
 		fetchBooks() {
-			console.log(this.books)
 			BookeService.getBooks().then((response) => {
 				this.books = response.data;
 			});
+			console.log(this.books)
 		},
 		editItem(book) {
 			this.editedIndex = this.books.indexOf(book);

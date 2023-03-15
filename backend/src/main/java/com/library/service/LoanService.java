@@ -66,8 +66,7 @@ public class LoanService {
     }
 
     public void addLoanForUser(String username, String isbn) {
-        // for some reason double quotes are attached to the isbn
-        Book book = bookRepository.findByIsbn(isbn.substring(1, isbn.length() - 1)).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
+        Book book = bookRepository.findByIsbn(isbn).orElseThrow(() -> new ResourceNotFoundException("Book was not found!"));
         User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User was not found!"));
         for (Loan loan : user.getLoans()) {
             if (loan.getBook() == book) {

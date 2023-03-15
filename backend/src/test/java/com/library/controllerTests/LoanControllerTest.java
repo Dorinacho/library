@@ -3,6 +3,7 @@ package com.library.controllerTests;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.library.controllers.LoanController;
 import com.library.dto.LoanDTO;
+import com.library.models.Author;
 import com.library.models.Book;
 import com.library.models.Loan;
 import com.library.models.User;
@@ -94,7 +95,7 @@ class LoanControllerTest {
     @Test
     void shouldAddLoan() throws Exception {
 //        long id = 1L;
-        Book book = new Book("978-5-6038-8700-5", "Martin Eden", "Jack London", 8,
+        Book book = new Book("978-5-6038-8700-5", "Martin Eden", new Author("Jack London"), 8,
                 "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
         User user = new User("Marin Marcel", "marin@yahoo.com", "marin.marcel");
         Loan loan = new Loan(book, user, LocalDate.now());

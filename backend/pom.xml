@@ -19,8 +19,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>18</maven.compiler.source>
-    <maven.compiler.target>18</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -134,11 +134,33 @@
       <artifactId>spring-security-web</artifactId>
       <version>6.0.1</version>
     </dependency>
-
+    <dependency>
+      <groupId>com.github.jrcodeza</groupId>
+      <artifactId>spring-openapi-client-generator-plugin</artifactId>
+      <version>1.4.6</version>
+    </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>com.github.jrcodeza</groupId>
+        <artifactId>spring-openapi-client-generator-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generateClientFromOpenApi</goal>
+            </goals>
+            <configuration>
+              <outputPackage>test.package</outputPackage>
+              <outputPath>target/generated-sources</outputPath>
+              <schemaPath>src/main/resources/oas3.json</schemaPath>
+              <generateResourceInterface>true</generateResourceInterface>
+              <generateDiscriminatorProperty>true</generateDiscriminatorProperty>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>

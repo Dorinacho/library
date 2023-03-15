@@ -49,6 +49,9 @@ export default {
 			console.log(
 				typeof isbn + " -> " + typeof this.$store.state.auth.user.username
 			);
+			console.log(
+				 isbn 
+			);
 			LoanService.addLoanForUser(this.$store.state.auth.user.username, isbn)
 				.catch((e) => {
 					if (e.response.status == 500) {
@@ -57,7 +60,6 @@ export default {
 					console.warn(e);
 				})
 				.then(this.fetchBooks())
-				.then(console.log("Book loaned with success!"));
 		},
 	},
 	created() {

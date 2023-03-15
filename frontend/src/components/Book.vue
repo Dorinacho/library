@@ -5,7 +5,7 @@
 			<v-card-title>{{ bookData.title }}</v-card-title>
 
 			<v-row class="text">
-				<h4>{{ bookData.author }}</h4>
+				<h4>{{ bookData.author.name }}</h4>
 			</v-row>
 			<!-- </v-card-item> -->
 

@@ -2,6 +2,7 @@ package com.library.controllerTests;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.library.controllers.BookController;
+import com.library.models.Author;
 import com.library.models.Book;
 import com.library.repositories.BookRepository;
 import org.junit.jupiter.api.Test;
@@ -43,9 +44,9 @@ class BookControllerTest {
     @Test
     void shouldGetBooks() throws Exception {
         List<Book> books = new ArrayList<>(
-                Arrays.asList(new Book(1L, "978-1-7777-0182-3", "Martin Eden", "Jack London", 5, "Martin Eden is a sailor"),
-                        new Book(2L, "978-1-8888-0182-3", "The spy", "Secret author", 8, "test book numero 2"),
-                        new Book(3L, "978-1-9999-0182-3", "THe apps", "Dorin Suciu", 2, "test book numero tres")));
+                Arrays.asList(new Book(1L, "978-1-7777-0182-3", "Martin Eden", new Author("Jack London"), 5, "Martin Eden is a sailor"),
+                        new Book(2L, "978-1-8888-0182-3", "The spy", new Author("Secret author"), 8, "test book numero 2"),
+                        new Book(3L, "978-1-9999-0182-3", "THe apps", new Author("Dorin Suciu"), 2, "test book numero tres")));
 
         when(bookRepository.findAll()).thenReturn(books);
         mockMvc.perform(get("/library/books"))
@@ -57,7 +58,7 @@ class BookControllerTest {
     @Test
     void shouldGetBookById() throws Exception {
         long id = 1L;
-        Book book = new Book("978-5-6038-8700-5", "Martin Eden", "Jack London", 8,
+        Book book = new Book("978-5-6038-8700-5", "Martin Eden", new Author("Jack London"), 8,
                 "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
 
         when(bookRepository.findById(anyLong())).thenReturn(Optional.of(book));
@@ -85,7 +86,7 @@ class BookControllerTest {
 
     @Test
     void shouldCreateBook() throws Exception {
-        Book book = new Book("978-5-6038-8700-5", "Martin Eden", "Jack London", 8, "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
+        Book book = new Book("978-5-6038-8700-5", "Martin Eden", new Author("Jack London"), 8, "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
 
         mockMvc.perform(post("/library/books").contentType(MediaType.APPLICATION_JSON).with(csrf())
                         .content(objectMapper.writeValueAsString(book)))
@@ -96,9 +97,9 @@ class BookControllerTest {
     @Test
     void shouldUpdateBook() throws Exception {
         Long id = 2L;
-        Book book = new Book("978-5-6038-8700-5", "Martin Eden", "Jack London", 8,
+        Book book = new Book("978-5-6038-8700-5", "Martin Eden", new Author("Jack London"), 8,
                 "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
-        Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", "Jack LONdon", 8,
+        Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", new Author("Jack LONdon"), 8,
                 "This is a unit test");
 
         when(bookRepository.findById(anyLong())).thenReturn(Optional.of(book));
@@ -118,7 +119,7 @@ class BookControllerTest {
     @Test
     void shouldReturnNotFoundUpdateBook() throws Exception {
         Long id = 2L;
-        Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", "Jack LONdon", 8,
+        Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", new Author("Jack LONdon"), 8,
                 "This is a unit test");
 
         when(bookRepository.findById(anyLong())).thenReturn(Optional.empty());

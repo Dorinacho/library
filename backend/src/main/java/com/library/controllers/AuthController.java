@@ -92,7 +92,6 @@ public class AuthController {
                 String accessToken = jwtUtils.generateTokenFromUsername(user.getUsername());
                 return ResponseEntity.ok(new TokenRefreshResponse(accessToken, refreshToken.get().getToken()));
             } catch (TokenRefreshException exception) {
-//                refreshTokenService.deleteByUserId(user.getId());
                 logger.error(exception.getMessage());
                 throw new TokenRefreshException(refreshToken.get().getToken(), "Refresh token was expired");
             }

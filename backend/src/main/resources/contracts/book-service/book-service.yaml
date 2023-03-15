@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Book Service Contract
+  description: This is a contract for the BookService class and it's functionalities
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8090'
+
+paths:
+  /library/books:
+    get:
+      summary: Get a list of Book objects
+      operationId: getBooks
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        "401":
+          $ref: '#/components/responses/401'
+      security:
+        - BearerAuth: []
+
+
+components:
+  responses:
+#    200:
+#      description: OK
+#      '400':
+#        description: Bad request. User ID must be an integer and larger than 0.
+      401:
+        description: Authorization information is missing or invalid.
+  schemas:
+    Book:
+      x-swagger-router-model: com.library.models.Book
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 14
+        title:
+          type: string
+          example: Martin Eden
+        isbn:
+          type: string
+          maxLength: 17
+          example: 9462372312323
+        author:
+          type: object
+          example: {
+            name: Jack London
+          }
+        availability:
+          type: integer
+          format: int32
+          example: 16
+        description:
+          type: string
+          example: "This book is about the adventures of a cold blooded pirate."
+  requestBodies:
+    LoginData:
+      description: Username and password of the user
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+                example: test.user
+              password:
+                type: string
+                format: password
+      required: true
+    Book:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Book'
+      description: Book object that needs to be added to the library
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://example.com/oauth/authorize
+          tokenUrl: https://example.com/oauth/token
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations
+
+security:
+  - library_auth: [ ]

@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="return book functionality">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/dto/BookDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/models/Author.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/repositories/AuthorRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/service/BookService.java" afterDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="added authors table">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/contracts/book-service/book-service.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/models/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/models/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/SignUp.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/SignUp.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/BookControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/BookControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/LoanControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/LoanControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Book.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Book.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/loan.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/admin/Books.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/admin/Books.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +34,8 @@
       <list>
         <option value="com.haulmont.jpb.JpaRepository" />
         <option value="Interface" />
+        <option value="OpenAPI" />
+        <option value="Swagger" />
         <option value="Class" />
       </list>
     </option>
@@ -80,12 +90,15 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.3908046&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.haulmont.jpb.viewMode&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;d521f765a49c72507257a2620612ee96&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\dosuciu\IdeaProjects\library\backend\src\main\resources\contracts\book-service" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.library.models" />
     </key>
@@ -97,7 +110,14 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.App">
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.library.App" />
+      <module name="library" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoanControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library" />
       <extension name="coverage">
@@ -161,22 +181,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+    <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="library" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.library.App" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.library.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="false" />
+      <option name="generateToPath" value="C:\Users\dosuciu\IdeaProjects\library\backend\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="C:\Users\dosuciu\IdeaProjects\library\backend\src\main\resources\contracts\book-service\book-service.yaml" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="JUnit.LoanControllerTest" />
+      <item itemvalue="JUnit.LoanControllerTest.couldNotGetLoansForUser" />
+      <item itemvalue="JUnit.LoanControllerTest.shouldAddLoan" />
+      <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
+      <item itemvalue="Spring Boot.App" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.App" />
         <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
         <item itemvalue="JUnit.LoanControllerTest.shouldAddLoan" />
         <item itemvalue="JUnit.LoanControllerTest.couldNotGetLoansForUser" />
@@ -258,7 +295,17 @@
       <workItem from="1678190120604" duration="6429000" />
       <workItem from="1678263314067" duration="11793000" />
       <workItem from="1678349123742" duration="3130000" />
-      <workItem from="1678367469151" duration="6603000" />
+      <workItem from="1678367469151" duration="7972000" />
+      <workItem from="1678448217311" duration="2003000" />
+      <workItem from="1678457032942" duration="564000" />
+      <workItem from="1678457686332" duration="601000" />
+      <workItem from="1678702057972" duration="3303000" />
+      <workItem from="1678714154467" duration="1171000" />
+      <workItem from="1678715337642" duration="686000" />
+      <workItem from="1678780409895" duration="3245000" />
+      <workItem from="1678783707877" duration="10639000" />
+      <workItem from="1678801347185" duration="1848000" />
+      <workItem from="1678866435513" duration="1696000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -470,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678278473670</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="added authors table">
+      <created>1678377627443</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1678377627443</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -492,7 +546,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="get from the database only the necessary data about users" />
     <MESSAGE value="WIP" />
     <MESSAGE value="Implemented the DTO design" />
     <MESSAGE value="Starting to implement Security again" />
@@ -517,25 +570,24 @@
     <MESSAGE value="dependency injection fix" />
     <MESSAGE value="code refactoring" />
     <MESSAGE value="return book functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="return book functionality" />
+    <MESSAGE value="added authors table" />
+    <option name="LAST_COMMIT_MESSAGE" value="added authors table" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
-          <line>64</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/AuthController.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/service/LoanService.java</url>
           <line>68</line>
-          <option name="timeStamp" value="3" />
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/library/controllers/LoanController.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

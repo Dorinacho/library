@@ -15,7 +15,7 @@ class LoanService {
 		return library.post('/loans', loan);
 	}
 	addLoanForUser(username, isbn) {
-		return library.post(`/loans/${username}`, toString(isbn));
+		return library.post(`/loans/${username}`, isbn);
 	}
 	deleteLoan(id) {
 		return library.delete(`/loans/${id}`);
