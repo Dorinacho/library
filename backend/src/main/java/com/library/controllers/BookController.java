@@ -1,16 +1,23 @@
 package com.library.controllers;
 
+import com.google.common.collect.Lists;
 import com.library.models.Book;
 import com.library.repositories.BookRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/library/books")
@@ -37,6 +44,30 @@ public class BookController {
 
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/page")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER') or hasRole('MODERATOR')")
+    public ResponseEntity<List<Book>> getBooksPage(@RequestParam("page") int page, @RequestParam("itemNumber") int itemNumber) {
+        Pageable firstPageWithTenElements =  PageRequest.of(page, itemNumber);
+        List<Book> booksPage = bookRepository.findAll(firstPageWithTenElements).stream().toList();
+        if (!booksPage.isEmpty()) {
+            return new ResponseEntity<>(booksPage, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/title")
+    @Transactional
+    public List<Book> searchBooksByTitle(@RequestParam("search") String search,@RequestParam("limit") int limit,@RequestParam("offset") int offset) {
+        // Call the search logic to retrieve the search results
+//        List<Book> searchResults = bookRepository.findByTitleContainingIgnoreCase(search);
+
+
+        List<Book> searchResults = bookRepository.searchBooksByTitle(search, limit, offset);
+
+//        return searchResults.subList(offset, Math.min(offset + limit, searchResults.size()));
+        return searchResults;
     }
 
     @GetMapping("/{id}")

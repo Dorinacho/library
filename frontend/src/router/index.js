@@ -17,6 +17,11 @@ const routes = [
 		component: () => import('@/views/admin/Books.vue'),
 	},
 	{
+		path: '/authors',
+		name: 'authors',
+		component: () => import('@/views/admin/Authors.vue'),
+	},
+	{
 		path: '/user/books',
 		name: 'userBooks',
 		component: () => import('@/views/user/UserBooks.vue'),
