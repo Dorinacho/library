@@ -7,7 +7,7 @@
 		>
 		<router-link v-if="isAdmin" to="/loans" class="link">Loans</router-link>
 		<router-link v-if="!isAdmin && loggedIn" to="/user/loans" class="link"
-			>Loans</router-link
+			>My Books</router-link
 		>
 		<router-link v-if="isAdmin" to="/users" class="link">Users</router-link>
 		<router-link v-if="isAdmin" to="/authors" class="link">Authors</router-link>
