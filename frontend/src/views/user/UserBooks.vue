@@ -13,6 +13,8 @@
 					label="Select items per page"
 					v-model="selectedValue"
 					return-object
+					background-color="white"
+					color="white"
 				></v-select>
 			</div>
 		</div>
@@ -27,8 +29,10 @@
 				>{{ this.alertType.text }}</v-alert
 			>
 		</v-dialog>
-		<div v-for="book in books" :key="book.isbn">
-			<Book :bookData="book" @loanBook="loanTheBook" />
+		<div id="books-wrapper">
+			<div v-for="book in books" :key="book.isbn">
+				<Book :bookData="book" @loanBook="loanTheBook" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -116,9 +120,9 @@
 	.wrapper {
 		display: flex;
 		overflow: inherit;
-		flex-direction: row;
-		flex-wrap: wrap;
+		flex-direction: column;
 		justify-content: space-around;
+		align-items: center;
 	}
 
 	.dialog {
@@ -126,7 +130,9 @@
 		height: 40px;
 		overflow: initial;
 	}
-	.v-select__slot {
-		background-color: white !important;
+	#books-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 	}
 </style>

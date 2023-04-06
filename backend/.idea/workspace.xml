@@ -4,18 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="added authors functionalities">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/22f14561-764b-4dab-ac57-2680af27df58.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jpa-buddy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+    <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="WIP">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/models/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/models/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/repositories/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/repositories/BookRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/router/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/services/book.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/services/book.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,36 +55,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/dosuciu/IdeaProjects/library/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.3908046",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.haulmont.jpb.projectionDeclaration",
-    "spring.configuration.checksum": "d521f765a49c72507257a2620612ee96",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/dosuciu/IdeaProjects/library/backend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3908046&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.haulmont.jpb.projectionDeclaration&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;d521f765a49c72507257a2620612ee96&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\dosuciu\IdeaProjects\library\backend\src\main\resources\contracts\book-service" />
@@ -107,19 +101,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.App">
-    <configuration name="App" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="com.library.App" />
-      <module name="library" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="3" requestIdentifier="#3" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="4" requestIdentifier="#4" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration name="LoanControllerTest.couldNotGetLoansForUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library" />
       <extension name="coverage">
@@ -192,9 +173,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.App" />
-      <item itemvalue="HTTP Request.generated-requests | #3" />
-      <item itemvalue="HTTP Request.generated-requests | #4" />
       <item itemvalue="JUnit.LoanControllerTest.couldNotGetLoansForUser" />
       <item itemvalue="JUnit.LoanControllerTest.shouldAddLoan" />
       <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
@@ -202,8 +180,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #4" />
-        <item itemvalue="HTTP Request.generated-requests | #3" />
         <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
         <item itemvalue="JUnit.LoanControllerTest.shouldAddLoan" />
         <item itemvalue="JUnit.LoanControllerTest.couldNotGetLoansForUser" />
@@ -302,7 +278,10 @@
       <workItem from="1680256694888" duration="411000" />
       <workItem from="1680257197716" duration="179000" />
       <workItem from="1680257385770" duration="1058000" />
-      <workItem from="1680696481966" duration="4063000" />
+      <workItem from="1680696481966" duration="4790000" />
+      <workItem from="1680767803610" duration="610000" />
+      <workItem from="1680770093948" duration="383000" />
+      <workItem from="1680770806974" duration="300000" />
     </task>
     <task id="LOCAL-00001" summary="Added necessary dependencies">
       <created>1675423037404</created>
@@ -528,7 +507,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678872495235</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="WIP">
+      <created>1680705002457</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1680705002457</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -550,7 +536,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="Implemented the DTO design" />
     <MESSAGE value="Starting to implement Security again" />
     <MESSAGE value="Implemented AuthTokenFilter and JWT utility class" />
     <MESSAGE value="Implemented authentication" />
@@ -575,7 +560,8 @@
     <MESSAGE value="return book functionality" />
     <MESSAGE value="added authors table" />
     <MESSAGE value="added authors functionalities" />
-    <option name="LAST_COMMIT_MESSAGE" value="added authors functionalities" />
+    <MESSAGE value="WIP" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

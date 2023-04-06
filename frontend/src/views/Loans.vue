@@ -232,6 +232,8 @@
 			fetchLoans() {
 				if (this.isAdmin) {
 					LoanService.getLoans().then((response) => {
+						console.log("WORK");
+						console.log(response);
 						this.loans = response.data;
 						console.log(this.loans);
 					});
