@@ -3,7 +3,7 @@
 		<div class="wrapper">
 			<v-card class="table">
 				<v-card-title>
-					Loans
+					My Books
 					<v-spacer></v-spacer>
 					<v-text-field
 						v-model="search"
