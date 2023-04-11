@@ -72,12 +72,8 @@ Z
 *src/main/java/com/library/dto/BookDTO.java,3\4\34fcc700af865639bbd5f9b636466a0beb976e62
 b
 2src/main/java/com/library/service/BookService.java,b\8\b83a1dae4a8d8bdd92e15ad9d9758d5f5df1bce0
-R
-"src/main/java/com/library/App.java,9\8\983a9c88840528a874503e3513faa33d4e630a5b
 i
 9src/main/java/com/library/controllers/AuthController.java,4\4\44c8dce8e78d565facf242c0142ef4fe98774080
-q
-Asrc/test/java/com/library/controllerTests/BookControllerTest.java,1\5\158b03014cc046e06a863f267279aee8c8bff80a
 q
 Asrc/test/java/com/library/controllerTests/LoanControllerTest.java,3\3\33116565b0593929307c210ac5b1426d5d9047a6
 j

@@ -97,9 +97,10 @@ class BookControllerTest {
     @Test
     void shouldUpdateBook() throws Exception {
         Long id = 2L;
-        Book book = new Book("978-5-6038-8700-5", "Martin Eden", new Author("Jack London"), 8,
+        Author author = new Author("Jack London");
+        Book book = new Book("978-5-6038-8700-5", "Martin Eden", author, 8,
                 "Martin Eden was a sailor that wanted to seduce a girl from the upper circles of society.");
-        Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", new Author("Jack LONdon"), 8,
+        Book updatedBook = new Book("978-5-8888-8700-5", "MaRTin Eden", author, 8,
                 "This is a unit test");
 
         when(bookRepository.findById(anyLong())).thenReturn(Optional.of(book));
@@ -109,10 +110,10 @@ class BookControllerTest {
                         .content(objectMapper.writeValueAsString(updatedBook)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value(updatedBook.getTitle()))
-                .andExpect(jsonPath("$.author").value(updatedBook.getAuthor()))
                 .andExpect(jsonPath("$.isbn").value(updatedBook.getIsbn()))
                 .andExpect(jsonPath("$.availability").value(updatedBook.getAvailability()))
                 .andExpect(jsonPath("$.description").value(updatedBook.getDescription()))
+                .andExpect(jsonPath("$.author").value(updatedBook.getAuthor()))
                 .andDo(print());
     }
 

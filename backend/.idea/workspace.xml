@@ -7,10 +7,7 @@
     <list default="true" id="f79feebc-6ec1-4404-a98d-ea28962267c5" name="Changes" comment="WIP">
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/library/controllers/BookController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/Loans.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/views/user/UserBooks.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/BookControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/library/controllerTests/BookControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +26,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="testing_features" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="JpbToolWindowState">
@@ -101,6 +103,21 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.App">
+    <configuration name="BookControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="library" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.library.controllerTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.library.controllerTests" />
+      <option name="MAIN_CLASS_NAME" value="com.library.controllerTests.BookControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="LoanControllerTest.couldNotGetLoansForUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="library" />
       <extension name="coverage">
@@ -173,6 +190,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="JUnit.BookControllerTest" />
       <item itemvalue="JUnit.LoanControllerTest.couldNotGetLoansForUser" />
       <item itemvalue="JUnit.LoanControllerTest.shouldAddLoan" />
       <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
@@ -180,9 +198,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BookControllerTest" />
         <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
         <item itemvalue="JUnit.LoanControllerTest.shouldAddLoan" />
         <item itemvalue="JUnit.LoanControllerTest.couldNotGetLoansForUser" />
+        <item itemvalue="JUnit.LoanControllerTest.shouldGetLoanById" />
       </list>
     </recent_temporary>
   </component>
@@ -573,6 +593,11 @@
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/library/controllerTests/BookControllerTest.java</url>
+          <line>115</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
